@@ -7,6 +7,9 @@ public class StringClass {
         if (name.equals(name1)) {
             System.out.println("Both are same");
         }else {
+            String str3=name.concat(name1);
+            System.out.println(str3);
+            System.out.println();
             System.out.println("Both are not same");
             System.out.println(name.charAt(0));
             System.out.println(name.chars());
