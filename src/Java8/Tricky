@@ -1,0 +1,9 @@
+Q) What is the advantage of having Default & Static methods in java 8?
+-> Default & Static methods provides backward compatibility.
+-> For example, if several classes such as A, B, C and D implements an interface Test then if
+   we add a new method to the Test, we have to change the code in all the classes (A, B, C and
+   D) that implements this interface.
+-> In this example we have only four classes that implements the interface, but imagine if
+there are hundreds of classes implementing an interface it will become very difficult to
+change all the classes which are implementing that interface. This is why in java 8, we have a
+new concept “default methods”.

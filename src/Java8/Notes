@@ -1,0 +1,105 @@
+Java 8 Features
+-> Java 8 introduced lot of new features
+-> Java 8 version changed coding style with those new features
+
+Main aim of java - 8
+-> To simplify programming
+-> To enable functional programming
+-> To write more readable & concise code
+
+New Features in Java 8
+• Interface changes (default & static methods)
+• Lambda Expressions
+• Functional Interfaces
+o Consumer
+o Supplier
+o Predicate
+o Function
+• Stream API
+• Date & Time API changes
+• Optional class
+• SplIterator
+• Stringjoiner
+• Method References
+• Constructor References
+• Collections Framework changes
+
+Interface Changes in Java 8
+-> Prior to java 8, interface should have only abstract methods (methods without body)
+-> Java 8 allows the interfaces to have default and static methods
+-> Default methods can be added to any existing interface and we do not need to
+   implement these methods in the implementation classes (if required we can override them
+   in implementation classes)
+
+ Some key points about default methods are :
+ • A default method must have a body.
+ • The access modifier of default methods are implicitly public.
+ • The class implementing such interface are not required to implement default
+   methods. If needed, implementing class can override default methods.
+
+Static Methods In Java
+-> The static methods in interfaces are similar to default methods but the only difference is
+   that you can’t override them. Now, why do we need static methods in interfaces if we
+   already have default methods?
+-> Suppose you want to provide some implementation in your interface and you don’t want
+   this implementation to be overridden in the implementing class, then you can declare the
+   method as static.
+
+Some key points about static methods are:
+• A static method must have a body.
+• The access modifier of static methods is implicitly public.
+• This method must be called using interface name.
+• Since these methods are static, we cannot override them in implementing class.
+
+Functional Interfaces
+-> If an interface contains only one abstract method, then it is called as Functional Interface.
+-> Functional Interface is used to invoke lambda expressions
+-> Runnable, Callable, Comparable and ActionListener are predefined functional interfaces.
+        Runnable ----> run ( )
+        Callable ----> call ( )
+        ActionListener ----> actionPerformed ( )
+        Comparable ----> compareTo ( )
+
+What is lambda expression
+-> Lambda is an Anonymous function
+        - No Name
+        - No Modifier
+        - No Return Type
+
+Why to use Lambda expressions?
+-> To write functional programming in java
+-> To write more readable, maintainable and concise code
+-> To enable parallel processing
+
+Method references are shortened versions of lambda expressions that call a specific method.
+
+Java 8 Optional Class
+-> Every Java Programmer is familiar with NullPointerException. It can crash your code. And
+   it is very hard to avoid it without using too many null checks. So, to overcome this, Java 8
+   has introduced a new class Optional in java.util package.
+-> Optional class help in writing a neat code without using too many null checks.
+-> By using Optional, we can specify alternate values to return or alternate code to run. This
+   makes the code more readable.
+
+Java 8 StringJoiner
+-> In java 8, a new class StringJoiner is introduced in the java.util package.
+-> Using this class we can join more than one strings with the specified delimiter, we can
+   also provide prefix and suffix to the final string while joining multiple strings.
+
+Collectors In Streams
+-> Collectors operations are used to collect from Streams
+-> We are having below methods to perform Collectors operations
+        Collectors.toList()
+        Collectors.toSet()
+        Collectors.toMap()
+        Collectors.toCollection() etc.
+
+Parallel Streams
+-> Streams is one of the major change added in java 1.8 version
+-> Generally Streams will execute in Sequential manner
+-> We can use parallel streams also to execute program faster by utilizing system resources
+   efficiently.
+-> Parallel Streams introduced to improve performance of the program.
+
+
+
