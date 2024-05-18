@@ -1,4 +1,6 @@
 package Threads;
+//> If we create any thread by extending Thread class then we have no chance for extending
+//from any other class.
 //Step-1: creating a class that extends a Thread class
 public class MyThread extends Thread{
 //    Step-2: overriding the run() method

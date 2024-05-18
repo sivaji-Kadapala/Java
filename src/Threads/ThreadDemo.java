@@ -15,6 +15,7 @@ public class ThreadDemo {
             Thread runnableDemo= new Thread( new RunnableDemo());
             obj.start();
             runnableDemo.start();
+//            runnableDemo.run();
         }
     }
 }
