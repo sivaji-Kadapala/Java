@@ -1,0 +1,190 @@
+	Apache Maven 3.9.6
+	spring boot-3.2.5
+	java-22 
+-> What is Garbage Collector and how it works?
+	It is removing unused objects/references from memory
+	Garbage Collector in Java automatically reclaims memory by destroying objects that are no longer reachable.
+ ->dynamic binding
+	It is a nothing polymorphism is called dynamic binding
+ ->string vs string buffer vs string builder
+ ->equals() vs hashcode()
+	the equals() method is used to comapare two objects for equality
+	the hashcode() is used to generate a hash code value for an object.
+    two methods are defined in Object class
+->shallow and deep copy
+->interface vs functional interface
+->why string is immutable 
+   String is immutable in Java to ensure security, synchronization, and performance.
+   Strings are immutable in Java for reasons like thread safety, caching, performance optimization, security, hashing, and design simplicity.
+->what is multi threading ? 
+	you are executing multiple threads  with in one java application perform different tasks.
+->what are ways to create  threads in java
+    by extending thread class and by implementng runnable interface
+->when we implement runnable interface ,there is any specfic method is to override ?
+	  The run method is the only method that you are required to override when implementing the Runnable interface. 
+	  This method will be executed by the new thread when it is started.
+->do you know any thread states ?
+	NEW: Thread created but not yet started.
+	RUNNABLE: Thread ready to run or currently running.
+	BLOCKED: Thread waiting for a monitor lock.
+	WAITING: Thread waiting indefinitely for another thread's action.
+	TIMED_WAITING: Thread waiting for another thread's action with a timeout.
+	TERMINATED: Thread has finished execution.
+->Difference between Wait and Sleep in Java
+	  wait() is used for thread communication and synchronization, while sleep() is used for introducing delays in thread execution.
+	  wait() must be used within synchronized blocks, while sleep() can be called from anywhere.
+
+->hash , bucket
+	  A HashMap in Java uses buckets to store key-value pairs. Keys are hashed to determine the bucket index, 
+	  handling collisions with linked lists or binary trees for efficient retrieval, insertion, and deletion of entries.
+->When should i go for hashmap and when should i go for concurrent hasmap ?
+	  choose HashMap for single-threaded environments and 
+	  ConcurrentHashMap for multi-threaded environments where thread safety and concurrency are required
+->How do you connect database in spring boot ?
+		Add dependencies for Spring Data JPA and your database driver.
+		Configure the database connection in application.properties or application.yml.
+		Create entity classes annotated with @Entity.
+		Create repository interfaces extending JpaRepository.
+		Use the repositories in service or controller classes to perform CRUD operations.
+		Create a REST controller to handle HTTP requests.
+->which layer managing transactions ?
+  DAO
+->I want to monitor the springboot applications,what are libraries can i use ? 
+	Spring Boot Actuator provides built-in monitoring features.
+	Micrometer offers a consistent API for application metrics.
+	Prometheus and Grafana are powerful for metrics collection, storage, and visualization.
+	Zipkin facilitates distributed tracing for microservices.
+	ELK Stack is commonly used for centralized logging and log analysis.
+	
+	otherwise ask sping admins
+->where do you deploy your spring boot application
+   our organization maintaining Gaia servers
+->Inversion of Control (IoC)
+  In Spring, Inversion of Control (IoC) is a fundamental concept that allows the framework to manage the lifecycle of Java objects (known as beans) and their dependencies.
+->what are the bean scope 
+	Singleton: One instance per container, shared across all requests or injections.
+	Prototype: A new instance per request or injection.
+	Request: A new instance per HTTP request in a web application.
+	Session: A new instance per HTTP session in a web application.
+	Application: One instance for the entire lifecycle of the web application.
+	WebSocket: A new instance per WebSocket connection.
+	Custom Scopes: Allows developers to define custom bean scopes
+->starters
+	spring-boot-starter: Core starter for basic Spring Boot application setup.
+	spring-boot-starter-web: For building web and RESTful applications using Spring MVC.
+	spring-boot-starter-data-jpa: For using Spring Data JPA with Hibernate.
+	spring-boot-starter-security: For adding Spring Security.
+	spring-boot-starter-test: For testing with JUnit, Hamcrest, and Mockito.
+	spring-boot-starter-thymeleaf: For using Thymeleaf as the templating engine.
+	spring-boot-starter-logging: For logging with Logback (included by default).
+	spring-boot-starter-actuator: For production-ready features like monitoring and management.
+->how many instances are you deploying your springboot application ?
+  you can use different instances, basically we are having diffrent environments
+->why we need microservices ?
+	  1) Easy Maintenence
+	  2) Scalability
+	  3) Technology Independence
+	  4) Easy Deployment
+->difference between @RestController vs @Controller
+	  Use @Controller when building traditional web applications that render views.
+	  Use @RestController when building RESTful APIs that require data (typically JSON or XML) to be directly returned in the response body.
+->what is difference between autowire and qualifier annotations ?
+	   @Autowired is for automatic dependency injection,
+	   while @Qualifier is for specifying which exact bean to inject when there are multiple beans of the same type.
+->what are the components of spring boot ?
+	Spring Boot Starter: Pre-configured sets of dependencies for common use cases.
+	Auto-configuration: Automatically configures application based on dependencies and environment.
+	Embedded Web Server: Allows running applications as stand-alone executable JAR files.
+	Actuator: Provides production-ready features for monitoring and managing applications.
+	CLI (Command Line Interface): Allows quick prototyping and development of Spring Boot applications.
+	DevTools: Provides additional development-time features for improved productivity.
+	Spring Boot Test: Supports writing unit tests, integration tests, and end-to-end tests.
+->why microservices was introduced ?
+	  Microservices were introduced to address the limitations of traditional monolithic architectures.
+	  By breaking down large applications into smaller, independent services, microservices enable greater agility, scalability, and resilience in software development.
+	  They allow teams to work autonomously, deploy changes more frequently, and scale individual components independently, leading to improved time-to-market, flexibility, and reliability.
+->what are the indexes and purpose in dbs
+	Indexes play a crucial role in database performance optimization by speeding up data retrieval operations and enforcing data integrity constraints.
+->normalization
+	It is process of organizing the data in db,it is used reduce the data redundancy
+->WAQTD Third maximum salary
+	SELECT salary
+	FROM emp
+	ORDER BY salary DESC
+	LIMIT 1 OFFSET 2;
+
+  
+  
+  
+  
+  
+-> Which among String or String Buffer should be preferred when there are lot of updates required to be done in the data?
+  StringBuffer is mutable and dynamic in nature whereas String is immutable. Every updation / modification of String creates a new String thereby overloading the string pool with unnecessary objects. Hence, in the cases of a lot of updates, 
+  it is always preferred to use StringBuffer as it will reduce the overhead of the creation of multiple String objects in the string pool.
+->What is Singleton in java and create your own singleton class countering all breakable conditions?
+  Singleton pattern ensures a class has only one instance and provides a global point of access to it.
+->What is Auto Configuration?
+  Auto Configuration in Spring Boot automatically configures the Spring application based on dependencies present in the classpath.
+->@Primary vs @Qualifier
+  @Primary annotation is used to give higher preference to a bean when multiple beans of the same type are present, 
+  while @Qualifier is used to specify which bean to autowire.
+->What is class loader?
+  Class loader is responsible for loading classes into memory.
+->Types of class loader 
+  Types include Bootstrap, Extension, System, and Custom class loaders.
+->Heap memory and stack memory  ?
+  Heap memory is used for dynamic memory allocation, 
+  while stack memory is used for static memory allocation and method calls.
+->What is @Configuration and @bean?
+  @Configuration annotation is used to define a configuration class in Spring,
+  while @Bean annotation is used to define a bean in the Spring container.
+->How Hashmap works internally?
+  HashMap works internally using an array of buckets to store key-value pairs. 
+  The key's hash code is used to determine the bucket location.
+->I want to add element inside a collection where duplicates won't be allowed and insertion order also be preserved. What should I use?
+  To add elements in a collection without duplicates and preserve insertion order, use LinkedHashSet.
+->Limit vs Skip 
+  Limit is used to restrict the number of elements in a stream, 
+  while Skip is used to skip a specified number of elements.
+->Stream vs Parallel stream
+  Stream processes elements sequentially, 
+  while Parallel stream processes elements concurrently.
+->Lock vs Synchronisation 
+  Locks provide exclusive access to a shared resource, 
+  while Synchronization ensures only one thread can access a shared resource at a time
+->Monolithic vs Microservices 
+  Monolithic architecture is a single unit with all components tightly coupled, 
+  while Microservices architecture breaks down the application into smaller, independent services.
+->How Eureka works? 
+  Eureka is a service registry and discovery server in Netflix OSS for Microservices architecture.
+->Why static and defaults methods are added inside interfaces?
+  Static and default methods in interfaces were added in Java 8 to provide backward compatibility and allow interfaces to have concrete methods.
+->What is the @Controller annotation used for? How can you create a controller without an annotation?
+  The @Controller is a Spring MVC annotation to define Controller but in reality, it's just a stereotype annotation.
+  You can even create a controller without @Controller by annotating the Spring MVC Controller classes using @Component annotation.
+  The real job of request mapping to the handler method is done using @RequestMapping annotation.
+->How to enable debugging log in the spring boot application?
+  1) We can start the application with --debug switch.
+  2) We can set the logging.level.root=debug property in application.property file.
+  3) We can set the logging level of the root logger to debug in the supplied logging configuration file.
+->What is thread starvation?
+  Thread starvation is basically a situation or condition where a thread won’t be able to have regular access to shared resources and therefore is unable to proceed or make progress. 
+  This is because other threads have high priority and occupy the resources for too long. 
+  This usually happens with low-priority threads that do not get CPU for its execution to carry on.
+->Differentiate between .ear, .jar and .war files.
+  .jar files : These files are with the .jar extension. The .jar files contain the libraries, resources and accessories files like property files.
+
+  .war files : These files are with the .war extension. The .war file contains JSP, HTML, javascript and other files necessary for the development of web applications.
+
+  .ear files : The .ear file contains the EJB modules of the application.
+->String s1=new String(null); what is the answer
+  The code will throw a NullPointerException.
+
+  The code tries to create a new String object with a null value, which is not allowed.
+
+  The constructor of String class does not accept null as a parameter.
+
+  The code will throw a NullPointerException at runtime.
+->What is transient keyword in Java?
+
+  The transient keyword in Java is used to indicate that a variable should not be serialized.

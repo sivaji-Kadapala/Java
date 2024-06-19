@@ -9,6 +9,7 @@ public class FindFirstElement {
     public static void main(String[] args) {
         List<String> list= Arrays.asList("apple","banana","blueberry","carrot");
         String b = String.valueOf(list.stream().filter(n -> n.startsWith("b")).findFirst());
+        System.out.println(list.stream().filter(n -> n.startsWith("b")).count());
         System.out.println(b);
         List<Integer> numbers = Arrays.asList(5, 1, 4, 3, 2);
         List<String> words= Arrays.asList("ab","ca","ba");
