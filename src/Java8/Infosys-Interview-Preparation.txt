@@ -1,6 +1,41 @@
 	Apache Maven 3.9.6
 	spring boot-3.2.5
 	java-22 
+	----------------------------------------------------------------------
+	                DATA JPA
+	----------------------------------------------------------------------
+	->What is ORM ?
+		ORM stands for Object Relational Mapping
+		It is a technique used to creating "Bridge" between Object Oriented Programmes and reational database
+		It is mainly for database operations
+	->Explaining mapping rule in JPA
+	    We define Entity(POJO) class for one table
+		We define one variable for one column
+		Then one object converted to one row(even reverse)
+	->Difference between JPA and Hibernate
+	    JPA is Specification given by sun micro systems,now it is part of oracle
+		Hibernate is a JPA implementation
+	->Difference between PagingAndSortingRepository and JpaRepository ?
+		JpaRepository only work with relational databases
+		   Ex:- mysql,oracle
+		PagingAndSortingRepository  and crudRepository are work for both sql and nosql databases
+		
+	-> How can we create a custom repositoy in spring data jpa ?
+		We can create custom repository by extending any one of the below interface
+		  Repository,CrudRepository,PagingAndSortingRepository,JpaRepository
+	->what is PagingAndSortingRepository ?
+	    By using this Repository,We can sort the data(either in asc/desc)
+		We convert the record or print the record in page by page(Pagination)
+		This repository extends CrudRepository
+	----------------------------------------------------------------------
+	                 Spring Sceurity
+	----------------------------------------------------------------------
+	->what is spring security ?
+	   Spring security is a separate module of the spring framework that focuses on proviiding authentucation and authorization methods in java applicatuions
+	   It also takes care of most of the common security vulnerabilities such as CSRF attacks
+	   To use Spring Security in web applications , we can get started with the simple annotation @EnableWebSecurity
+	->
+	
 -> What is Garbage Collector and how it works?
 	It is removing unused objects/references from memory
 	Garbage Collector in Java automatically reclaims memory by destroying objects that are no longer reachable.
