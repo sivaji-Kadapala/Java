@@ -187,6 +187,10 @@
 ->Lock vs Synchronisation 
   Locks provide exclusive access to a shared resource, 
   while Synchronization ensures only one thread can access a shared resource at a time
+  or 
+  Synchronisation is a process of controlling shared resource accessibility by multiple thread requests at a time,They are two types of synchronization
+      1.process synchronization
+	  2.thread synchronization
 ->Monolithic vs Microservices 
   Monolithic architecture is a single unit with all components tightly coupled, 
   while Microservices architecture breaks down the application into smaller, independent services.
@@ -223,3 +227,77 @@
 ->What is transient keyword in Java?
 
   The transient keyword in Java is used to indicate that a variable should not be serialized.
+  ->Difference between constructor and setter Injection ?
+	By the constructor injection partial injection is not possible but we can achieve partial injection by setter 
+	In the constructor injection new instance will created if any modification but it is not possible in the setter injection we can't achieve any new instance.
+-> What is the difference between @Autowired and @Inject
+	 Both are used for same purpose
+     @Autowired used for Spring framework
+	 @Inject used for java EE 6(JSR-299)
+->How many types of IOC containers are there in spring ?
+     1.BeanFactory 
+	 2.ApplicationContext
+->How to map controller class and its methods url in springMVC ?
+     The @RequestMapping annotation is used to map controller class and its methods
+------------------------------------------------------------------------------------------
+200: OK - Request successful
+
+400: Bad Request - Invalid request
+
+401: Unauthorized - Authentication failed
+
+403: Forbidden - Access denied
+
+404: Not Found - Resource not found
+
+500: Internal Server Error - Server error
+
+301: Moved Permanently - Resource moved (redirect)
+
+302: Found - Resource temporarily moved (redirect)
+
+These codes are the most commonly used and are a good starting point for understanding HTTP status codes.
+
+200 indicates a successful request.
+
+400-404 indicate client-side errors (problems with the request).
+
+500 indicates a server-side error (problem with the server).
+
+301 and 302 indicate redirects (resource has moved or is temporarily located elsewhere).
+
+
+-----------------------------------------------------------------------------------------
+These annotations are used in Spring MVC to handle web requests and responses. They help to simplify the process of extracting data from requests and sending data in responses.
+
+Here's a summary:
+
+- @PathVariable: Extracts values from the URI path
+- @RequestParam: Extracts values from request parameters
+- @RequestBody: Extracts the request body (JSON or XML payload)
+- @ResponseBody: Indicates that the method return value should be written to the response body
+@PathVariable:
+
+- Used to extract a value from the URI path
+- Example: /users/{id} -> @PathVariable("id") Long id
+- Used for RESTful APIs to extract resource identifiers
+
+@RequestParam:
+
+- Used to extract a value from the request parameters (query parameters or form data)
+- Example: /users?name=John -> @RequestParam("name") String name
+- Can be used to extract optional parameters (using required=false)
+
+@RequestBody:
+
+- Used to extract the request body (JSON or XML payload)
+- Example: POST /users with a JSON body -> @RequestBody User user
+- Used for creating or updating resources
+
+@ResponseBody:
+
+- Used to indicate that the method return value should be written to the response body
+- Example: GET /users -> @ResponseBody List<User> getUsers()
+- Used for returning data in the response body
+-------------------------------------------------------------------------------------------
+Spring MVC Validations : @NotNull,@Pattern,@Email,@Past,@NotBlank,@Valid ...etc
