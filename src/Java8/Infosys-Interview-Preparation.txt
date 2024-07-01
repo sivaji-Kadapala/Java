@@ -299,5 +299,137 @@ Here's a summary:
 - Used to indicate that the method return value should be written to the response body
 - Example: GET /users -> @ResponseBody List<User> getUsers()
 - Used for returning data in the response body
+---------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------
-Spring MVC Validations : @NotNull,@Pattern,@Email,@Past,@NotBlank,@Valid ...etc
+Configuration and Component Scanning
+
+- @SpringBootApplication: A convenience annotation that combines @Configuration, @EnableAutoConfiguration, and @ComponentScan.
+- @Configuration: Marks a class as a source of bean definitions.
+- @ComponentScan: Enables component scanning, which searches for beans in the package and its sub-packages.
+- @EnableAutoConfiguration: Enables auto-configuration, which automatically configures beans based on the application's needs.
+
+Bean Definition and Wiring
+
+- @Bean: Defines a bean, which is a managed object that can be injected into other beans.
+- @Autowired: Injects a bean into another bean.
+- @Value: Injects a value into a bean.
+- @Qualifier: Qualifies a bean, allowing multiple beans of the same type to be distinguished.
+
+Web and REST
+
+- @RestController: Marks a class as a REST controller, which handles HTTP requests and sends responses.
+- @RequestMapping: Maps a request to a method, specifying the HTTP method, path, and other parameters.
+- @GetMapping, @PostMapping, @PutMapping, @DeleteMapping: Shortcut annotations for common HTTP methods.
+- @PathVariable: Extracts a path variable from the URL.
+- @RequestParam: Extracts a request parameter from the URL or body.
+- @RequestBody: Extracts the request body as a bean.
+- @ResponseBody: Indicates that the method return value should be written to the response body.
+
+Security
+
+- @Secured: Secures a method, restricting access to authorized users.
+- @PreAuthorize: Pre-authorizes a method, checking permissions before execution.
+- @PostAuthorize: Post-authorizes a method, checking permissions after execution.
+- @PreFilter: Pre-filters a collection, removing unauthorized elements.
+- @PostFilter: Post-filters a collection, removing unauthorized elements.
+
+Data Access
+
+- @Repository: Marks a class as a repository, which defines data access operations.
+- @Entity: Marks a class as an entity, which represents a database table.
+- @Table: Defines a database table.
+- @Column: Defines a column in a table.
+- @Id: Defines the primary key column.
+- @GeneratedValue: Defines a generated value, such as an auto-incrementing ID.
+
+AOP and Transactions
+
+- @Aspect: Marks a class as an aspect, which defines cross-cutting concerns.
+- @Before: Defines a before advice, which executes before a method.
+- @After: Defines an after advice, which executes after a method.
+- @Around: Defines an around advice, which surrounds a method.
+- @Transactional: Defines a transactional method, which executes in a database transaction.
+
+Testing
+
+- @SpringBootTest: Marks a test class as a Spring Boot test.
+- @RunWith: Defines a test runner, such as JUnit or TestNG.
+- @MockBean: Defines a mock bean, which simulates a real bean.
+- @SpyBean: Defines a spy bean, which wraps a real bean and allows for verification of interactions.
+
+These annotations are essential to building Spring Boot applications, and understanding them is crucial for effective development.
+
+------------------------------------------------------------------------------OR-----------------------------------------------------------------------------------------
+Configuration and Component Scanning
+
+- @SpringBootApplication: A convenience annotation that combines @Configuration, @EnableAutoConfiguration, and @ComponentScan to enable auto-configuration and component scanning.
+- @Configuration: Marks a class as a source of bean definitions.
+- @EnableAutoConfiguration: Enables auto-configuration, which automatically configures beans based on the application's needs.
+- @ComponentScan: Enables component scanning, which searches for beans in the package and its sub-packages.
+- @Component: Marks a class as a component, which can be autodetected by component scanning.
+- @Repository, @Service, @Controller, @RestController: Specialized annotations for marking classes as repositories, services, controllers, or REST controllers.
+
+Bean Definition and Wiring
+
+- @Bean: Defines a bean, which is a managed object that can be injected into other beans.
+- @Autowired: Injects a bean into another bean.
+- @Value: Injects a value into a bean.
+- @Qualifier: Qualifies a bean, allowing multiple beans of the same type to be distinguished.
+- @Primary: Marks a bean as the primary candidate for autowiring.
+- @Profile: Activates a bean only when a specific profile is active.
+
+Web and REST
+
+- @RequestMapping: Maps a request to a method, specifying the HTTP method, path, and other parameters.
+- @GetMapping, @PostMapping, @PutMapping, @DeleteMapping: Shortcut annotations for common HTTP methods.
+- @PathVariable: Extracts a path variable from the URL.
+- @RequestParam: Extracts a request parameter from the URL or body.
+- @RequestBody: Extracts the request body as a bean.
+- @ResponseBody: Indicates that the method return value should be written to the response body.
+- @RestControllerAdvice: Marks a class as a controller advice, which provides global exception handling and other features.
+
+Security
+
+- @Secured: Secures a method, restricting access to authorized users.
+- @PreAuthorize: Pre-authorizes a method, checking permissions before execution.
+- @PostAuthorize: Post-authorizes a method, checking permissions after execution.
+- @PreFilter: Pre-filters a collection, removing unauthorized elements.
+- @PostFilter: Post-filters a collection, removing unauthorized elements.
+- @AuthenticationPrincipal: Injects the authenticated user into a method parameter.
+
+Data Access
+
+- @Entity: Marks a class as an entity, which represents a database table.
+- @Table: Defines a database table.
+- @Column: Defines a column in a table.
+- @Id: Defines the primary key column.
+- @GeneratedValue: Defines a generated value, such as an auto-incrementing ID.
+- @Repository, @CrudRepository, @PagingAndSortingRepository: Specialized annotations for marking classes as repositories, which define data access operations.
+
+AOP and Transactions
+
+- @Aspect: Marks a class as an aspect, which defines cross-cutting concerns.
+- @Before: Defines a before advice, which executes before a method.
+- @After: Defines an after advice, which executes after a method.
+- @Around: Defines an around advice, which surrounds a method.
+- @Transactional: Defines a transactional method, which executes in a database transaction.
+- @EnableTransactionManagement: Enables transaction management, which automatically configures transactions for beans.
+
+Testing
+
+- @SpringBootTest: Marks a test class as a Spring Boot test.
+- @RunWith: Defines a test runner, such as JUnit or TestNG.
+- @MockBean: Defines a mock bean, which simulates a real bean.
+- @SpyBean: Defines a spy bean, which wraps a real bean and allows for verification of interactions.
+- @TestConfiguration: Defines a test configuration, which overrides the application configuration for testing purposes.
+
+Other
+
+- @EnableConfigurationProperties: Enables configuration properties, which allow beans to be configured using properties files.
+- @ConfigurationProperties: Marks a bean as a configuration properties bean.
+- @PropertySource: Defines a property source, which provides additional properties for the application.
+- @Import: Imports another configuration class or bean.
+- @DependsOn: Defines a dependency between beans.
+- @Description: Provides a description for a bean or configuration class.
+
+These annotations are essential to building Spring Boot applications, and understanding them is crucial for effective development.
