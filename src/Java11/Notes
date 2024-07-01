@@ -1,0 +1,60 @@
+1.Compile free launch
+-------------------
+-->From java 11, java provides flexibility to run java code without compilation.
+-->We can execute java code in a single step
+-->Use Single command java java_file.java and it will execute the file by producing the desired result.
+-->command in command prompt: java HelloWorld.java
+
+2.new String methods
+--------------------
+-->1.isBlank():- This method is used to check whether a string is blank or not.Empty strings and strings with just whitespace are considered blank
+-->2.lines():-This method splits a string using line terminators and return a stream.Return the stream of lines of multi-line string.
+-->3.repeat():-This method is used to duplicate or repeat a string
+-->4.stripLeading():-It uses to remove all leading white spaces from a string and It returns a new string
+-->5.stripTrailing():-in end
+
+3.Var in Lambda
+---------------
+-->Java 11 allows to use var in a lambda expression and it can be used to apply modifiers to local variables.
+-->Java compiler infers the type of variable at compile time
+-->It is introduced in java 10 and var is not a keyword
+-->Var can be used in loops and you can not assign null to var
+-->There are certain limitations on using var in lambda expressions
+-->var parameters cannot be mixed with other parameters,it will throw compilation error
+-->(var v1,var v2)->v1+v2 var parameters cannot be mixed with other typed parameters
+-->(var v1,String v2)->v1+v2 var parameters can only be used with parenthesis
+
+4.toArray
+---------
+-->Java 11 introduces a new method in the collection interface toArray(Int Function generator) method.
+-->This method uses to convert a collection into an array
+-->The toArray() method is an overloaded method
+-->Syntax: BArray=AList.toArray(String[]::new);
+
+5.File API
+----------
+-->Java 11 introduced some new methods in the Files class and these methods provide better handling
+-->These methods are:
+         1.readString(Path path,Charset cs)
+         2.writeString(Path path,CharSequence csq,OpenOption... options)
+
+6.Not Predicate :- It is Predicate interface as not() to negate an existing predicate similar to negate method
+
+7.Optional Class
+----------------
+-->Optional class has isEmpty() to check if value is present
+-->isEmpty() returns false if value is present otherwise true
+-->It can be used as an alternative of isPresent() method which often needs to negate to check if value is not present
+
+8.Standard HttpClient
+---------------------
+-->Httpclient is a standard which is recommended to use instead of other HTTP Client APIs like Apache Http client API.
+-->It is quite feature rich and now java based applications can make HTTP requests without using any external dependency
+        ->Create HttpClient instance : HttpClient.newBuilder() instance
+        ->Create HttpRequest instance : HttpRequest.newBuilder() instance
+        ->Make a request using httpClient.send() and get a response object.
+
+
+
+
+
