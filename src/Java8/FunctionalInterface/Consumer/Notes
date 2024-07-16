@@ -1,0 +1,12 @@
+In Java 8, Consumer is a functional interface; it takes an argument and returns nothing.
+
+
+@FunctionalInterface
+public interface Consumer<T> {
+  void accept(T t);
+}
+
+
+
+2. Higher Order Function
+2.1 This example accepts Consumer as an argument, simulates a forEach to print each item from a list.

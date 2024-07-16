@@ -1,0 +1,7 @@
+In Java 8, the double colon (::) operator is called method references.
+There are four kinds of method references:
+
+Reference to a static method ClassName::staticMethodName
+Reference to an instance method of a particular object Object::instanceMethodName
+Reference to an instance method of an arbitrary object of a particular type ContainingType::methodName–
+Reference to a constructor ClassName::new
