@@ -1,0 +1,154 @@
+
+1. **Scenario: Custom Functional Interface**
+   - **Question:** Define a custom functional interface `TriFunction` that takes three arguments and returns a result. Implement a method using this interface to add three integers.
+   - **Answer:**
+     ```java
+     @FunctionalInterface
+     interface TriFunction<A, B, C, R> {
+         R apply(A a, B b, C c);
+     }
+
+     public class Main {
+         public static void main(String[] args) {
+             TriFunction<Integer, Integer, Integer, Integer> addThree = (a, b, c) -> a + b + c;
+             System.out.println(addThree.apply(1, 2, 3)); // Output: 6
+         }
+     }
+     ```
+
+2. **Scenario: Using Built-in Functional Interfaces**
+   - **Question:** How would you use the `Predicate` functional interface to filter a list of integers to only include even numbers?
+   - **Answer:**
+     ```java
+     List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+     Predicate<Integer> isEven = n -> n % 2 == 0;
+     List<Integer> evenNumbers = numbers.stream()
+         .filter(isEven)
+         .collect(Collectors.toList());
+     System.out.println(evenNumbers); // Output: [2, 4, 6]
+     ```
+
+3. **Scenario: Chaining Functional Interfaces**
+   - **Question:** Use the `Function` interface to create a function that first converts a string to uppercase and then appends an exclamation mark.
+   - **Answer:**
+     ```java
+     Function<String, String> toUpperCase = String::toUpperCase;
+     Function<String, String> addExclamation = s -> s + "!";
+     Function<String, String> combinedFunction = toUpperCase.andThen(addExclamation);
+
+     System.out.println(combinedFunction.apply("hello")); // Output: HELLO!
+     ```
+
+4. **Scenario: Handling Exceptions in Functional Interfaces**
+   - **Question:** How can you create a `Consumer` that logs each element of a list, but gracefully handles potential exceptions?
+   - **Answer:**
+     ```java
+     List<String> items = Arrays.asList("apple", "banana", "cherry");
+     Consumer<String> safeConsumer = item -> {
+         try {
+             // Simulating a method that may throw an exception
+             if (item.equals("banana")) throw new RuntimeException("Exception!");
+             System.out.println(item);
+         } catch (Exception e) {
+             System.err.println("Error processing item: " + item + ", error: " + e.getMessage());
+         }
+     };
+
+     items.forEach(safeConsumer);
+     ```
+
+5. **Scenario: Custom Comparator with Functional Interfaces**
+   - **Question:** Use the `Comparator` interface to sort a list of `Person` objects by their age in descending order.
+   - **Answer:**
+     ```java
+     class Person {
+         private String name;
+         private int age;
+
+         // constructor, getters, and setters
+     }
+
+     List<Person> people = Arrays.asList(
+         new Person("Alice", 30),
+         new Person("Bob", 25),
+         new Person("Charlie", 35)
+     );
+
+     Comparator<Person> byAgeDescending = Comparator.comparingInt(Person::getAge).reversed();
+     people.sort(byAgeDescending);
+
+     people.forEach(p -> System.out.println(p.getName() + ": " + p.getAge()));
+     // Output: Charlie: 35, Alice: 30, Bob: 25
+     ```
+
+6. **Scenario: Composing Predicates**
+   - **Question:** Combine two `Predicate` instances to filter a list of strings to include only those that start with "A" and have a length of 3.
+   - **Answer:**
+     ```java
+     List<String> words = Arrays.asList("Apple", "Ape", "Ant", "Bat");
+     Predicate<String> startsWithA = s -> s.startsWith("A");
+     Predicate<String> lengthIsThree = s -> s.length() == 3;
+     Predicate<String> combinedPredicate = startsWithA.and(lengthIsThree);
+
+     List<String> filteredWords = words.stream()
+         .filter(combinedPredicate)
+         .collect(Collectors.toList());
+
+     System.out.println(filteredWords); // Output: [Ape, Ant]
+     ```
+
+7. **Scenario: Using `Supplier` for Lazy Initialization**
+   - **Question:** Use the `Supplier` interface to create a lazy-initialized value in a class.
+   - **Answer:**
+     ```java
+     public class LazyInitialization {
+         private Supplier<String> lazyValue = () -> {
+             String value = "Expensive Computation Result";
+             lazyValue = () -> value; // memoize
+             return value;
+         };
+
+         public String getValue() {
+             return lazyValue.get();
+         }
+
+         public static void main(String[] args) {
+             LazyInitialization li = new LazyInitialization();
+             System.out.println(li.getValue()); // Output: Expensive Computation Result
+         }
+     }
+     ```
+
+8. **Scenario: Transforming Collections with `Function`**
+   - **Question:** Transform a list of `Integer` values to their square roots using the `Function` interface.
+   - **Answer:**
+     ```java
+     List<Integer> numbers = Arrays.asList(1, 4, 9, 16, 25);
+     Function<Integer, Double> sqrtFunction = Math::sqrt;
+     List<Double> sqrtValues = numbers.stream()
+         .map(sqrtFunction)
+         .collect(Collectors.toList());
+
+     System.out.println(sqrtValues); // Output: [1.0, 2.0, 3.0, 4.0, 5.0]
+     ```
+
+9. **Scenario: Using `BiFunction` for Combining Values**
+   - **Question:** Use `BiFunction` to create a function that concatenates two strings with a space in between.
+   - **Answer:**
+     ```java
+     BiFunction<String, String, String> concatenateWithSpace = (s1, s2) -> s1 + " " + s2;
+     System.out.println(concatenateWithSpace.apply("Hello", "World")); // Output: Hello World
+     ```
+
+10. **Scenario: Using `UnaryOperator` for In-place Operations**
+    - **Question:** Use the `UnaryOperator` interface to increment each value in a list of integers by 1.
+    - **Answer:**
+      ```java
+      List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+      UnaryOperator<Integer> incrementByOne = n -> n + 1;
+      List<Integer> incrementedNumbers = numbers.stream()
+          .map(incrementByOne)
+          .collect(Collectors.toList());
+
+      System.out.println(incrementedNumbers); // Output: [2, 3, 4, 5, 6]
+      ```

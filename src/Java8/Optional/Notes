@@ -1,0 +1,93 @@
+Certainly! Here are some Java 8 `Optional` class scenario-based interview questions:
+
+1. **Scenario: Handling Potential Null Values**
+   - **Question:** Suppose you have a method `findUserById(Long id)` that returns a `User` object. How would you modify this method to return an `Optional<User>` instead of handling potential null values?
+   - **Answer:** You would change the return type to `Optional<User>` and use `Optional.ofNullable(user)` inside the method if `user` can be null.
+     ```java
+     public Optional<User> findUserById(Long id) {
+         User user = // logic to find user by id
+         return Optional.ofNullable(user);
+     }
+     ```
+
+2. **Scenario: Default Values with Optional**
+   - **Question:** How can you use `Optional` to provide a default value if the `Optional` is empty?
+   - **Answer:** You can use the `orElse` method.
+     ```java
+     User user = findUserById(id).orElse(new User("defaultUser"));
+     ```
+
+3. **Scenario: Throwing Exceptions with Optional**
+   - **Question:** What approach would you use to throw a custom exception if the `Optional` is empty?
+   - **Answer:** You can use the `orElseThrow` method.
+     ```java
+     User user = findUserById(id).orElseThrow(() -> new UserNotFoundException("User not found"));
+     ```
+
+4. **Scenario: Transforming Values with Optional**
+   - **Question:** Given an `Optional<User>`, how can you transform it to an `Optional<String>` containing the user's name?
+   - **Answer:** You can use the `map` method.
+     ```java
+     Optional<User> optionalUser = findUserById(id);
+     Optional<String> userName = optionalUser.map(User::getName);
+     ```
+
+5. **Scenario: Chaining Optional Methods**
+   - **Question:** How can you use `Optional` to perform a series of operations on a `User` object only if it is present, such as converting the name to uppercase?
+   - **Answer:** You can chain `map` calls.
+     ```java
+     Optional<String> upperCaseName = findUserById(id)
+         .map(User::getName)
+         .map(String::toUpperCase);
+     ```
+
+6. **Scenario: Combining Optionals**
+   - **Question:** How can you combine two `Optional` objects, say `Optional<User>` and `Optional<Address>`, to create an `Optional<UserDetails>` if both are present?
+   - **Answer:** You can use `flatMap` to combine them.
+     ```java
+     Optional<User> optionalUser = findUserById(userId);
+     Optional<Address> optionalAddress = findAddressByUserId(userId);
+
+     Optional<UserDetails> userDetails = optionalUser.flatMap(user ->
+         optionalAddress.map(address -> new UserDetails(user, address))
+     );
+     ```
+
+7. **Scenario: Filtering Optional Values**
+   - **Question:** How would you filter an `Optional<User>` to get an `Optional<User>` only if the user's age is above 18?
+   - **Answer:** You can use the `filter` method.
+     ```java
+     Optional<User> adultUser = findUserById(id)
+         .filter(user -> user.getAge() > 18);
+     ```
+
+8. **Scenario: Nested Optionals**
+   - **Question:** If `User` has a method `getProfile()` that returns an `Optional<Profile>`, how would you get an `Optional<String>` of the profile description?
+   - **Answer:** You should use `flatMap` to avoid nested `Optional`.
+     ```java
+     Optional<String> profileDescription = findUserById(id)
+         .flatMap(User::getProfile)
+         .map(Profile::getDescription);
+     ```
+
+9. **Scenario: Optional Stream Operations**
+   - **Question:** How would you convert a `List<Optional<User>>` to a `List<User>` containing only the present users?
+   - **Answer:** You can use stream operations.
+     ```java
+     List<Optional<User>> optionalUsers = // some list
+     List<User> users = optionalUsers.stream()
+         .flatMap(Optional::stream)
+         .collect(Collectors.toList());
+     ```
+
+10. **Scenario: Handling Multiple Optionals in Parallel**
+    - **Question:** How would you use `Optional` to work with multiple `Optional` values, such as an `Optional<User>` and an `Optional<Preferences>`, to perform an operation only if both are present?
+    - **Answer:** You can use `flatMap` and `map`.
+      ```java
+      Optional<User> optionalUser = findUserById(userId);
+      Optional<Preferences> optionalPreferences = findPreferencesByUserId(userId);
+
+      Optional<Result> result = optionalUser.flatMap(user ->
+          optionalPreferences.map(preferences -> new Result(user, preferences))
+      );
+      ```

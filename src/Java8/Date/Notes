@@ -1,0 +1,13 @@
+-> In java we have java.util.Date class to work with date related functionality in our
+application.
+Date date = new Date();
+-> When we create object for Date class it will give both date and time (current date &
+time).
+-> If we want to get only date without time or only time without date then we have to write
+our own logic using Date class object.
+-> To overcome this problem, in java 1.8 v changes happened for Date API.
+-> In Java 1.8v new classes provided to work with date related functionality
+    java.time.LocalDate (It will deal with only date)
+    java.time.LocalTime (It will deal with only time)
+    java.time.LocalDateTime (It will deal with both date & time)
+-> The above classes got introduced in java.time package
