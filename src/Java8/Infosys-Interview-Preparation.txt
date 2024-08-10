@@ -224,6 +224,10 @@
   The constructor of String class does not accept null as a parameter.
 
   The code will throw a NullPointerException at runtime.
+->Disabling the Web Server
+If your classpath contains the necessary bits to start a web server, Spring Boot will automatically start it. To disable this behavior configure the WebApplicationType in your application.properties
+
+spring.main.web-application-type=none
 ->What is transient keyword in Java?
 
   The transient keyword in Java is used to indicate that a variable should not be serialized.
