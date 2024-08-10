@@ -34,7 +34,7 @@
 	   Spring security is a separate module of the spring framework that focuses on proviiding authentucation and authorization methods in java applicatuions
 	   It also takes care of most of the common security vulnerabilities such as CSRF attacks
 	   To use Spring Security in web applications , we can get started with the simple annotation @EnableWebSecurity
-	->
+	 ->
 	
 -> What is Garbage Collector and how it works?
 	It is removing unused objects/references from memory
