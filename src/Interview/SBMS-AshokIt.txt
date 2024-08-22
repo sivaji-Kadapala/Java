@@ -561,121 +561,378 @@ Note: Application execution log details can be monitored in zipkin server dashbo
 Note: Now a days in the industry we are using Splunk for this.
 ---------------------------------------------------------------------------------------------
 
+Today's session : Apache Kafka
+--------------------------------------------------------------------------------
+-> Distributed systems are collection of computers that work together to form single computer for end users.
 
+-> Distributed systems can handle billions of requests and upgrades without downtime.
 
+-> Apache Kafka has become one of the most widely used Distributed Systems on the market today.
+-------------------------------------------------------------------------------
+-> Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance and data pipelines, streaming analysis, data integration, and mission-critical applications.
 
+-> Kafka is used by most fortune 100 companies like Linkedin, Netflix and Microsoft etc.
 
+-> Apache Kafka is an open-source software which is written in Scala and Java programming languages.
 
+-> Kafka started in 2011 as a messaging system for Linkedin but has since grown to became a popular distributed event streaming platform.
 
+-> Apache Kafka is capable of handling trillions of records per day.
 
 
+Apache Kafka Use cases
+----------------------
+1) Processing financial transactions in realtime
 
+2) Tracking and Monitoring Trasportation Vehicles in real-time
 
+3) Capturing and Analyzing sensor data
 
+4) Collecting and reacting to customer interaction
 
+5) Monitoring hospital patients
 
+6) To develop Event-Driven Microservices etc..
 
 
+Today's session(28-Aug) : Cache Introduction
+-------------------------------------------------------------------------
+-> Cache is a memory which is used to store the data in key-value format
 
+-> If our application having a requirement to use satic data then it is highly recommended to use Cache in that application.
 
+-> Using cache data we can reduce no.of db calls and we can improve performance of the application.
 
+-> If we want to use cache in one application then we will go for Local cache. Local cache means we will implement with in our application.
 
+------------------------------------------------------------------------
+@Data
+public class Cache{
+    private Map<String, Object> data = new HashMap<>();
 
+    public static boolean put(String key, Object val){
+	return	data.put(key, Object);
+    }
 
+    public static Object get(String key){
+	return data.get(key);
+     }
+}
+-------------------------------------------------------------------------
+@Component
+public class MyCacheRunner implements CommandLineRunner{
 
+      public void run(){
+		//load the data from db
+		//store the data into cache
+      }
+}
+-----------------------------------------------------------------------
+-> If we want to use cache data in multiple applications then we will go for Distributed Cache.
 
+-> Redis is one of the famous distributed cache.
+------------------------------------------------------------------------
 
+Last session : What is Cache & why we need to go for cache
+------------------------------------------------------------------------
 
+-> Cache is a temporary storage which is used to store & access the data frequently.
 
+-> In our application we will deal with two types of tables
 
+		1) Transactional tables
+		2) Non-transactional tables
 
+-> If application is performing insert/update/delete operations in the table then it is called as transactional table.
 
+-> If application is performing only select(read) operation on the table then that table is called as non-transactional table.
 
+-> The data which we have in non-transactional table is called as static data.
 
+-> If we are using static data in our application then we can implement cache to improve performance of the application.
 
+How to implement cache
+----------------------
+-> Once application got started take data from db and store that into cache in the form of key-value pair.
 
+-> When application needs that data take it from cache memory instead of making db call.
 
+-> By using cache memory we can reduce no.of db calls hence application performance will be improved.
 
+Q) What is Local cache & What is distributed cache ?
+-----------------------------------------------------
+-> If we implement cache with in one application then it called as local cache.
 
+-> If we want to use cache data in multiple applications then we should go for distributed cache (Ex: Redis cache)
 
 
+Q) What is Redis?
+------------------
+-> Redis is an open source cache which is used to store the data in the form key-value pair.
 
+-> Multiple applications can connect to Redis cache to access the data.
 
+------------------------------------------------------------------------
+Environment Setup
+------------------------------------------------------------------------
+1) download redis-server software
 
+2) Extract downloaded zip file
+
+3) Double click on redis-server.exe file (redis server will start)
 
+4) Double click on redis-cli.exe file
+
+5) Type ping in client cmd it will respond with PONG.
 
+Note : With this redis server setup is ready.
+
+Note: In realtime, redis-server will be installed in remote machine and they will share redis-server details (url, uname, pwd and port)
+-----------------------------------------------------------------------
+Spring Boot Application with Redis Integration
+------------------------------------------------------------------------
+1) Create Spring Boot application with below dependencies
 
+		1) spring-boot-starter-web
+		2) spring-boot-starter-redis
+		3) project lombok
+		4) devtools
+		5) swagger & swagger-ui
 
+2) Configure JedisConnectionFactory bean with Redis Server details & inject JedisConnectionFactory bean into RedisTemplate bean
 
+3) Create Entity class
 
+4) Create Repository Class with required methods. Inject RedisTemplate into Repository bean and get HashOperations object to perform redis operations.
 
+5) Create Rest Controller with required methods
 
+6) Create Swagger Config class
 
+7) Configure Server port
 
+8) Run the application and test it.
 
+----------------------------------------------------------------------------------
+<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.6.1</version>
+		</dependency>
 
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.6.1</version>
+		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+----------------------------------------------------------------------------------
+package com.tekleads;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
 
+import com.tekleads.model.User;
 
+@SpringBootApplication
+public class SpringRedisExampleApplication {
 
+	@Bean
+	JedisConnectionFactory jedisConnectionFactory() {
+		JedisConnectionFactory jcf = new JedisConnectionFactory();
+		//jcf.setHostName(hostName);
+		//jcf.setPassword(password);
+		//jcf.setPort(port);
+		return jcf;
+	}
 
+	@Bean
+	RedisTemplate<String, User> redisTemplate() {
+		RedisTemplate<String, User> redisTemplate = new RedisTemplate<>();
+		redisTemplate.setConnectionFactory(jedisConnectionFactory());
+		return redisTemplate;
+	}
 
+	public static void main(String[] args) {
+		SpringApplication.run(SpringRedisExampleApplication.class, args);
+	}
+}
+----------------------------------------------------------------------------------
+@Data
+public class User implements Serializable {
 
+	private String id;
+	private String name;
+	private Long salary;
 
+}
+----------------------------------------------------------------------------------
+public interface UserRepository {
+
+	void save(User user);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	Map<String, User> findAll();
+
+	User findById(String id);
+
+	void update(User user);
+
+	void delete(String id);
+}
+---------------------------------------------------------------------------------
+package com.tekleads.repository;
+
+import java.util.Map;
+
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.tekleads.model.User;
+
+@Repository
+public class UserRepositoryImpl implements UserRepository {
+
+	private HashOperations<String, String, User> hashOperations;
+
+	public UserRepositoryImpl(RedisTemplate<String, User> redisTemplate) {
+		hashOperations = redisTemplate.opsForHash();
+	}
+
+	@Override
+	public void save(User user) {
+		hashOperations.put("USER", user.getId(), user);
+	}
+
+	@Override
+	public Map<String, User> findAll() {
+		return hashOperations.entries("USER");
+	}
+
+	@Override
+	public User findById(String id) {
+		User user = (User) hashOperations.get("USER", id);
+		return user;
+	}
+
+	@Override
+	public void update(User user) {
+		save(user);
+	}
+
+	@Override
+	public void delete(String id) {
+		hashOperations.delete("USER", id);
+	}
+}
+----------------------------------------------------------------------------------
+package com.tekleads.rest;
+
+import java.util.Map;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.tekleads.model.User;
+import com.tekleads.repository.UserRepository;
+
+@RestController
+@RequestMapping("/rest/user")
+public class UserResource {
+
+	private UserRepository userRepository;
+
+	public UserResource(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
+	@PostMapping(value = "/add", consumes = "application/json")
+	public User add(@RequestBody User user) {
+		userRepository.save(user);
+		return userRepository.findById(user.getId());
+	}
+
+	@PutMapping("/update/{id}/{name}")
+	public User update(@PathVariable("id") final String id, @PathVariable("name") final String name) {
+		userRepository.update(new User(id, name, 1000L));
+		return userRepository.findById(id);
+	}
+
+	@DeleteMapping("/delete/{id}")
+	public Map<String, User> delete(@PathVariable("id") final String id) {
+		userRepository.delete(id);
+		return all();
+	}
+
+	@GetMapping("/all")
+	public Map<String, User> all() {
+		Map<String, User> findAll = userRepository.findAll();
+		return findAll;
+	}
+}
+----------------------------------------------------------------------------------
+Last Session : Spring Boot with Redis Integration
+------------------------------------------------------------------------
+
+-> JedisConnectionFactory (To connect with Redis Server)
+
+-> RedisTemplate
+
+-> HashOperations (Provided methods to perform operations)
+
+		- put( )
+		- get( )
+		- entries( )
+		- delete( )
+-------------------------------------------------------------------------
+Circuit Breaker & Multiple Data sources in Boot
+Securing Rest api (Basic Auth, oAuth2.0 & JWT)
+Angular Integration
+Spring Boot with MongoDB
+Data JPA Joins Example
+Config Server
+Docker
+-------------------------------------------------------------------------
+try{
+    //logic to get data from redis
+}catch(Exception e){
+    //logic to get data from db
+}
+------------------------------------------------------------------------
+
+@CircuitBreaker(faultTolerenceMethod="getFromDB")
+public Object getFromRedis(){
+	//logic
+}
+
+public Object getFromDB(){
+	//logic
+}
+-------------------------------------------------------------------------
+if 3 requests failed to get data from redis then break circuit for 30 mins
 
