@@ -1,0 +1,985 @@
+-> To perform persistent operations we need persistent store.
+
+-> Persistent Store is nothing but database where we can store the data permanently for future access.
+
+-> We can perform below persistent operations in persitent store
+
+		1) CREATE / INSERT
+		2) UPDATE
+		3) RETRIEVE
+		4) UPDATE
+
+
+-> In order to work with Databases we need to have below 2 softwares
+
+			1) Database Server S/w
+			2) Database Client S/w
+
+
+-> For Oracle DB Server, SQL Developer software will be used as client
+
+-> For MySQL DB server, Mysql workbench will be used as client
+-> When we install oracle db in our system we will get sql commandline to execute sql queries.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Note: It is very difficult to write complex sql queries in command line.
+In industry people will use SQL developer as a client software to write sql queries.
+----------------------------------------------------------------------------------
+-> To communicate with DB using data jpa our java application should have below things.
+
+		1) DB Config
+
+		2) Entity Class
+
+		3) Repository Interface
+
+-> DB Config contains Database Configuration Properites
+	(Driver class, url, username and password)
+
+-> The java class which is mapped with db table is called as Entity class.
+
+-> Repository interface provided method to perform CRUD operations with db table.
+
+----------------------------------------------------------------------------------
+-> In spring boot application we will write db config in application.properties file
+
+-------------------------------application.properties--------------------------
+spring.datasource.url=
+spring.datasource.username=
+spring.datasource.password=
+spring.datasource.driverClassName=
+--------------------------------------------------------------------------------
+
+-> Based on above properties Data JPA will create connection pool and it provide DB connection to communicate with database.
+
+---------------------------------------Entity class-------------------------------
+
+-> We will map our java class with database table using below annotations
+
+ a) @Entity  : To represent java class as entity (It is mandatory)
+
+ b) @Table  : To map class name with db table name (It is optional).
+
+     Note: If db table name & entity class name is same then @Table is optional.
+
+ c) @Id  : To represent primary key column mapped variable (It is mandatory)
+
+ d) @Column : To map entity class variable with Db tbl column name (Optional)
+
+    Note: If db table column name & entity cls varibale name is same then @Column is optional.
+
+----------------------------------------------------------------------------------------------
+-> Spring Data JPA provided 2 interfaces to perform curd operations. They are
+
+	1) CrudRepository
+	2) JpaRepository
+
+-> CrudRepository provided methods to perform only CRUD operations 
+
+-> JpaRepository provided methods to perform Crud operations + Pagination + Sorting
+
+Note: JpaRepository is having more functionalities than CrudRepository
+---------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------
+Developing First Application Using Spring Data JPA
+----------------------------------------------------------------------------------------------
+1) Create a table in database
+
+CREATE TABLE EMP_TBL(
+    EMP_ID NUMBER(10),
+    EMP_NAME VARCHAR2(20),
+    EMP_SAL NUMBER(10,2),
+    PRIMARY KEY (EMP_ID)
+);
+
+2) Create Spring Boot application with below dependencies
+
+	1) spring-boot-starter-data-jpa
+	2) oracle ( or ) mysql
+
+
+3) Configure datasource properties in application.properties file
+
+spring.datasource.url=jdbc:oracle:thin:@localhost:1521/XE
+spring.datasource.username=IES_DEV
+spring.datasource.password=IES_DEV
+spring.datasource.driverClassName=jdbc.oracle.OracleDriver
+
+4) Create Java class and map with db table
+---------------------------------------------------------------------------------------------
+@Entity
+@Table(name="EMP_TBL")
+public class Employee{
+
+    @Id
+    @Column(name="EMP_ID")
+    private Integer empId;
+
+    @Column(name="EMP_NAME")
+    private String empName; 
+
+    @Column(name="EMP_SAL")
+    private Double empSal;
+
+     //setters & getters
+}
+----------------------------------------------------------------------------------------------
+
+5) Create a interface and extend the properties from Spring Data JPA Repository interface.
+
+@Repository
+public interface EmpRepository extends CrudRepository<Employee, Integer>{
+
+}
+----------------------------------------------------------------------------------------------
+
+6) Get EmpRepository bean object in boot start class using IOC reference and call the methods to perform Crud operations.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-> To develop our application using data jpa we have to select below starter
+
+		'spring-boot-starter-data-jpa'
+
+-> To communicate with database we need to have driver class. Every Database provided their own driver class
+
+		Oracle -----> OracleDriver
+		MySql ------> MySqlDriver
+		SqlServer ----> SqlServerDriver
+
+-> To Establish connection with DB we need to configure DB properties in application.properties file
+
+-> To perform DB operations we need to create Entity and Repository
+
+
+	Entity ---------> Mapping with db table
+        Repository --------> Contains methods to perform operations
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-> Spring Data Jpa provided repository interfaces to perform DB operations
+
+	1) CrudRepository
+	2) JpaRepository
+
+-> CrudRepository provided methods to perform only crud operations
+
+-> JpaRepository provided methods to perform crud operations + pagination + sorting also.
+----------------------------------------------------------------------------------------------
+
+-> If our interface extending the properties from JPA interfaces then we no need to write single line of code also to perform crud operations.
+
+-> When we create our interface by extending jpa repository interface then implementation class will be created in the run time for our interface. By using that implementation class object we can call the methods to perform DB operations.
+
+		Note: Implementation class is a proxy class.
+
+
+CrudRepository interface methods
+--------------------------------
+save ( ) : To insert one record
+
+saveAll ( ) : To insert collection of records
+
+Note: We don't have update method.... save( ) method is polymorphic method. If primary key already exist then it will update the record else it will insert the record.
+
+findById( ) : To retrieve record using Primary Key
+
+findAllById ( ) : To retrieve records using multiple primary keys.
+
+findAll ( ) : To retrieve all records available in table
+
+existsById ( ) : To check presense of the record
+
+count ( ): To check total no.of records in available in table.
+
+deleteById ( ) : To delete a record using Primary Key
+
+deleteAllById ( ) : To delete multiple records using primary keys
+
+delete(E obj) : To delete record using entity obj
+
+deleteAll ( ) : To delete all records from the table.
+---------------------------------------------------------------------------------------------
+-> In Data JPA we can perform DB operations in 3 ways
+
+	1) Using predefined methods
+	2) By Writing findBy methods
+	3) By Using Custom Queries
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CrudRepository interface methods
+------------------------------------------------------------------------
+-> CrudRepository is an interface available in data jpa
+
+-> This interface provided several methods to perform Crud operations.
+
+-------------------------------------------------------------------------
+
+-> In Data JPA, we can perform DB operations in 3 ways
+
+	1) Predefined methods
+	2) findByXXX methods
+	3) Custom Queries
+
+-> Predefined methods we have executed in last session
+
+
+findByXXX methods
+------------------
+-> findBy methods are used to perform retrival operatoins
+
+-> When we write a findBy method Data JPA will construct the query based on our method name
+
+-> Method Naming convention is very very important for findBy methods.
+
+
+------------------------------------------------------------------------
+package in.ashokit.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "EMP_TBL")
+public class Employee {
+
+	public Employee() {
+	}
+
+	public Employee(Integer empId, String empName, Double empSal) {
+		this.empId = empId;
+		this.empName = empName;
+		this.empSal = empSal;
+	}
+
+	@Id
+	@Column(name = "EMP_ID")
+	private Integer empId;
+
+	@Column(name = "EMP_NAME")
+	private String empName;
+
+	@Column(name = "EMP_SAL")
+	private Double empSal;
+
+	public Integer getEmpId() {
+		return empId;
+	}
+
+	public void setEmpId(Integer empId) {
+		this.empId = empId;
+	}
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+
+	public Double getEmpSal() {
+		return empSal;
+	}
+
+	public void setEmpSal(Double empSal) {
+		this.empSal = empSal;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [empId=" + empId + ", empName=" + empName + ", empSal=" + empSal + "]";
+	}
+
+}
+-------------------------------------------------------------------------
+package in.ashokit.repository;
+
+import java.io.Serializable;
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+
+import in.ashokit.entity.Employee;
+
+public interface EmpRepository extends CrudRepository<Employee, Serializable> {
+
+	public List<Employee> findByEmpName(String name);
+
+	public List<Employee> findByEmpSal(Double sal);
+
+	public List<Employee> findByEmpNameAndEmpSal(String name, Double salary);
+
+	public List<Employee> findByEmpSalGreaterThan(Double empSal);
+
+	public List<Employee> findByEmpNameIn(List<String> names);
+
+}
+-----------------------------------------------------------------------------------
+-> Using Data JPA we can execute custom queries also
+
+-> To execute custom queries we will use @Query annotation.
+
+
+What is the difference between HQL and Native SQL queries?
+----------------------------------------------------------
+-> In SQL queries we will use table name and column names directley
+
+-> In HQL queries we will use Entity class name and variable names
+
+-> SQL queries are database dependent
+
+-> HQL queries are database in-dependent
+
+Note: Database can't understand HQL... DB will understand only SQL. 
+
+-> To convert HQL queries to SQL queries Dialect classes will be used.
+
+
+SQL :: select emp_name from emp_tbl where emp_id=101;
+HQL :: select empName from Employee where empId=101;
+
+SQL :: select emp_name, emp_sal from emp_tbl where emp_id=101;
+HQL :: select empName, empSal from Employee where empId=101;
+
+SQL :: select * from emp_tbl where emp_id=101;
+HQL :: from Employee where empId=101;
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CrudRepository methods, findBy methods, @Query
+-------------------------------------------------------------------------
+-> In Data jpa we can execute queries in 3 ways
+
+		1) predefined methods
+		2) findByXXX methods
+		3) Custom Queries (@Query annotation)
+
+-> We discussed about HQL & SQL queries
+
+-> Dialect class is used to convert HQL query to SQL query.
+------------------------------------------------------------------------
+I have shared videos for below concepts
+
+1) JpaRepository introduction
+
+2) JpaRepository methods
+
+3) Pagination
+
+4) Sorting
+
+5) Generators
+
+6) Custom Generator
+-------------------------------------------------------------------------
+Query By Example
+-------------------------------------------------------------------------
+
+Requirement:
+------------
+Retrieve all Managers working for IRCTC project in Hyd location.
+
+//if we select all 3 drop-down values then below query should execute
+
+select * from emp_tbl where emp_role='Manager' and emp_project='IRCTC' and emp_location='HYD';
+
+//if we select only emp_role then below query should execute
+select * from emp_tbl where emp_role='Manager';
+
+//if we select only emp_project then below query should execute
+select * from emp_tbl where emp_project='SBI';
+
+//if we select only emp_location then below query should execute
+select * from emp_tbl where emp_location='PUNE';
+
+
+
+
+
+
+
+
+public List<Employee> searchEmps(EmpSearchCriteria esc){
+	StringBuilder sql = "select * from emp_tbl where 1=1";
+
+  	if(esc.getEmpRole()!=null){
+		sql.append(" and emp_role='+esc.getEmpRole()+"'";
+ 	}
+        if(esc.getEmpProject()!=null){
+               sql.append(" and emp_project='+esc.getEmpProject()+"'";
+        }
+	if(esc.getEmpLoc()!=null){
+		sql.append(" and emp_loc='+esc.getEmpLoc()+"'";
+        }
+}
+---------------------------------------------------------------------------------
+
+
+
+Employee [empId=103, empName=John, empSal=18000.0]
+Employee [empId=104, empName=Ram, empSal=23000.0]
+Employee [empId=105, empName=Rani, empSal=24000.0]
+Employee [empId=101, empName=Ashok, empSal=14000.0]
+Employee [empId=102, empName=Kumar, empSal=15000.0]
+Employee [empId=106, empName=Smith, empSal=15000.0]
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Connection Pooling
+------------------------------------------------------------------------
+-> Connection pooling is used to avoid connections exhausted problem in our application.
+
+-> Using Connection Pooling we can improve performance of our application (for every operation we no need to open connection with DB).
+-->Spring boot internally uses Hikari connection pool
+Note: We can customize connection pool properties using application properties
+ 1.max-pool-size
+ 2.connection time out
+-------------------------------------------------------------------------
+Working with Transactions in Data JPA
+-------------------------------------------------------------------------
+-> An unit amount of work is called as Transaction.
+
+-> When we are performing operations with DB then Transactions are very very important.
+
+-> Transaction is mandatory for non-select operations (Insert/Update/Delete)
+
+-> Transaction is optional for select  operations (Retriving)
+-----------------------------------------------------------------------------------
+
+	Connection con = DriverManager.getConnection(Url, Uname, Pwd);
+
+	Statement stmt = con.createStatement();
+
+	int rowsEffected = stmt.executeUpdate(sqlQuery);
+
+-> In JDBC connection obj will be created with default autoCommit mode. When we execute any non-select query using jdbc api then immediatley it will commit the transaction.
+----------------------------------------------------------------------------------
+
+-> In order to disable auto-commit mode in JDBC api we will use setAutoCommit(false).
+
+		con.setAutoCommit(false);
+
+		con.commit( ) or con.rollback( );
+
+-> When we disable auto-commit mode then programmatically we have to commit the transaction or rollback the transaction manually.
+
+	-> If all operations are successful in Tx then we will commit it
+
+	-> If any one operation got failed in Tx then we will rollback it.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Transactions in application
+------------------------------------------------------------------------
+
+-> When our application is performing DB operations then transactions are required.
+
+-> Transaction is mandatory for only non-select operations
+
+		Ex: create, update and delete
+
+-> Transaction is optional for select operations.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+auto-ddl and composite primary key
+------------------------------------------------------------------------
+
+-> Hibernate provided several ORM properties for us to configure in the application
+
+	show_sql : To print queries on the console
+
+	format_sql : To print queries in formatted way
+
+	dialect : To convert HQL queries to SQL queries
+
+	auto-ddl : To generate schema dynamically
+
+-> For auto-ddl property having 5 options
+
+		1) create
+		2) create-drop
+		3) update
+		4) validate
+		5) none
+
+-> 'create' option will always create the new tables. If tables are already existing it will drop the existing tables and will create new tables. We will loose table old data in this approach.
+
+-> 'create-drop' option will create tables then it will perform the operation and it will delete the tables at the end. This option is used for staging operations.
+
+-> 'update' option will create tables only for first time. If tables are already available then it will use existing tables.
+
+-> 'validate' option will not make any changes to database. It will just verify entities with db tables.
+
+-> 'none' option will disable auto-ddl in application. This is default value.
+-----------------------------------------------------------------------------------
+Primary and Composite Primary Key In Database
+-----------------------------------------------------------------------------------
+
+-> Primary Key is a constraint which is used to maintain unique data in the column.
+
+-> Primary key constraint is the combination of below 2 constraints
+
+			-> NOT NULL
+			-> UNIQUE
+
+-> To map variable with Primary Key Column we will use @Id annotation.
+
+-> If a table is having more than one primary key then it is called as composite Primary Key.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ ddl-auto & composite primary key introduction
+-------------------------------------------------------------------------
+
+-> ddl-auto is an ORM property which is used to generate the schema dynamically based on entities.
+
+-> ddl-auto property having 4 options
+
+		1) create (always new table will be created)
+		2) create-drop (create and drop the table)
+		3) update (Only first time it will create tbl)
+		4) validate (to verify schema details)
+
+
+-> Primary key is a constraint which represents not null and unique value.
+
+-> If table having more than one primary key then it is called as Composite Primary Key or Candidate key.
+
+---------------------Tbl creation with PK-----------------------------------------
+CREATE TABLE EMP_TBL(
+  EMP_ID NUMBER(10),
+  EMP_NAME VARCHAR2(20),
+  EMP_SALARY NUMBER(10,2),
+  PRIMARY KEY(EMP_ID)
+)
+---------------------TBL creation with Composite PK-------------------------------
+CREATE TABLE ACCOUNTS(
+  ACC_ID NUMBER(10),
+  ACC_TYPE VARCHAR2(10),
+  HOLDER_NAME VARCHAR2(20),
+  MIN_BAL NUMBER(10,2),
+  BRANCH_NAME VARCHAR2(20),
+  PRIMARY KEY(ACC_ID, ACC_TYPE, HOLDER_NAME)
+)
+---------------------------------------------------------------------------------
+-> We can map composite primary keys in 2 ways
+
+		1) Using @IdClass annotation (approach-1)
+		2) Using @Embeddable & @EmbeddedId annotations (approch-2)
+
+-> Approach-1 & Approach-2 examples are given below
+
+---------------------------------------------------------------------------------
+
+Composite Primary Key - Approach - 1
+----------------------------------------------------------------------------------
+
+public class AccountPK implements Serializable {
+
+	private Integer accId;
+	private String accType;
+	private String holderName;
+	//setters & getters
+}
+-----------------------------------------------------------------------------------
+@Entity
+@Table(name = "BANK_ACCOUNTS")
+@IdClass(AccountPK.class)
+public class Account {
+
+	@Column(name = "BRANCH_NAME")
+	private String branchName;
+
+	@Column(name = "MIN_BAL")
+	private Double minBal;
+
+	@Id
+	private Integer accId;
+
+	@Id
+	private String accType;
+
+	@Id
+	private String holderName;
+
+	//setters & getters
+----------------------------------------------------------------------------------
+package in.ashokit.service;
+
+import org.springframework.stereotype.Service;
+
+import in.ashokit.entity.Account;
+import in.ashokit.entity.AccountPK;
+import in.ashokit.repository.AccountRepository;
+
+@Service
+public class AccountService {
+
+	private AccountRepository accRepo;
+
+	public AccountService(AccountRepository accRepo) {
+		this.accRepo = accRepo;
+	}
+
+	public void saveAccData() {
+		Account acc = new Account();
+		acc.setBranchName("Ameerpet");
+		acc.setMinBal(5000.00);
+		acc.setAccId(102);
+		acc.setAccType("SAVINGS");
+		acc.setHolderName("IBM");
+
+		accRepo.save(acc);
+	}
+}
+-----------------------------------------------------------------------------------
+package in.ashokit;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import in.ashokit.service.AccountService;
+
+@SpringBootApplication
+public class Application {
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+
+		AccountService accountService = context.getBean(AccountService.class);
+		accountService.saveAccData();
+
+		context.close();
+	}
+}
+-----------------------------------------------------------------------------------
+spring.datasource.url=jdbc:oracle:thin:@localhost:1521/XE
+spring.datasource.username=IES_DEV
+spring.datasource.password=IES_DEV
+spring.datasource.driver-class-name=oracle.jdbc.driver.OracleDriver
+
+spring.jpa.show-sql=true
+
+spring.jpa.hibernate.ddl-auto=update
+-----------------------------------------------------------------------------------
+Composite-Primary key : Approach-2
+--------------------------------------------------------------------------------
+package in.ashokit.entity;
+
+import java.io.Serializable;
+
+import javax.persistence.Embeddable;
+
+@Embeddable
+public class AccountPK implements Serializable {
+
+	private Integer accId;
+	private String accType;
+	private String holderName;
+
+	//setters & getters
+}
+----------------------------------------------------------------------------------
+package in.ashokit.entity;
+
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "BANK_ACCOUNTS")
+public class Account {
+
+	@Column(name = "BRANCH_NAME")
+	private String branchName;
+
+	@Column(name = "MIN_BAL")
+	private Double minBal;
+
+	@EmbeddedId
+	private AccountPK accPk;
+
+	//setters & getters
+}
+----------------------------------------------------------------------------------
+package in.ashokit.service;
+
+import org.springframework.stereotype.Service;
+
+import in.ashokit.entity.Account;
+import in.ashokit.entity.AccountPK;
+import in.ashokit.repository.AccountRepository;
+
+@Service
+public class AccountService {
+
+	private AccountRepository accRepo;
+
+	public AccountService(AccountRepository accRepo) {
+		this.accRepo = accRepo;
+	}
+
+	public void saveAccData() {
+
+		AccountPK pk = new AccountPK();
+		pk.setAccId(103);
+		pk.setAccType("SAVINGS");
+		pk.setHolderName("TCS");
+
+		Account acc = new Account();
+		acc.setBranchName("Ameerpet");
+		acc.setMinBal(5000.00);
+
+		acc.setAccPk(pk); // setting pk class obj to entity obj
+
+		accRepo.save(acc);
+	}
+}
+---------------------------------------------------------------------------------
+package in.ashokit;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import in.ashokit.service.AccountService;
+
+@SpringBootApplication
+public class Application {
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+
+		AccountService accountService = context.getBean(AccountService.class);
+		accountService.saveAccData();
+
+		context.close();
+	}
+}
+----------------------------------------------------------------------------------
+How to retrieve data using Composite Primary Keys
+----------------------------------------------------------------------------------
+public void getDataUsingPK() {
+
+		AccountPK pk = new AccountPK();
+		pk.setAccId(101);
+		pk.setAccType("CURRENT");
+		pk.setHolderName("IBM");
+
+		Optional<Account> findById = accRepo.findById(pk);
+		if (findById.isPresent()) {
+			System.out.println(findById.get());
+		}
+	}
+-----------------------------------------------------------------------------------
+-> All the primary key values we need to store in Embeddable class obj and pass that obj as parameter for findById( ) method like above.
+-----------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Timestamping In hibernate
+------------------------------------------------------------------------
+
+-> It is highly recommended to maintain created_date and updated_date values in table.
+
+-> created_date and updated_Date column values will help us in anaylyzing the table data.
+
+-> In realtime for every table we will have CREATED_DT and UPDATED_DT columns.
+
+-> If we use timestamping concept then hibernate will take care of populating values into CREATED_DT and UPDATED_DT columns.
+
+-> To work with Timestamping we have below 2 annotations
+
+		1) @CreationTimestamp
+		2) @UpdateTimestamp
+
+-------------------------------------------------------------------------
+@Entity
+@Table(name = "INSURANCE_PLANS")
+public class InsurancePlan {
+
+	@Id
+	@GeneratedValue
+	private Integer planId;
+	private String planName;
+	private String planStatus;
+
+	@CreationTimestamp
+	@Column(updatable = false)
+	private LocalDate createdDate;
+
+	@UpdateTimestamp
+	@Column(insertable = false)
+	private LocalDate updatedDate;
+------------------------------------------------------------------------
+-> If we are using java.util.Date for variable data types then we can use @Temporal annotation to specify format of date.
+-------------------------------------------------------------------------
+1) Best Practises To Follow in Persistence Layer
+2) Hibernate vs Data JPA
+3) What is Entity class ?
+4) What is Repository interface?
+5) Data Jpa Repositories
+		a) CrudRepository
+		b) JpaRepository
+6) Pagination
+7) Sorting
+8) QueryByExample
+9) CrudRepository predefined methods
+10) findByxxx methods syntax
+11) Custom Queries in data jpa
+12) Connection pooling (Hikari)
+13) Transactions & How to rollback transactions
+14) Primary Key & Composite Primary keys
+15) Generators
+16) Custom Generators
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
