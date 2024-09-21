@@ -388,4 +388,13 @@ public class UserService {
 	}
 
 }
-------------------------------------------------------------------------------------------------------------------------------------------------------------------     
+--------------------------------------Scenario based----------------------------------------------------------------------------------------------------------------------------
+1.If you had to scale a spring boot application to handle high traffic,what strategies would you use ?
+    -Add more app instances(horizontal scaling) and use a load balancer to spread out the traffic
+    -Break app into microservices so each part can be scaled independently
+    -Use cloud services that can automatically adjust resources based on our apps needs
+    -Use caching to store frequently accessed data,reducing the need to fetch it from the database every time
+2.Explain how you would configure CORS policies in your application
+    To enable cross-origin request from specific domain in SB,I would use the @CrossOrigin annotation on my controller or method,like
+    @CrossOrigin(origins="http://example.com")
+
