@@ -1,0 +1,12 @@
+About your project and daily tasks.
+-----------------------------------
+"In my current project, I am working on migrating microservices from an old server to a new one. My daily tasks involve designing and implementing
+ microservices using Spring Boot, developing RESTful APIs, managing the database with JPA/Hibernate, writing unit tests with JUnit and Mockito, and
+ deploying services to a cloud environment, specifically the Gaia server, which is exclusive to JPMC. I also participate in code reviews, pair programming,
+  and daily stand-ups to ensure seamless progress."
+
+You mentioned you worked on microservices; can you elaborate?
+------------------------------------------------------------
+Yes, I have experience in designing, developing, and deploying microservices. I have worked on breaking down a monolithic application into smaller,
+independent microservices that can be developed, deployed, and scaled independently. Each microservice handled a specific business capability and
+communicated with others through RESTful APIs or message queues. This architecture improved our system's scalability, maintainability, and fault tolerance.
