@@ -1,0 +1,19 @@
+Purpose: Ensures that only one instance of a class is created and used globally.
+
+Key Characteristics:
+-------------------
+Private constructor: To prevent external instantiation.
+Static instance: Holds the single instance of the class.
+Static method: Provides access to the single instance.
+
+Types of Singleton:
+------------------
+Eager Initialization: The singleton instance is created at the time of class loading
+Lazy Initialization:The instance is created only when it is needed for the first time
+Thread-Safe Singleton:Ensures thread safety and avoids performance issues by minimizing synchronization overhead
+Bill Pugh Singleton:This implementation relies on the Java class loader to ensure thread safety and lazy initialization
+
+
+
+Using the Saga pattern: A Saga is a sequence of local transactions that together form a larger, coordinated transaction.
+                        Sagas help maintain consistency by using compensating transactions to undo previous actions if a failure occurs.

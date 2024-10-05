@@ -1,0 +1,8 @@
+The Factory Pattern in Java is a creational design pattern used to create objects without specifying
+the exact class of the object that will be created. It allows for more flexibility by delegating the object
+creation process to a separate class (the factory), and the client interacts with the factory rather than
+directly creating instances.
+
+Key Characteristics:
+Encapsulation of Object Creation: The object creation logic is encapsulated in the factory class.
+Loose Coupling: The client code is decoupled from the actual implementation of the objects being created.
