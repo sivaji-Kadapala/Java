@@ -1,0 +1,434 @@
+1: Write a Java 8 program to filter even numbers from a list ?
+
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+List<Integer> evenNumbers = numbers.stream()
+                      .filter(n -> n % 2 == 0)
+                      .collect(Collectors.toList());
+System.out.println("Concatenated string: " + evenNumbers);
+2: Write a Java 8 program to calculate the sum of integers in a list ?
+
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+
+List<Integer> numberSum = numbers.stream()
+                      .reduce(0, Integer::sum);
+System.out.println("Concatenated string: " + numberSum);
+3. Write a Java 8 program to find the maximum element from a list ?
+List<Integer> numbers = List.of(3, 7, 2, 9, 5);
+
+Optional<Integer> max = numbers.stream()
+                       .max(Integer::compareTo);
+System.out.println("Concatenated string: " + max);
+
+4. Write a Java 8 program to check if a list contains a specific element ?
+
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+
+List<Integer> targetNumbers = numbers.stream()
+                      .anyMatch(n -> n == targetNumber);
+System.out.println("Concatenated string: " + targetNumbers);
+5. Write a Java 8 program to find the sum of all even numbers in a list of integers ?
+
+List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+List<Interg> sumEvenNUmbers = numbers.stream()
+                      .filter(n -> n % 2 == 0)
+                      .mapToInt(n -> n)
+                      .sum();
+System.out.println("Concatenated string: " + sumEvenNUmbers);
+6. Write a Java 8 program to concatenate all strings in a list ?
+
+
+List<String> strings = List.of("Hello", " ", "World", "!");
+
+List<String> concatenateString = strings.stream()
+                      .collect(Collectors.joining());
+System.out.println("Concatenated string: " + concatenatedString);
+
+7. Write a Java 8 program to find the average length of strings in a list of strings?
+
+List<String> strings = List.of("apple", "banana", "orange", "grape", "kiwi");
+
+List<String> averageLengthStrings = strings.stream()
+                      .mapToInt(String::length)
+                      .average()
+                      .orElse(0.0);
+System.out.println("Average length of strings: " + averageLengthStrings);
+
+8. Write a Java 8 program to count the occurrences of a given character in a list of strings?
+
+List<String> strings = List.of("apple", "banana", "cherry");
+char targetChar = 'a';
+
+List<String> occurrencesStrings = strings.stream()
+                      .flatMapToInt(CharSequence::chars)
+                      .filter(ch -> ch == targetChar)
+                      .count();
+System.out.println("Occurrences of '" + targetChar + "': " + occurrences);
+    }
+
+9. Write a Java 8 program to check if all elements in a list are greater than a given value?
+
+
+List<Integer> numbers = List.of(10, 20, 30, 40, 50);
+        int threshold = 25;
+ List<Integer> gratorNumbers =numbers.stream()
+                      .allMatch(n -> n > threshold).forEach(System.out:println);
+
+10. Write a Java 8 program to find the factorial of a given number ?
+
+ int number = 5;
+ int factorial=IntStream.rangeClosed(1, n)
+              .reduce(1, (a, b) -> a * b);
+System.out.println("Factorial of " + number + ": " + factorial);
+
+11.  Write a Java 8 program to remove duplicate elements from a list ?
+
+List<Integer> numbers = List.of(1, 2, 2, 3, 4, 4, 5);
+List<Integer> uniqueNumbers = numbers.stream()
+                      .distinct()
+                      .collect(Collectors.toList())
+System.out.println("Unique numbers: " + uniqueNumbers);
+
+12. Write a Java 8 program to find the longest string in a list of strings ?
+
+List<String> strings = List.of("apple", "banana", "cherry", "grapefruit");
+String longestString = Optional<String> longest = strings.stream()
+                                         .max((s1, s2) -> s1.length() - s2.length()).forEach(System.out:println);
+
+
+13.  Write a Java 8 program to convert all strings to uppercase in a list ?
+
+List<String> strings = List.of("apple", "banana", "cherry");
+                       strings.stream()
+                      .map(String::toUpperCase)
+                      .collect(Collectors.toList()).forEach(System.out:println);
+14. Write a Java 8 program to sort a list of strings in alphabetical order ?
+
+List<String> strings = List.of("banana", "apple", "cherry");
+                       strings.stream()
+                      .sorted()
+                      .collect(Collectors.toList()).forEach(System.out:println);
+
+15. Write a Java 8 program to calculate the average of even numbers in a list of integers ?
+
+List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+OptionalDouble average = numbers.stream()
+                                       .filter(n -> n % 2 == 0)
+                                       .mapToInt(n -> n)
+                                       .average();
+System.out.println("Average of even numbers: " + average);
+
+16. Write a Java 8 program to convert a list of integers to a comma-separated string ?
+
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+
+String commaSeparatedString = numbers.stream()
+                      .map(Object::toString)
+                      .collect(Collectors.joining(", "));
+System.out.println("Comma-separated string: " + commaSeparatedString);
+
+17. Write a Java 8 program to find the last element in a list ?
+
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+Optional<Integer> lastElement = list.stream()
+                   .reduce((first, second) -> second);
+System.out.println("Last element: " + lastElement.get()); 
+
+18. Write a Java 8 program to find the second smallest element in a list of integers ?
+
+List<Integer> numbers = List.of(3, 1, 4, 2, 5);
+int secondSmallest = numbers.stream()
+                     .distinct()
+                     .sorted()
+                     .skip(1)
+                     .findFirst()
+                     .forEach(System.outprintln);
+
+19. Write a Java 8 program to find the frequency of each word in a list of strings?
+
+List<String> words = List.of("apple banana apple", "banana cherry", "apple banana cherry");
+Map<String, Long> frequencyMap = words.stream()
+                    .flatMap(line -> List.of(line.split("\\s+")).stream())
+                    .collect(Collectors.groupingBy(String::toLowerCase, Collectors.counting()));
+    System.out.println("Word frequency: " + frequencyMap);
+
+20. Write a Java 8 program to find the sum of digits of a list of integers?
+
+List<Integer> numbers = List.of(123, 456, 789);
+int digitSum =         numbers.stream()
+                      .mapToInt(n -> String.valueOf(n).chars().map(Character::getNumericValue).sum())
+                      .sum();
+System.out.println("Sum of digits: " + digitSum);
+
+21. Write a Java 8 program to find the distinct characters in a list of strings ?
+
+List<String> strings = List.of("apple", "banana", "cherry");
+Set<Character> distinctChars = strings.stream()
+                      .flatMapToInt(String::chars)
+                      .mapToObj(ch -> (char) ch)
+                      .collect(Collectors.toSet());
+System.out.println("Distinct characters: " + distinctChars);
+
+22. Write Java 8 program to find all the numbers starting with 2 in given list ?
+
+List<Integer> numbers = Arrays.asList(223, 234, 145, 367, 289, 2001, 2289);
+List<Integer> numbersStartingWithOne = numbers.stream()
+                      .filter(number -> String.valueOf(number).startsWith("2"))
+                      .collect(Collectors.toList());
+System.out.println("Numbers starting with 1: " + numbersStartingWithOne);
+
+23. Write Java 8 program to find the first element of the given integers list ?
+
+List<Integer> numbers = Arrays.asList(10, 20, 30, 40, 50);
+Optional<Integer> firstElement = numbers.stream().findFirst();
+System.out.println("First element of the list: " + firstElement.get());
+
+24 .Write Java 8 program to count the total numbers of elements in the given integers list ?
+
+List<Integer> numbers = Arrays.asList(10, 20, 30, 40, 50);
+long count = numbers.stream().count();
+
+System.out.println("Total number of elements in the list: " + count);
+
+25. Write Java 8 program to sort all the values of the list in ascending order?
+
+List<Integer> numbers = Arrays.asList(5, 2, 8, 1, 9, 3);
+
+List<Integer> sortedNumbers = numbers.stream()
+                      .sorted()
+                      .collect(Collectors.toList());
+System.out.println("Sorted numbers: " + sortedNumbers);
+
+26. Write Java 8 program to sort all the values of the list in descending order?
+
+List<Integer> numbers = Arrays.asList(5, 2, 8, 1, 9, 3);
+List<Integer> sortedNumbers = numbers.stream()
+                      .sorted(java.util.Comparator.reverseOrder()) // Sort in descending order
+                      .collect(Collectors.toList());
+System.out.println("Sorted numbers in descending order: " + sortedNumbers);
+    
+27. Write a Java 8 program to concatenate two Streams?
+
+        Stream<Integer> stream1 = Stream.of(1, 2, 3);
+        Stream<Integer> stream2 = Stream.of(4, 5, 6);  
+
+Stream<Integer> concatenatedStream = stream1.concate(stream2).forEach(System.out::println);
+ 
+28. Write Java 8 program to perform square on list elements and filter numbers greater than 1000.
+
+List<Integer> numbers = Arrays.asList(10, 20, 30, 40, 50, 110, 120);
+ List<Integer> squaredAndFilteredNumbers = numbers.stream()
+                      .map(n -> n * n) // Square each element
+                      .filter(n -> n > 1000) // Filter numbers greater than 1000
+                      .collect(Collectors.toList());
+System.out.println("Numbers squared and filtered: " + squaredAndFilteredNumbers);
+
+29. Write Java 8 program to separate odd and even numbers from the given list of integers?
+
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+ 
+Map<Boolean, List<Integer>> oddEvenMap = numbers.stream()
+                      .collect(Collectors.partitioningBy(n -> n % 2 == 0));
+
+System.out.println("Odd numbers: " + oddEvenMap.get(false));
+System.out.println("Even numbers: " + oddEvenMap.get(true));
+
+30. Write Java 8 program to print the numbers which are multiples of 3?
+
+List<Integer> numbers = Arrays.asList(3, 6, 9, 20, 25, 40);
+numbers.stream()
+               .filter(n -> n % 3 == 0) // Filter numbers that are multiples of 3
+               .forEach(System.out::println);
+
+31. Write Java 8 program to merge two unsorted arrays into single sorted array?
+
+int[] arr1 = {3, 6, 8, 10, 10};
+int[] arr2 = {1, 2, 4, 5}; 
+
+int[] mergedArray = IntStream.concat(Arrays.stream(arr1), Arrays.stream(arr2))
+                .sorted()
+                .toArray();
+System.out.println("Merged and sorted array: " + Arrays.toString(mergedArray));
+    
+
+32. Write Java 8 program to merge two unsorted arrays into single sorted array by removing duplicates?
+
+int[] arr1 = {4, 2, 6, 1};
+int[] arr2 = {7, 3, 5, 8};
+
+int[] mergedArray = IntStream.concat(Arrays.stream(arr1), Arrays.stream(arr2)).distinct() // Remove duplicates
+                .sorted() // Sort the elements of the stream
+                .toArray();
+System.out.println("Merged and sorted array without duplicates: " + Arrays.toString(mergedArray));
+
+
+32. Java program to get first three maximum numbers and three minimum numbers from the given list of integers?
+
+List<Integer> numbers = Arrays.asList(10, 5, 20, 15, 25, 3, 30, 1, 8);
+List<Integer> maxNumbers = numbers.stream()
+                      .sorted((a, b) -> Integer.compare(b, a)) // Sort in descending order
+                      .limit(count) // Limit to count of maximum numbers
+                      .collect(Collectors.toList());
+System.out.println("Three maximum numbers: " + maxNumbers);
+
+List<Integer> minNumbers = numbers.stream()
+                      .sorted() // Sort in ascending order (default)
+                      .limit(count) // Limit to count of minimum numbers
+                      .collect(Collectors.toList());
+System.out.println("Three minimum numbers: " + minNumbers);
+
+33. Java 8 program to check if two strings are anagrams or not?
+
+String str1 = "listen";
+String str2 = "silent";
+
+// Convert strings to lowercase to ignore case sensitivity
+        str1 = str1.toLowerCase();
+        str2 = str2.toLowerCase();
+ 
+        // Sort the characters of both strings
+        String sortedStr1 = sortString(str1);
+        String sortedStr2 = sortString(str2);
+
+Arrays.stream(str.split(""))
+                     .sorted()
+                     .reduce("", (s1, s2) -> s1 + s2);
+System.out.println("Strings '" + str1 + "' and '" + str2 + "' are anagrams.");
+ System.out.println("Strings '" + str1 + "' and '" + str2 + "' are not anagrams.");
+        
+34. Write Java 8 program to find sum of all digits of a number ?
+
+int number = 12345;
+int digitSum = Arrays.stream(String.valueOf(number).split("")) // Convert number to string and split into individual digits
+                     .mapToInt(Integer::parseInt) // Map each digit to an integer
+                     .sum();
+
+35.Write Java 8 program to sort given list of strings according to decreasing order of their length?
+
+List<String> strings = Arrays.asList("banana", "apple", "orange", "grape", "kiwi");
+List<String> sortedStrings = strings.stream()
+                      .sorted((s1, s2) -> Integer.compare(s2.length(), s1.length())) // Sort strings by length in decreasing order
+                      .toList().forEach(System.out::println);
+System.out.println("Sorted strings by length (decreasing order): " + sortedStrings);
+
+35. Write Java 8 program to find common elements between two lists?
+
+List<Integer> list1 = new ArrayList<>(List.of(1, 2, 3, 4, 5));
+List<Integer> list2 = new ArrayList<>(List.of(4, 5, 6, 7, 8));
+
+Set<T> set1 = new HashSet<>(list1);
+Set<T> set2 = new HashSet<>(list2);
+
+set1.retainAll(set2);
+
+System.out.println("Common elements between the two lists: " + commonElements);
+   
+36. Write Java 8 program to prints the first 5 odd numbers?
+
+IntStream.iterate(1, n -> n + 2) // Start from 1 and increment by 2 to get odd numbers
+                 .limit(5) // Limit to the first 5 odd numbers
+                 .forEach(System.out::println);
+System.out.println("First 10 odd numbers:");
+
+37. Write Java 8 program to print the most repeated element in an array?
+
+int[] array = {1, 2, 3, 4, 2, 2, 3, 4, 4, 4, 5, 5, 4};
+Map.Entry<Integer, Long> mostRepeatedElementEntry = Arrays.stream(array)
+                .boxed()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .orElseThrow(() -> new IllegalArgumentException("Array is empty"));
+
+38. Write Java 8 program to print duplicate elements from an array?
+
+
+Integer[] array = {1, 2, 3, 4, 2, 3, 5, 6, 7, 8, 9, 1};
+  Map<Integer, Long> countMap = Arrays.stream(array)
+                .collect(Collectors.groupingBy(e -> e, Collectors.counting()));
+System.out.println(countMap);
+
+39. Write Java 8 program to find first repeated character in the given string?
+
+String str = "hello world";
+        HashSet<Character> set = new HashSet<>();
+        char firstRepeatedChar = str.chars() // Convert the string to an IntStream of characters
+                .mapToObj(ch -> (char) ch) // Convert each character code to its corresponding character
+                .filter(ch -> !set.add(ch)) // Filter out characters that are already in the set (i.e., repeated characters)
+                .findFirst() // Find the first repeated character
+                .orElse('\0');
+
+        System.out.println("First repeated character: " + firstRepeatedChar);
+
+40. Write a Java 8 program to check if a list contains a specific string ?
+
+List<String> list = Arrays.asList("apple", "banana", "orange", "grape");
+
+        String searchString = "orange";
+        list.stream()
+                .anyMatch(searchString::equals);
+        System.out.println("List contains the string: " + searchString);
+
+ 41. Write a Java 8 program print all the strings of given length ?
+
+List<String> list = Arrays.asList("apple", "banana", "orange", "grape", "kiwi");
+ int targetLength = 6;
+
+list.stream()
+            .filter(str -> str.length() == targetLength)
+            .forEach(System.out::println);
+
+42. Write a Java 8 program print first non repetitive character in the string ?
+
+String str = "hello world";
+Character firstNonRepeatedChar = str.chars()     // IntStream
+                .mapToObj(i -> Character.toLowerCase((char) i))  // convert to lowercase & then to Character object Stream
+                .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting())) // store in a LinkedHashMap with the count
+                .entrySet().stream()                       // EntrySet stream
+                .filter(entry -> entry.getValue() == 1L)   // extracts characters with a count of 1
+                .map(Map.Entry::getKey)              // get the keys of EntrySet
+                .findFirst().get(); 
+
+System.out.println("First non-repeated character: " + firstNonRepeatedChar);
+    }
+
+43. Write a Java 8 program to find the product of all elements in a list ?
+
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+int product = numbers.stream()
+                      .reduce(1, (a, b) -> a * b);
+System.out.println("Product of all elements: " + product);
+
+44. Write a Java 8 program to check if all elements in a list are unique ?
+
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+boolean allUnique = numbers.stream()
+                   .collect(Collectors.toSet())
+                   .size() == numbers.size();
+System.out.println("All elements in the list are unique.");
+
+45.Write a Java 8 program to find the first word in a list that starts with given letter ?
+
+List<String> words = List.of("apple", "banana", "orange", "grape");
+        char targetLetter = 'o';
+Optional<String> firstWord = words.stream()
+                    .filter(word -> !word.isEmpty() && word.charAt(0) == targetLetter)
+                    .findFirst();
+System.out.println("First word starting with '" + targetLetter + "': " + firstWord.get());
+
+46. Write a Java 8 program to find the sum of the first 10 natural numbers ?
+
+ int sum = IntStream.rangeClosed(1, 10)
+                .sum();
+        System.out.println("Sum of the first 10 natural numbers: " + sum);
+47. Write a Java 8 program to find the product of the first 10 natural numbers ?
+
+long product = LongStream.rangeClosed(1, 10)
+                         .reduce(1, (a, b) -> a * b);
+System.out.println("Product of the first 10 natural numbers: " + product);
+    
+
+
+
+
+
+
