@@ -10,3 +10,108 @@ You mentioned you worked on microservices; can you elaborate?
 Yes, I have experience in designing, developing, and deploying microservices. I have worked on breaking down a monolithic application into smaller,
 independent microservices that can be developed, deployed, and scaled independently. Each microservice handled a specific business capability and
 communicated with others through RESTful APIs or message queues. This architecture improved our system's scalability, maintainability, and fault tolerance.
+
+
+3.How do you handle tight deadlines or pressure situations?
+I handle pressure by breaking down large tasks into smaller, manageable components. For example, during our migration project at JPMC,
+we had tight deadlines to upgrade microservices. I prioritized tasks based on their impact on the overall timeline and worked collaboratively
+with my team, ensuring that we stuck to our deadlines without sacrificing quality. I also proactively communicate with stakeholders if 
+there's a risk to the schedule, so there’s transparency throughout the process."
+
+3.How do you manage conflicts within your team?
+
+In my experience, conflicts often arise due to misunderstandings or misaligned expectations. I address them by encouraging open communication
+between team members. For instance, during a recent project, two colleagues disagreed on the implementation approach. I arranged a meeting
+where both parties could express their concerns and we worked together to find a compromise that satisfied both technical requirements and 
+the project timeline. I find that actively listening and focusing on finding a solution that benefits the project as a whole helps resolve 
+conflicts.
+
+4.How do you prioritize your tasks when working on multiple projects?
+
+I prioritize my tasks based on urgency, impact, and deadlines. In my current role, I often juggle multiple microservices, each with its own
+timeline. I use tools like Jira to track my tasks and make sure I’m addressing the most time-sensitive or critical ones first. I also 
+communicate with my team lead to ensure my priorities align with project goals. Regularly checking in on progress helps me adjust my workload
+as needed to meet deadlines.
+
+5.Can you describe a time when you took the lead on a project?
+
+During a migration project at Virtusa, our team lead was unavailable, and I stepped in to oversee the final stages of migrating microservices
+to the new server. I coordinated daily stand-ups, assigned tasks to team members, and ensured we followed our timeline while maintaining code 
+quality. I also communicated progress updates to the client, ensuring they were in the loop at all times. The project was completed 
+successfully, on time, and I gained valuable leadership experience in the process.
+
+6.How do you ensure effective communication with stakeholders?
+
+Effective communication with stakeholders starts with setting clear expectations from the beginning. I make sure to give regular updates 
+through emails or meetings, depending on the stakeholders' preferences. For example, in our current project at JPMorgan Chase, I provide 
+weekly updates to ensure they are informed about milestones, risks, and next steps. I also encourage feedback to make sure that their 
+requirements are fully understood and integrated into the project.
+
+7.How do you handle failure or setbacks in a project?
+
+I see failures as learning opportunities. In a recent project, we faced an issue where the performance of a migrated microservice was not up
+to the expected standard. Instead of focusing on the failure, I led an investigation into the root cause, and we realized that the 
+configuration on the new server was not optimized. We fixed it and documented the lesson to avoid similar issues in future migrations. 
+By maintaining a solution-oriented mindset, I help turn setbacks into chances for improvement.
+
+8. How do you keep your team motivated, especially during long or difficult projects?
+
+Keeping the team motivated requires recognizing and appreciating individual efforts. I make sure to acknowledge team members’ contributions, 
+even for small wins. Additionally, I try to maintain a balance between work and morale-boosting activities. For example, after we met a 
+particularly challenging deadline in a migration project, I suggested we take some time to reflect on our success and share feedback in an
+ informal setting, which helped keep the team’s morale high.
+ 
+9.What is your management style?
+
+My management style is collaborative. I believe in empowering my team members by giving them the autonomy to make decisions while being 
+available to guide them if needed. I focus on creating a positive environment where everyone feels comfortable sharing their ideas and taking
+ownership of their work. I also like to set clear goals and provide regular feedback so that everyone is aligned with the project's objectives.
+
+10.Why should we hire you for this managerial role?
+
+I believe my technical expertise in Java, microservices, and cloud environments, combined with my leadership experience in managing migration
+projects, makes me a strong fit for this role. I have successfully handled both technical and team leadership responsibilities, delivering
+high-quality solutions under tight deadlines. My ability to manage projects, resolve conflicts, and keep communication open with both teams 
+and stakeholders ensures smooth progress and successful outcomes.
+
+11.Why should we hire you?
+
+You should hire me because I bring a combination of strong technical skills, hands-on project experience, and a proven ability to contribute to
+successful project outcomes. With over three years of experience as a Java developer at Virtusa, I have worked extensively with Spring Boot
+and microservices, leading migration projects, and upgrading applications from Java 8 to newer versions like Java 11 and 17.
+
+12.What are your strengths and weaknesses?
+
+Strengths:
+
+Technical Expertise: Skilled in Java, Spring Boot, and microservices, with hands-on experience in migration projects.
+Problem-Solving: Strong analytical skills for troubleshooting and optimizing solutions during complex tasks.
+Collaboration: Effective communicator and team player, experienced in Agile workflows and code reviews.
+Adaptability: Quick to learn new tools and technologies, like cloud platforms (AWS).
+
+Weaknesses:
+
+Over-Detailing: Sometimes spend too much time on minor details, but I’m working on balancing thoroughness with efficiency.
+Delegating: Tend to take on too much myself, but I’m improving by learning to trust and delegate more to my team.
+
+13.What motivates you?
+
+"I'm motivated by the opportunity to solve complex technical challenges and see the impact of my work. Whether it's optimizing a system for
+ better performance or successfully migrating applications to a newer platform, I enjoy the problem-solving process and the satisfaction that
+ comes from delivering high-quality solutions. Additionally, working in collaborative environments where I can learn from others and 
+ contribute to a shared goal keeps me motivated. I’m also driven by personal growth, continuously improving my skills, and staying up to date
+ with evolving technologies."
+ 
+14.How do you perform under pressure?
+
+I perform well under pressure by staying organized and focused on the task at hand. When faced with tight deadlines or unexpected challenges,
+I break down the work into smaller, manageable steps and prioritize tasks based on urgency and impact. I also maintain clear communication 
+with my team to ensure everyone is aligned, which helps reduce stress and avoid misunderstandings. For example, during a critical migration
+project with strict timelines, I managed to stay calm, coordinate the team effectively, and deliver on time without compromising quality. 
+Pressure motivates me to stay sharp and find efficient solutions.
+
+15.How do you deal with conflicts between co-workers?
+
+I handle conflicts by encouraging open communication and listening to both sides. I aim to understand the issue and work toward a solution that benefits the 
+team and project. For example, when two team members disagreed on an approach, I facilitated a discussion, helping them find common ground and
+resolve the issue quickly, keeping the project on track
