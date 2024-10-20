@@ -1,0 +1,162 @@
+
+1. Implementing Kafka Producer in a Spring Boot Application**
+   -Question: You need to send messages from your Spring Boot service to a Kafka topic. How would you implement a Kafka producer, and how can you ensure that the producer retries sending the message in case of failure?
+   -Answer:
+     - Use the `KafkaTemplate` provided by Spring Kafka to send messages to a topic.
+     - Configure properties like `retries`, `acks`, and `retry.backoff.ms` in `application.properties` or
+     `application.yml` to handle retries in case of failure.
+     - Implement error handling using `ProducerListener` to log and handle message failures.
+     - Example config:
+     spring:
+       kafka:
+         producer:
+           retries: 3
+           acks: all
+           key-serializer: org.apache.kafka.common.serialization.StringSerializer
+           value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+2.Scenario: Handling Kafka Consumer Failure
+   - Question: Suppose your Kafka consumer in a Spring Boot app fails to process a message due to a transient
+    error. How would you handle retrying the message, and how do you deal with potential message duplication?
+   - Answer:
+     -Retry with Backoff: Configure retries using `DefaultErrorHandler` with `SeekToCurrentErrorHandler` and a
+      backoff strategy. This ensures that the consumer retries processing the message after a delay.
+     - **Idempotency**: To avoid message duplication during retries, ensure that your consumer processing is
+     idempotent (i.e., processing the same message multiple times should have no side effects).
+     - Example:
+     @Bean
+     public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
+         ConcurrentKafkaListenerContainerFactory<String, String> factory =
+             new ConcurrentKafkaListenerContainerFactory<>();
+         factory.setConsumerFactory(consumerFactory());
+         factory.setErrorHandler(new DefaultErrorHandler(new FixedBackOff(1000L, 2)));
+         return factory;
+     }
+
+
+ 3.Scenario: Kafka Consumer Lag and Scaling
+   - Question: Your Spring Boot service has a Kafka consumer, but it’s lagging because of a high message
+   throughput. What strategies would you use to scale the Kafka consumer and reduce the lag?
+   - Answer:
+     -Horizontal Scaling: Increase the number of consumer instances and assign each to a partition.
+      Kafka ensures that each partition is consumed by only one instance in a consumer group.
+     - Parallel Consumption: Configure your `ConcurrentKafkaListenerContainerFactory` with higher concurrency to increase parallel consumption.
+     - Backpressure Handling: Tune `max.poll.records`, `fetch.min.bytes`, and `max.poll.interval.ms`
+     to improve throughput and avoid fetching too many records at once.
+     -Example:
+     spring:
+       kafka:
+         consumer:
+           max-poll-records: 500
+           fetch-min-size: 1024
+           fetch-max-wait: 100
+4.Scenario: Message Ordering Across Multiple Partitions
+   -Question: You have a Kafka topic with multiple partitions, and your business logic requires messages to be
+   consumed in order. How would you ensure ordered message processing across partitions in Spring Boot?
+   - **Answer**:
+     - Partition Keying: Use a specific key when producing messages to Kafka so that all messages with the
+     same key are routed to the same partition, ensuring order.
+     - Single Partition Consumption: If ordering is crucial across all messages, limit the topic to one partition,
+      though this can reduce throughput.
+     - Example Producer with Key:
+     kafkaTemplate.send("topicName", "key1", message);  // all messages with "key1" go to same partition
+5.Scenario: Handling a Dead Letter Queue (DLQ)**
+   -Question: Suppose a Kafka consumer fails repeatedly to process a message, and you want to move such messages
+    to a dead-letter topic after a certain number of retries. How would you implement this in Spring Boot?
+   - Answer:
+     -DLQ Setup: Use Spring Kafka’s `DeadLetterPublishingRecoverer` to publish failed messages to a DLQ after
+      retry attempts have been exhausted.
+     -Error Handling: Configure a `DefaultErrorHandler` to send messages to the DLQ after a fixed number of retries.
+     - Example:
+     @Bean
+     public DefaultErrorHandler errorHandler(KafkaTemplate<String, String> template) {
+         return new DefaultErrorHandler(
+             new DeadLetterPublishingRecoverer(template),
+             new FixedBackOff(1000L, 3));  // Retry 3 times before sending to DLQ
+     }
+
+ 6. Scenario: Transactional Messaging
+   - Question: Your application requires that producing a message to a Kafka topic and saving a record in the
+    database should happen as part of a single transaction. How would you implement this in Spring Boot with Kafka?
+   -Answer:
+     - Transactional Producer: Enable Kafka transactions by configuring the `KafkaTemplate` with
+      `transactional.id`. Start and commit the transaction within the Spring service method.
+     -Chained Transactions: Use Spring’s `@Transactional` annotation to bind the Kafka transaction and database
+      transaction together.
+     - Example:
+     spring:
+       kafka:
+         producer:
+           transaction-id-prefix: tx-
+     - In Service:
+     @Transactional
+     public void processAndSend(String message) {
+         // Save to database
+         databaseService.saveRecord(message);
+
+         // Send Kafka message as part of the same transaction
+         kafkaTemplate.send("topicName", message);
+     }
+7.Scenario: Kafka Avro Serialization and Schema Registry
+   -Question: Your application uses Kafka to send Avro-encoded messages, and you want to use a schema registry.
+    How would you configure your Spring Boot application to use Avro serialization and the schema registry?
+   -Answer:
+     -Avro Serializer: Use Confluent’s Avro serializer by including the necessary dependencies
+      (`kafka-avro-serializer`) and configuring the Avro `key.serializer` and `value.serializer`.
+     -Schema Registry: Set the URL of the schema registry in the `application.properties`.
+     - Example:
+     ```yaml
+     spring:
+       kafka:
+         producer:
+           key-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+           value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+         properties:
+           schema.registry.url: http://localhost:8081
+ 8.Scenario: Kafka Security - SSL and SASL Authentication
+   -Question:Your Spring Boot application needs to connect to a secure Kafka broker with SSL and SASL
+    authentication. How would you configure your application to handle this securely?
+   -Answer:
+     - SSL Configuration: Set Kafka SSL properties in `application.properties` or `application.yml` for both the
+      producer and consumer.
+     - SASL Authentication: Configure SASL mechanisms like `PLAIN` or `SCRAM` for authentication.
+     - Example:
+     ```yaml
+     spring:
+       kafka:
+         producer:
+           ssl.truststore-location: classpath:truststore.jks
+           ssl.truststore-password: truststorepassword
+           sasl.mechanism: PLAIN
+           security-protocol: SASL_SSL
+           sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required
+             username="kafkauser"
+             password="kafkapassword";
+9.Scenario: Processing Batch Messages
+   -Question: Your Kafka topic receives messages in bulk, and you want to process them in batches to improve
+    performance. How would you implement batch processing for Kafka consumers in Spring Boot?
+   -Answer:
+     - Enable batch consumption by setting `spring.kafka.listener.type: batch` and adjust `max.poll.records`
+      to control batch size.
+     - Use a `@KafkaListener` with `List<String>` as the parameter to receive batches of messages.
+     - Example:
+     ```yaml
+     spring:
+       kafka:
+         listener:
+           type: batch
+           max-poll-records: 500
+     ```
+
+10.Scenario: Topic Auto-Creation
+   -Question: A Spring Boot application needs to auto-create Kafka topics on startup if they don’t already exist. How would you configure the application to do this?
+   -Answer:
+     - Use Spring Kafka’s `KafkaAdmin` to programmatically create topics during application startup.
+     - Example:
+     @Bean
+     public NewTopic topic() {
+         return TopicBuilder.name("newTopic")
+             .partitions(3)
+             .replicas(1)
+             .build();
+     }
