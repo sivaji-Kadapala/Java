@@ -1,0 +1,79 @@
+Tell Us About Your Management Style ?
+
+My management style is team-focused and clear. I make sure everyone works together, especially during important stages like testing and 
+deployment. I help solve problems step by step, listen to my team's ideas, and guide them to ensure the project runs smoothly, like in my 
+migration projects from Java 8 to 17 and Spring Boot 2.7.x to 3.1.x
+
+2) How Do You Handle Conflict Within Your Team?
+
+I handle conflict by encouraging open discussions between team members to understand their concerns. I focus on staying neutral and 
+addressing the root of the issue rather than the symptoms. Once I understand the situation, I work with the team to find a fair solution that
+everyone can agree on. My goal is always to maintain a positive working environment and ensure that the conflict doesn’t slow down the project."
+
+3.Tell Me About a Time You Had a Conflict at Work
+
+
+During a project to migrate from Java 8 to Java 17, I faced a conflict about using new features like `var` and `record`.
+
+First Attempt (Failure 1):
+I started using `var` for local variables to make the code shorter. However, some team members found it confusing because they couldn’t see
+the types easily. This made code reviews slower.
+
+Second Attempt (Failure 2):
+To fix this, I stopped using `var` and used explicit types everywhere. While this made the code clear, it resulted in a lot of repetitive 
+code that wasn’t necessary.
+
+Final Solution (Success):
+I then decided to find a middle ground. I used `var` only in simple cases where the type was obvious. I also used `record` for data objects
+to reduce boilerplate code. This helped keep the code modern and easy to read.
+
+In the end, this balanced approach improved our code while keeping it clear and maintainable."
+
+4.How do you perform under pressure?
+
+I handle pressure by staying calm, prioritizing tasks, and breaking them into smaller steps. I focus on meeting deadlines by staying organized
+and communicating with my team. Pressure often helps me perform better, as I can solve problems more efficiently. For example, during a recent
+migration project, I met tight deadlines without compromising quality.
+
+5.How do you deal with conflicts between co-workers?
+
+I deal with conflicts by first listening to both sides to understand their perspectives. I remain calm and objective, encouraging open 
+communication to find a solution that works for everyone. If needed, I mediate by helping the team focus on the common goal rather than the 
+disagreement. For example, during a recent project, two teammates disagreed on a design approach, and I facilitated a discussion that led to 
+a compromise, keeping the project on track.
+
+6.What salary are you expecting?
+I'm open to discussing salary and would like to consider a fair amount based on my skills, experience, and the responsibilities
+of the role. I trust that your company offers competitive compensation, and I’m confident we can reach an agreement that reflects my value
+while aligning with your budget.
+
+7.Why are you leaving your current job?
+I’m looking for new challenges and opportunities to grow my skills further. While I’ve enjoyed my time at Virtusa and learned a lot, I believe
+this new role will allow me to work on more complex projects and expand my expertise, especially in areas like Java 17 and Spring Boot 3.x. 
+I’m excited to take on new responsibilities and contribute to a dynamic team.
+
+8. If you make a mistake, how do you fix it?
+
+When I make a mistake, I take responsibility, assess the impact, and fix it quickly. I focus on finding the root cause and communicate the 
+issue if needed. For example, I once missed a bug in a microservice, fixed it right away, and ensured everything was tested properly.
+
+9.How do you handle feedback, both positive and negative?
+
+I handle feedback, whether positive or negative, with an open mind. Positive feedback motivates me, while negative feedback helps me improve. I focus on
+understanding the feedback, ask questions if needed, and use it to grow in my role. Feedback is essential for continuous learning, and I
+always try to implement it in my work.
+
+10.What has been your biggest achievement to date?
+My biggest achievement was leading the migration of several applications from Java 8 to Java 17 and Spring Boot 2.7.x to 3.1.x. 
+This complex project was completed ahead of schedule and significantly improved system efficiency for the client.
+
+11.What difficult situation have you faced in the past?
+A difficult situation I faced was encountering significant delays in a project due to technical challenges. I quickly assessed the issues, 
+communicated with the team, and created a revised plan. By prioritizing tasks, we got back on track and successfully met the deadline, 
+which strengthened team trust.
+
+
+
+
+
+
