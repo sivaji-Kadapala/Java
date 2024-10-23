@@ -1,44 +1,4 @@
-Introduction:
-My name is Sivaji, and I am from Tirupati. I graduated with an MCA degree from Narayana Engineering College,
-Nellore.
-Technical Skills:
-Coming to my technical skills, I have strong expertise in:
--Backend:Core Java (Java 8 to 17), Collections, Spring MVC, Spring Data JPA, Spring Boot, RESTful APIs,
- Microservices, and Kafka.
--Frontend: HTML, CSS, JavaScript, ReactJS, and Redux.
--Databases: SQL, MySQL, and MongoDB.
--Tools:For performance testing, I use BlazeMeter; for API testing, I use Postman. I also work with Splunk,
- Dynatrace, and Grafana for monitoring logs and performance.
-Experience:
-I have 4 years of experience in the IT industry, with 3 years relevant to Java development.
-I started my career with Java in Virtusa in October 2021, where I’ve learned a lot and gained
-significant experience.
-Project Overview:
-In terms of my projects, let me give you a business overview of one. Earlier, when customers made purchases
-on e-commerce websites, they had to enter their full credit or debit card details, which were stored by the
-websites and became vulnerable to unauthorized access. My project introduced tokenization, which hides the
-12-digit card number and only displays the last four digits. This eliminates the need to enter the CVV and
-greatly enhances security by protecting sensitive information from unauthorized users.
-Project Migration:
-I'm currently working in the banking domain for my client, JPMorgan Chase. Their requirement was to implement
-the Photon framework on Spring Boot applications. Previously, these applications were running on Spring Boot
-version 2.7.x, but since Photon only supports version 3.1.x, we had to migrate these applications. This also
-involved upgrading from Java 8 to Java 17, as Spring Boot 3.1.x is only compatible with Java 17.
 
-As part of this migration, we worked on multiple applications, performing end-to-end testing, including performance
- and functional testing, and finally moved these applications from development to UAT, and from UAT to production
-environments.
-4.Why are you looking for a new opportunity?
-Response:
-"I am looking for a new opportunity to further develop my skills and take on new challenges. I am particularly interested in working with
-cutting-edge technologies and being part of innovative projects that can make a significant impact. I believe that your organization can
- provide me with the right environment to grow both professionally and personally."
-
-5.What is your greatest achievement?
-Response:
-"One of my greatest achievements was during the GWS Home Lending Data Center Migration project at JPMC. I played a key role in relocating
- critical home lending applications to modern data centers, enhancing performance, security, and scalability. My work in migrating
- applications from JDK 8 to JDK 11 and improving code coverage above 70% was particularly rewarding."
 
 6.Do you have any questions for us?
 Response:

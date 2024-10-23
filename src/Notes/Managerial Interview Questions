@@ -1,4 +1,45 @@
-Tell Us About Your Management Style ?
+Introduction:
+My name is Sivaji, and I am from Tirupati. I graduated with an MCA degree from Narayana Engineering College,
+Nellore.
+Technical Skills:
+Coming to my technical skills, I have strong expertise in:
+-Backend:Core Java (Java 8 to 17), Collections, Spring MVC, Spring Data JPA, Spring Boot, RESTful APIs,
+ Microservices, and Kafka.
+-Frontend: HTML, CSS, JavaScript, ReactJS, and Redux.
+-Databases: SQL, MySQL, and MongoDB.
+-Tools:For performance testing, I use BlazeMeter; for API testing, I use Postman. I also work with Splunk,
+ Dynatrace, and Grafana for monitoring logs and performance.
+Experience:
+I have 4 years of experience in the IT industry, with 3 years relevant to Java development.
+I started my career with Java in Virtusa in October 2021, where I’ve learned a lot and gained
+significant experience.
+Project Overview:
+In terms of my projects, let me give you a business overview of one. Earlier, when customers made purchases
+on e-commerce websites, they had to enter their full credit or debit card details, which were stored by the
+websites and became vulnerable to unauthorized access. My project introduced tokenization, which hides the
+12-digit card number and only displays the last four digits. This eliminates the need to enter the CVV and
+greatly enhances security by protecting sensitive information from unauthorized users.
+Project Migration:
+I'm currently working in the banking domain for my client, JPMorgan Chase. Their requirement was to implement
+the Photon framework on Spring Boot applications. Previously, these applications were running on Spring Boot
+version 2.7.x, but since Photon only supports version 3.1.x, we had to migrate these applications. This also
+involved upgrading from Java 8 to Java 17, as Spring Boot 3.1.x is only compatible with Java 17.
+
+As part of this migration, we worked on multiple applications, performing end-to-end testing, including performance
+ and functional testing, and finally moved these applications from development to UAT, and from UAT to production
+environments.
+4.Why are you looking for a new opportunity?
+Response:
+"I am looking for a new opportunity to further develop my skills and take on new challenges. I am particularly interested in working with
+cutting-edge technologies and being part of innovative projects that can make a significant impact. I believe that your organization can
+ provide me with the right environment to grow both professionally and personally."
+
+5.What is your greatest achievement?
+Response:
+"One of my greatest achievements was during the GWS Home Lending Data Center Migration project at JPMC. I played a key role in relocating
+ critical home lending applications to modern data centers, enhancing performance, security, and scalability. My work in migrating
+ applications from JDK 8 to JDK 11 and improving code coverage above 70% was particularly rewarding."
+1.Tell Us About Your Management Style ?
 
 My management style is team-focused and clear. I make sure everyone works together, especially during important stages like testing and 
 deployment. I help solve problems step by step, listen to my team's ideas, and guide them to ensure the project runs smoothly, like in my 
@@ -31,16 +72,17 @@ In the end, this balanced approach improved our code while keeping it clear and 
 
 4.How do you perform under pressure?
 
-I handle pressure by staying calm, prioritizing tasks, and breaking them into smaller steps. I focus on meeting deadlines by staying organized
-and communicating with my team. Pressure often helps me perform better, as I can solve problems more efficiently. For example, during a recent
-migration project, I met tight deadlines without compromising quality.
+I handle pressure by breaking down large tasks into smaller, manageable components. For example, during our migration project at JPMC,
+we had tight deadlines to upgrade microservices. I prioritized tasks based on their impact on the overall timeline and worked collaboratively
+with my team, ensuring that we stuck to our deadlines without sacrificing quality. I also proactively communicate with stakeholders if
+there's a risk to the schedule, so there’s transparency throughout the process."
 
 5.How do you deal with conflicts between co-workers?
-
-I deal with conflicts by first listening to both sides to understand their perspectives. I remain calm and objective, encouraging open 
-communication to find a solution that works for everyone. If needed, I mediate by helping the team focus on the common goal rather than the 
-disagreement. For example, during a recent project, two teammates disagreed on a design approach, and I facilitated a discussion that led to 
-a compromise, keeping the project on track.
+In my experience, conflicts often arise due to misunderstandings .I address them by encouraging open communication
+between team members. For instance, during a recent project, two colleagues disagreed on the implementation approach. I arranged a meeting
+where both parties could express their concerns and we worked together to find a compromise that satisfied both technical requirements and
+the project timeline. I find that actively listening and focusing on finding a solution that benefits the project as a whole helps resolve
+conflicts.
 
 6.What salary are you expecting?
 I'm open to discussing salary and would like to consider a fair amount based on my skills, experience, and the responsibilities
@@ -71,6 +113,20 @@ This complex project was completed ahead of schedule and significantly improved 
 A difficult situation I faced was encountering significant delays in a project due to technical challenges. I quickly assessed the issues, 
 communicated with the team, and created a revised plan. By prioritizing tasks, we got back on track and successfully met the deadline, 
 which strengthened team trust.
+12.What are your strengths and weaknesses?
+
+Strengths:
+
+Technical Expertise: Skilled in Java, Spring Boot, and microservices, with hands-on experience in migration projects.
+Problem-Solving: Strong analytical skills for troubleshooting and optimizing solutions during complex tasks.
+Collaboration: Effective communicator and team player, experienced in Agile workflows and code reviews.
+Adaptability: Quick to learn new tools and technologies, like cloud platforms (AWS).
+
+Weaknesses:
+
+Over-Detailing: Sometimes spend too much time on minor details, but I’m working on balancing thoroughness with efficiency.
+Delegating: Tend to take on too much myself, but I’m improving by learning to trust and delegate more to my team.
+
 
 
 
