@@ -1,0 +1,162 @@
+----------------------------------------Java Basics--------------------------------------------------------------
+1. What is the difference between JDK and JRE?
+2. What is Java Virtual Machine (JVM)?
+3. What are the different types of memory areas allocated by JVM?
+4. What is JIT compiler?
+5. How Java platform is different from other platforms?
+6. Why people say that Java is 'write once and run anywhere' language?
+7. How does ClassLoader work in Java?
+8. Do you think ‘main’ used for main method is a keyword in Java?
+9. Can we write main method as public void static instead of public static
+void?
+10. In Java, if we do not specify any value for local variables, then what
+will be the default value of the local variables?
+11. Let say, we run a java class without passing any arguments. What will
+be the value of String array of arguments in Main method?
+12. What is the difference between byte and char data types in Java?
+
+-------------------------------------------------------------------OOPS---------------------------------------------------------
+13. What are the main principles of Object Oriented Programming?
+14. What is the difference between Object Oriented Programming
+language and Object Based Programming language?
+15. In Java what is the default value of an object reference defined as an
+instance variable in an Object?
+16. Why do we need constructor in Java?
+17. Why do we need default constructor in Java classes?
+18. What is the value returned by Constructor in Java?
+19. Can we inherit a Constructor?
+20. Why constructors cannot be final, static, or abstract in Java?
+---------------------------Inheritance---------------------------------
+21. What is the purpose of ‘this’ keyword in java?
+22. Explain the concept of Inheritance?
+23. Which class in Java is superclass of every other class?
+24. Why Java does not support multiple inheritance?
+25. In OOPS, what is meant by composition?
+26. How aggregation and composition are different concepts?
+27. Why there are no pointers in Java?
+28. If there are no pointers in Java, then why do we get
+NullPointerException?
+29. What is the purpose of ‘super’ keyword in java?
+30. Is it possible to use this() and super() both in same constructor?
+31. What is the meaning of object cloning in Java?
+----------------------------Static---------------------------------------
+32. In Java, why do we use static variable?
+33. Why it is not a good practice to create static variables in Java?
+34. What is the purpose of static method in Java?
+35. Why do we mark main method as static in Java?
+36. In what scenario do we use a static block?
+37. Is it possible to execute a program without defining a main() method?
+38. What happens when static modifier is not mentioned in the signature
+of main method?
+39. What is the difference between static method and instance method in
+Java?
+----------------------------Method Overloading and Overriding------------
+40. What is the other name of Method Overloading?
+41. How will you implement method overloading in Java?
+42. What kinds of argument variations are allowed in Method
+Overloading?
+43. Why it is not possible to do method overloading by changing return
+type of method in java?
+44. Is it allowed to overload main() method in Java?
+45. How do we implement method overriding in Java?
+46. Are we allowed to override a static method in Java?
+47. Why Java does not allow overriding a static method?
+48. Is it allowed to override an overloaded method?
+49. What is the difference between method overloading and method
+overriding in Java?
+50. Does Java allow virtual functions?
+51. What is meant by covariant return type in Java?
+------------------------Polymorphism----------------------------------------
+52. What is Runtime Polymorphism?
+53. Is it possible to achieve Runtime Polymorphism by data members in
+Java?
+54. Explain the difference between static and dynamic binding?
+Abstraction
+55. What is Abstraction in Object Oriented programming?
+56. How is Abstraction different from Encapsulation?
+57. What is an abstract class in Java?
+58. Is it allowed to mark a method abstract method without marking the
+class abstract?
+59. Is it allowed to mark a method abstract as well as final?
+60. Can we instantiate an abstract class in Java?
+61. What is an interface in Java?
+62. Is it allowed to mark an interface method as static?
+63. Why an Interface cannot be marked as final in Java?
+64. What is a marker interface?
+65. What can we use instead of Marker interface?
+66. How Annotations are better than Marker Interfaces?
+67. What is the difference between abstract class and interface in Java?
+68. Does Java allow us to use private and protected modifiers for
+variables in interfaces?
+69. How can we cast to an object reference to an interface reference?
+------------------------------------Final---------------------------------------
+70. How can you change the value of a final variable in Java?
+71. Can a class be marked final in Java?
+72. How can we create a final method in Java?
+73. How can we prohibit inheritance in Java?
+74. Why Integer class in final in Java?
+75. What is a blank final variable in Java?
+76. How can we initialize a blank final variable?
+77. Is it allowed to declare main method as final?
+------------------------------------Package-------------------------------------
+78. What is the purpose of package in Java?
+79. What is java.lang package?
+80. Which is the most important class in Java?
+81. Is it mandatory to import java.lang package every time?
+82. Can you import same package or class twice in your class?
+83. What is a static import in Java?
+
+-----------------------------------------------------------------Collections --------------------------------------------------------
+Q1. What is Java Collections Framework? List out some benefits of Collections framework?
+Q2. What will be the problem if you do not override hashcode() method?
+Q3. What differences exist between HashMap and Hashtable?
+Q4. What is the benefit of Generics in Collections Framework?
+Q5. How do WeakHashMap works?
+Q6. What is difference between Array and ArrayList?
+Q7. What is difference between ArrayList and LinkedList?
+Q8. How to remove duplicates from ArrayList?
+Q9. What is Java Priority Queue?
+Q10. What is LinkedHashMap in Java?
+Q11. What is difference between HashMap and Hashtable?
+Q12. What is EnumSet?
+Q13. What is the difference between fail-fast and fail-safe iterator?
+Q14. What are concurrent collection classes?
+Q15. What is difference between Enumeration and Iterator interface?
+Q16. What is difference between Iterator and ListIterator?
+Q17. What is a default capacity of ArrayList, Vector, HashMap, Hashtable and Hashset?
+Q18. What is the difference between Collection and Collections?
+Q19. What is the difference between HashSet and TreeSet?
+Q20. What is the difference between Set and Map?
+Q21. What is the difference between HashSet and HashMap?
+Q22. What is the difference between HashMap and TreeMap?
+Q23. What is the Dictionary class?
+Q24. What are all the Classes and Interfaces that are available in the collections?
+Q25. What is the difference between HashMap and ConcurrentHashMap?
+Q26. How to make an ArrayList read only in Java?
+Q27. Why ConcurrentHashMap is faster than Hashtable in Java?
+Q28. What is the difference between peek(), poll() and remove() method of the Queue interface?
+Q29. How HashMap works in Java?
+Q30. How does HashMap handle collisions in java?
+Q31. What is difference between arrayList and linkedList?
+Q32. How Set/HashSet implement unique values?
+Q33. What is Comparable and Comparator Interface in java?
+Q34. Difference between containsKey(), keySet() and values() in HashMap.
+-----------------------------------------------------------------------------On JAVA 8 Stream ----------------------------------------------------
+
+Q1. What Is a Stream? How Does It Differ From a Collection?
+Q2 What Is the Difference Between Intermediate and Terminal Operations
+
+Q3 What does Java’8 Stream pipelining mean?
+Q4. How to Create Streams in Java?
+Q5. What is the difference between Collections API and Streams API?
+Q6. What does the Stream map() function do? why you use it?
+Q7. What does the Stream filter() method do? when you use it?
+
+Q8. What does the Stream flatmap() function do? why you need it?
+
+Q9. Difference Between Stream map() and flatMap() Functions
+
+Q10. What new features does Java 8 have?
+Q11. What are the Lambda Function's primary characteristics?
+Q12 .What function does Java 8's limit() method serve?
+Q13. What are the main features that JDK has added?
