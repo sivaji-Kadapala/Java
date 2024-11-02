@@ -1,0 +1,2176 @@
+-> By using java we can develop several types of applications
+
+		1) Standalone/Desktop application
+		2) Web applications
+		3) Distributed applications (webservices)
+
+
+What is standlone application?
+------------------------------
+-> The application which runs in only one computer is called as Standlone application.
+
+	Ex: Eclipse IDE, Calc, Notepad, Antivirus etc...
+
+What is web application?
+------------------------
+-> The application whichs run over internet is called as Web application.
+
+	Ex: gmail, facebook, linkdin, irctc, ashokit.in etc...
+
+-> Multiple users can access web application at a time.
+
+-> Web applications are used for customer 2 business communication (C2B)
+
+what is distributed application?
+--------------------------------
+-> If one application is communicating with another application then it is called as Distributed application.
+
+-> To re-use one application services in other applications we will develop Distributed applications.
+
+	Ex:   Passport <----------> AADHAR
+	      Ashok IT <----------> IBM
+----------------------------------------------------------------------------------------------------------------------------
+Last session : What is Distributed application & why ?
+-------------------------------------------------------------------------
+-> If one application is communicating with another application then it is called as Distributed application.
+
+-> With the help of distributed application we can re-use business services.
+
+-> Distributed applications are meant for business to business communication.
+
+		Passport app -----------> Aadhar app
+
+		Makemytrip app ----------> Air Lines, Hotels, irctc..
+
+-------------------------------------------------------------------------
+-> To develop Distributed applications we will use Webservices.
+-------------------------------------------------------------------------
+What is Webservice?
+-------------------------------------------------------------------------
+-> Webservices is a distributed technology which is used to develop distributed applications with Intereoperability
+-------------------------------------------------------------------------
+What is Intereoperability?
+-------------------------------------------------------------------------
+Irrespective of the platform and irrespective of the programming language if applications are communicating then they are called as Intereoperable applications.
+
+
+			Java <--------> .Net
+
+			Python <-------> Salesforce
+
+			Angular <------> Java
+
+			Python <--------> Java
+-------------------------------------------------------------------------
+-> In distributed applications consumer & provider applications will exchange the data.
+
+
+-> Provider application will decide input data structure & output data structure.
+
+Note: The data which is exchanging between consumer and provider should be intereoperable.
+
+-> XML, JSON and YML are universal data formats for exchanging data in webservices.
+
+Note: In distributed applications we should not exchange the data in object format.
+-------------------------------------------------------------------------
+
+-> In Java we can develop distributed applications with Intereoperability in 2 ways
+
+		1) Webservices (SOAP Webservices)
+		2) RESTful Services
+------------------------------------------------------------------------------------------------------------------------------------------
+Last session (Tuesday) : Distributed application architecture
+------------------------------------------------------------------------
+-> In distributed applications 2 actors will be available
+
+		1) Provider App
+		2) Consumer App
+
+-> The application which is giving business services to other applications is called as provider application.
+
+-> The application which is taking business services from other applications is called as consumer application.
+
+
+-> Provider and consumer applications will exchange the data in intereoperable format.
+
+-> XML, JSON and YAML are universal formats to exchange the data.
+
+-> HTTP protocol will acts as mediator between Consumer and Provider to exchange the data.
+-------------------------------------------------------------------------
+-> Distributed applications can be developed in 2 ways
+
+		1) SOAP Based Webservices (Outdated)
+		2) Restful Services (Trending)
+
+-> SOAP Webservices can be developed in 2 ways
+
+		1) JAX-RPC api
+		2) JAX-WS api
+
+-> RESTFul services can be developed in 2 ways
+
+		1) JAX-RS api
+		2) Spring with REST (Trending)
+-------------------------------------------------------------------------
+RESTful Services Evolution
+------------------------------------------------------------------------
+-> Initially people used to develop distributed applications with intereoperablity using SOAP Webservices.
+
+-> Over a period "Roy Fielding" identified some challenges to work with Soap webservices.
+
+-> Roy Fielding provided some architecture principles to develop distributed applications with intereoperability.
+
+-> If we develop our application by using "Roy Fielding" principles then our application is called "Restful service".
+
+-------------------------------------------------------------------------
+REST Architecture Principles(CHMUU)
+-------------------------------------------------------------------------
+1) Unique Addressbility
+
+2) Uniform Constraint Interfaces
+
+3) Message Oriented Representation
+
+4) Communication Stateless
+
+5) HATEOS
+-------------------------------------------------------------------------
+
+-> In Rest API we can write several methods to perform distributed operations. Every method should have unique address. This is called as Unique Addressability.
+
+
+public class IrctcRestApi{
+       ("/ticket")
+      public Ticket BookTicket();
+       ("/status")
+      public String getPnrStatus()
+      ("/cancel")
+      public String cancelTicket();
+      ("/trains")
+      public List<Train> getTrains();
+}
+-------------------------------------------------------------------------
+-> All the methods which are available in Rest api should bind with HTTP Protocol methods. This is called Uniform Constraint Interfaces.
+
+	GET Request ----> GET Method --------> @GetMapping
+
+	POST Request ----> POST method ------> @PostMapping
+
+        PUT Request -----> PUT method -------> @PutMapping
+
+	DELETE Request --> DELETE method ----> @DeleteMapping
+
+------------------------------------------------------------------------
+-> Message Oriented Representation nothing but Provider and Consumer can exchange the data as per their requirement.
+
+------------------------------------------------------------------------
+-> Consumer request information should not be store at provider side. Every request should be treated as first request only. This is called communication stateless.
+
+-----------------------------------------------------------------------
+-> HATEOS stands for Hypermedia as an engine for application state. Provider should send data to consumer in hypermedia format.
+----------------------------------------------------------------------------------------------------------------------------------------------
+Last session : REST Architecture Principles
+-------------------------------------------------------------------------
+-> Roy Fielding provided Architecture principles to develop Restful services
+
+1) Unique Addressability
+
+2) Uniform Constraint Interfaces
+
+3) Message Oriented Representation
+
+4) Communication Stateless
+
+5) HATEOS
+
+-----------------------------------------------------------------------
+Few Important Annotations We will Use in Spring With REST
+-------------------------------------------------------------------------
+
+@RestController : To represent java class as distributed component
+
+@GetMapping : To bind our method to HTTP GET request
+@PostMapping : To bind our method to HTTP POST Request
+@PutMapping : To bind our method to HTTP PUT Request
+@DeleteMapping : To bind our method to HTTP DELETE request
+
+@RequestParam : To read query parameter from URL
+@PathVariable : To read URI parameter/Path Parameter from URL
+
+@RequestBody : To read data from Request Body sent by client
+@ResponseBody : To represent data as response to client
+-------------------------------------------------------------------------
+Developing First REST API using Spring With REST
+-------------------------------------------------------------------------
+
+1) Create Spring Boot application with below dependencies
+
+		a)spring-boot-starter-web
+		b)spring-boot-devtools
+
+2) Create Distributed Component Using @RestController
+
+3) Write Required methods in Rest Controller and bind them to HTTP Protocol methods
+
+4) Configure Server Port Number in application.properties file
+
+5) Run the application and test it.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Last session : Developing REST API and Testing Using PostMan
+-------------------------------------------------------------------------
+Today's session : REST API development
+-----------------------------------------------------------------------
+package in.ashokit.rest;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/rest1")
+public class GreetRestController {
+
+	@GetMapping
+	public String getGreetMsg() { // http://localhost:9090/rest1/
+		String msg = "Good Morning...!!";
+		return msg;
+	}
+
+	@GetMapping("/wish") // http://localhost:9090/rest1/wish
+	public String getWishMsg() {
+		String msg = "All the best..!!";
+		return msg;
+	}
+
+	@GetMapping("/quote") // http://localhost:9090/rest1/quote
+	public String getQuote() {
+		String msg = "Do or Die";
+		return msg;
+	}
+
+}
+------------------------------------------------------------------------
+package in.ashokit.rest;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/rest2")
+public class WelcomeRestController {
+
+	/*@GetMapping("/welcome")
+	public String getWelcomeMsg() { // http://localhost:9090/rest2/welcome
+		String msg = "Welcome To Ashok IT..!!";
+		return msg;
+	}*/
+
+	@GetMapping("/welcome")
+	public ResponseEntity<String> getWelcomeMsg(){
+		String msg = "Welcome To Ashok IT..!!";
+		return new ResponseEntity<String>(msg, HttpStatus.OK);
+	}
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Last session : URL Mapping & Http Methods
+-------------------------------------------------------------------------
+1) Unique Addressbility
+2) Uniform Constraint Interfaces
+3) Message Oriented Representation
+4) Communication Stateless
+5) HATEOS
+------------------------------------------------------------------------
+-> In REST api, every method should be binded to unique address. To achieve this we are writing URL pattern at class level and method level also.
+
+-> Every REST API method should be binded to HTTP Protocol method So thatClients can easily access our REST API methods using HTTP Protocol.
+-------------------------------------------------------------------------
+
+-> ResponseEntity class we are using Construct response to client.
+
+-> Using ResponseEntity class we can set "response body" and 
+"http status code" for response.
+------------------------------------------------------------------------
+-> Consumer/Client application will send request to Provider/Resource application.
+
+-> Provider/Resouce application will process the request and will send response to Consumer/Client with HTTP Status Code.
+
+-> HTTP Status Codes will tell how that request got processed by server.
+
+
+1xx - (100-199) Req info
+
+2xx - (200 - 299 ) Success (ok)
+
+3xx - (300 - 399) Redirect
+
+4xx - (400 - 499) Client Error
+
+5xx - (500 - 599) Server Error
+----------------------------------------------------------------------------------
+HTTP Protocol
+---------------------------------------------------------------------------------
+Http Protocol is divided into 2 parts
+
+1) HTTP Request
+
+2) HTTP Response
+----------------------------------------------------------------------------------------------------------------------------------------------
+Last session (04-Jul-21) : Http request & response structure
+------------------------------------------------------------------------
+Today's session : HTTP Protocol Methods
+------------------------------------------------------------------------
+
+-> Rest api methods should be binded to HTTP Protocol methods. 
+
+	Get Request --------> @GetMapping
+	Post Request -------> @PostMapping
+	Put Request -------> @PutMapping
+	Delete Request ----> @DeleteMapping
+
+--------------------------------------------------------------------------------
+HTTP GET Method
+-------------------------------------------------------------------------------
+-> If client wants to get data from rest api method, then that rest api method should be binded to get request using @GetMapping annotation.
+
+-> GET Request will not contain request body
+
+-> Clients can send data to rest api in the URL (query params & path Params) while sending GET request.
+
+--------------------------------------------------------------------------------
+HTTP POST Method
+---------------------------------------------------------------------------------
+-> If REST api method is responsible to create a new record with client given data then we will bind that method to HTTP Post Method using @PostMapping annotation.
+
+-> HTTP Post Method will have request body.
+
+-> Clients can send data to POST Request Method using
+
+		1) Path Params
+		2) Query Params
+		3) Request Body
+
+-> Simple and text data can be sent in URL and complex/secured/sensitive data should be sent in request body.
+----------------------------------------------------------------------------------
+HTTP PUT Request
+----------------------------------------------------------------------------------
+-> HTTP PUT method is used for updating the existing record
+
+-> If client wants to update any existing record then we should bind our rest api method to HTTP PUT request using @PutMapping annotation
+
+-> HTTP Put Request contains Request body.
+
+-> Clients can send data to PUT Request Method using
+
+		1) Path Params
+		2) Query Params
+		3) Request Body
+-----------------------------------------------------------------------------------
+HTTP DELETE
+----------------------------------------------------------------------------------
+-> HTTP DELETE method is responsible for deleting the record
+
+-> If client wants to delete any record using rest api method, then we should bind that rest api method to DELETE request usign @DeleteMapping annotation.
+
+-> HTTP DELETE will have Request Body.
+
+
+-> Clients can send data to DELETE Request Method using
+
+		1) Path Params
+		2) Query Params
+		3) Request Body
+-----------------------------------------------------------------------------------
+Summary
+----------------------------------------------------------------------------------
+-> What is HTTP Protocol ?
+
+-> What HTTP methods we will use in REST API development
+
+-> When to use which HTTP method
+
+-> HTTP Request Structure
+
+-> HTTP Response Structure
+
+-> HTTP Status Codes
+
+-> HTTP Status Messages
+----------------------------------------------------------------------------------------------------------------------------------------------------
+Last session : HTTP Protocol Methods
+-------------------------------------------------------------------------
+
+-> Below 4 methods we will use as part of REST api development
+
+		1) GET Method  (Getting the data)
+		2) POST Method (Creating record)
+		3) PUT Method (Updating record)
+		4) DELETE Method (Deleteing record)
+-------------------------------------------------------------------------
+1) What is Unique Addressability?
+2) What is Uniform Constraint Interfaces?
+-------------------------------------------------------------------------
+Message Oriented Representation
+-------------------------------------------------------------------------
+-> Client app & Resource app can exchange the data as per their requirement.
+----------------------------------------------------------------------------------------------------------------------------------------------
+Last session : Message Converters
+-------------------------------------------------------------------------
+
+-> We are using objects for rest api methods development.
+
+-> Method parameter and method return type we are using as object.
+
+-> If we use objects then our methods will be loosely coupled with format of data.
+
+---------------------------------------------------------------------------------
+@RestController
+public class BookRestController {
+
+	@GetMapping("/book")
+	public Book getBookData() {
+		Book b = new Book(101, "Spring", 450.00);
+		return b;
+	}
+}
+----------------------------------------------------------------------------------
+Q-1) As the above rest api method is returning object, client will recieve that object or will not recieve that object?
+
+Ans) Client will not recieve object bcz of intereoperability. Rest api side Message Converters will be available to convert object data into client understandable format.
+
+Q-1) How Rest api will understand client expected format for response data?
+
+Ans) Client should send "Accept" header with expected response format in the request.
+
+	Accept = application/xml  (For xml response)
+	Accept = application/json (For json response)
+-----------------------------------------------------------------------------------
+How Java Object Is Converted To Json ?
+----------------------------------------------------------------------------------
+-> To convert Java Object To Json format we have JACKSON api.
+
+-> Jackson is a third party api which is getting used in Spring Boot.
+
+-> MessageConverters will use Jackson api to deal with JSON data.
+
+-> Using Jackson api we can convert java object to json and json to java obj.
+----------------------------------------------------------------------------------
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+----------------------------------------------------------------------------------
+package in.ashokit;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class JavaToJsonConverter {
+
+	public static void main(String[] args) throws Exception {
+
+		Book book = new Book();
+		book.setBookId(101);
+		book.setBookName("Spring");
+		book.setBookPrice(450.00);
+
+		// convert book data into json
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writerWithDefaultPrettyPrinter()
+							.writeValueAsString(book);
+		System.out.println(json);
+	}
+
+}
+----------------------------------------------------------------------------------
+How to convert Java object to XML format?
+----------------------------------------------------------------------------------
+-> To convert java object to xml format we will use JAX-B api.
+
+-> JAX-B api is part of jdk. We no need to add any dependency for JAXB.
+
+-> To convert java object into xml format, that java class should have @XmlRootElement annotation.
+-----------------------------------------------------------------------------------
+package in.ashokit;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class Book {
+
+	private Integer bookId;
+	private String bookName;
+	private Double bookPrice;
+
+	public Integer getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(Integer bookId) {
+		this.bookId = bookId;
+	}
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+
+	public Double getBookPrice() {
+		return bookPrice;
+	}
+
+	public void setBookPrice(Double bookPrice) {
+		this.bookPrice = bookPrice;
+	}
+
+	@Override
+	public String toString() {
+		return "Book [bookId=" + bookId + ", bookName=" + bookName + ", bookPrice=" + bookPrice + "]";
+	}
+
+}
+---------------------------------------------------------------------------------
+package in.ashokit;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+
+public class JavaToXmlConverter {
+
+	public static void main(String[] args) throws Exception {
+
+		Book b = new Book();
+		b.setBookId(201);
+		b.setBookName("Hibernate");
+		b.setBookPrice(500.00);
+
+		JAXBContext context = JAXBContext.newInstance(Book.class);
+
+		Marshaller marshaller = context.createMarshaller();
+
+		marshaller.marshal(b, System.out);
+	}
+
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Last session : Message Converters
+----------------------------------------------------------------------------------
+-> Message Converters are used for converting object data to json/xml format and vice versa.
+				jackson
+		java object <------------> json
+
+				
+				jax-b
+		java object <-------------> xml
+
+-> To work with JSON data in java applications we will use Jackson api. Jackson api is third party api.
+
+-> To work with XML data in java applications we will use JAX-B api. It is part of JDK only.
+----------------------------------------------------------------------------------
+JSON Data Using Jackson api
+---------------------------------------------------------------------------------
+-> JSON stands for Java Script Object Notation
+
+-> JSON will represent data in key-value format
+
+-> JSON is platform independent and language independent
+
+-> JSON is called as Intereoperable format
+
+-> Now a days applications are using JSON format to exchange the data
+
+Syntax:
+
+{
+   "id" : 101,
+   "name" : "Ashok",
+   "phno" : 6301921083
+}
+
+-> Jackson api provided ObjectMapper class to perform convertions
+
+-> The process of converting Java object to JSON format is called as "Serialization"	
+
+-> The process of converting JSON data to Java object is called as
+ "De-Serialization"
+
+-> To convert object data to json and json data to object we need class which represents structure of the JSON.
+
+-----------------------------------------------------------------------------------
+@Data 
+@JsonInclude(value = Include.NON_NULL)
+public class Book {
+	@JsonProperty("bid")
+	private Integer bookId;
+	private String bookName;
+	private Double bookPrice;
+}
+---------------------------------------------------------------------------------
+package in.ashokit;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class JavaToJsonConverter {
+
+	public static void main(String[] args) throws Exception {
+
+		Book book = new Book();
+		book.setBookId(101);
+		book.setBookName("Spring");
+		book.setBookPrice(450.00);
+
+		// convert book data into json
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(book);
+		System.out.println(json);
+	}
+
+}
+---------------------------------------------------------------------------------
+package in.ashokit;
+
+import java.io.File;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class JsonToJavaConverter {
+
+	public static void main(String[] args) throws Exception {
+		File file = new File("Book.json");
+		ObjectMapper mapper = new ObjectMapper();
+		Book book = mapper.readValue(file, Book.class);
+		System.out.println(book);
+	}
+}
+-----------------------------------------------------------------------------------
+{
+	"bookName": "Spring",
+	"bookPrice": 450.0,
+	"bid": 101
+}
+---------------------------------------------------------------------------------
+
+	String json writeValueAsString(Object) ---- converts obj to json
+
+	Object readValue(File f, Class type) ---> converts json to obj
+---------------------------------------------------------------------------------
+XML Data with JAX-B Api
+--------------------------------------------------------------------------------
+-> XML stands for Extensible Markup Language
+
+-> XML is platform independent and language independent
+
+-> XML will represent data in in the form of elements
+
+<person>
+  <id>101</id>
+  <name>Ashok</name>
+  <phno>6301921083</phno>
+</person>
+
+-> To convert Java Object to xml and xml to java object we have JAX-B api.
+
+-> The process of converting java obj to xml is called as "Marshalling"
+
+-> The process of converting xml data to java obj is called as "Un-Marshalling"
+
+-> To perform Marshalling and Un-Marshalling we need to have binding class
+
+-> The java class which is representing stucture of xml is called as Binding class
+
+-> To represent java class as Binding class we will use @XmlRootElement annotation.
+
+---------------------------------------------------------------------------------
+@XmlRootElement
+public class Book {
+
+	private Integer bookId;
+	private String bookName;
+	private Double bookPrice;
+
+}
+--------------------------------------------------------------------------------
+package in.ashokit;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+
+public class JavaToXmlConverter {
+
+	public static void main(String[] args) throws Exception {
+
+		Book b = new Book();
+		b.setBookId(201);
+		b.setBookName("Hibernate");
+		b.setBookPrice(500.00);
+
+		JAXBContext context = JAXBContext.newInstance(Book.class);
+
+		Marshaller marshaller = context.createMarshaller();
+
+		marshaller.marshal(b, System.out);
+	}
+
+}
+-------------------------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<book>
+	<bookId>201</bookId>
+	<bookName>Hibernate</bookName>
+	<bookPrice>500.0</bookPrice>
+</book>
+--------------------------------------------------------------------------------
+package in.ashokit;
+
+import java.io.File;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
+
+public class XmlToJavaConverter {
+	public static void main(String[] args) throws Exception {
+		JAXBContext context = JAXBContext.newInstance(Book.class);
+
+		Unmarshaller unmarshaller = context.createUnmarshaller();
+		Object object = unmarshaller.unmarshal(new File("Book.xml"));
+		Book b = (Book) object;
+		System.out.println(b);
+	}
+}
+------------------------------------------------------------------------------------------------------------------------------------------
+Last session (Tuesday) : Distributed application architecture
+------------------------------------------------------------------------
+-> In distributed applications 2 actors will be available
+
+		1) Provider App
+		2) Consumer App
+
+-> The application which is giving business services to other applications is called as provider application.
+
+-> The application which is taking business services from other applications is called as consumer application.
+
+
+-> Provider and consumer applications will exchange the data in intereoperable format.
+
+-> XML, JSON and YAML are universal formats to exchange the data.
+
+-> HTTP protocol will acts as mediator between Consumer and Provider to exchange the data.
+-------------------------------------------------------------------------
+-> Distributed applications can be developed in 2 ways
+
+		1) SOAP Based Webservices (Outdated)
+		2) Restful Services (Trending)
+
+-> SOAP Webservices can be developed in 2 ways
+
+		1) JAX-RPC api
+		2) JAX-WS api
+
+-> RESTFul services can be developed in 2 ways
+
+		1) JAX-RS api
+		2) Spring with REST (Trending)
+-------------------------------------------------------------------------
+RESTful Services Evolution
+------------------------------------------------------------------------
+-> Initially people used to develop distributed applications with intereoperablity using SOAP Webservices.
+
+-> Over a period "Roy Fielding" identified some challenges to work with Soap webservices.
+
+-> Roy Fielding provided some architecture principles to develop distributed applications with intereoperability.
+
+-> If we develop our application by using "Roy Fielding" principles then our application is called "Restful service".
+
+-------------------------------------------------------------------------
+REST Architecture Principles
+-------------------------------------------------------------------------
+1) Unique Addressbility
+
+2) Uniform Constraint Interfaces
+
+3) Message Oriented Representation
+
+4) Communication Stateless
+
+5) HATEOS
+-------------------------------------------------------------------------
+
+-> In Rest API we can write several methods to perform distributed operations. Every method should have unique address. This is called as Unique Addressability.
+
+
+public class IrctcRestApi{
+       ("/ticket")
+      public Ticket BookTicket();
+       ("/status")
+      public String getPnrStatus()
+      ("/cancel")
+      public String cancelTicket();
+      ("/trains")
+      public List<Train> getTrains();
+}
+-------------------------------------------------------------------------
+-> All the methods which are available in Rest api should bind with HTTP Protocol methods. This is called Uniform Constraint Interfaces.
+
+	GET Request ----> GET Method --------> @GetMapping
+
+	POST Request ----> POST method ------> @PostMapping
+
+        PUT Request -----> PUT method -------> @PutMapping
+
+	DELETE Request --> DELETE method ----> @DeleteMapping
+
+------------------------------------------------------------------------
+-> Message Oriented Representation nothing but Provider and Consumer can exchange the data as per their requirement.
+
+------------------------------------------------------------------------
+-> Consumer request information should not be store at provider side. Every request should be treated as first request only. This is called communication stateless.
+
+-----------------------------------------------------------------------
+-> HATEOS stands for Hypermedia as an engine for application state. Provider should send data to consumer in hypermedia format.
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Last session : REST Architecture Principles
+-------------------------------------------------------------------------
+-> Roy Fielding provided Architecture principles to develop Restful services
+
+1) Unique Addressability
+
+2) Uniform Constraint Interfaces
+
+3) Message Oriented Representation
+
+4) Communication Stateless
+
+5) HATEOS
+
+-----------------------------------------------------------------------
+Few Important Annotations We will Use in Spring With REST
+-------------------------------------------------------------------------
+
+@RestController : To represent java class as distributed component
+
+@GetMapping : To bind our method to HTTP GET request
+@PostMapping : To bind our method to HTTP POST Request
+@PutMapping : To bind our method to HTTP PUT Request
+@DeleteMapping : To bind our method to HTTP DELETE request
+
+@RequestParam : To read query parameter from URL
+@PathVariable : To read URI parameter/Path Parameter from URL
+
+@RequestBody : To read data from Request Body sent by client
+@ResponseBody : To represent data as response to client
+-------------------------------------------------------------------------
+Developing First REST API using Spring With REST
+-------------------------------------------------------------------------
+
+1) Create Spring Boot application with below dependencies
+
+		a)spring-boot-starter-web
+		b)spring-boot-devtools
+
+2) Create Distributed Component Using @RestController
+
+3) Write Required methods in Rest Controller and bind them to HTTP Protocol methods
+
+4) Configure Server Port Number in application.properties file
+
+5) Run the application and test it.
+------------------------------------------------------------------------------------------------------------------------------------------------
+Last session : Developing REST API and Testing Using PostMan
+-------------------------------------------------------------------------
+Today's session : REST API development
+-----------------------------------------------------------------------
+package in.ashokit.rest;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/rest1")
+public class GreetRestController {
+
+	@GetMapping
+	public String getGreetMsg() { // http://localhost:9090/rest1/
+		String msg = "Good Morning...!!";
+		return msg;
+	}
+
+	@GetMapping("/wish") // http://localhost:9090/rest1/wish
+	public String getWishMsg() {
+		String msg = "All the best..!!";
+		return msg;
+	}
+
+	@GetMapping("/quote") // http://localhost:9090/rest1/quote
+	public String getQuote() {
+		String msg = "Do or Die";
+		return msg;
+	}
+
+}
+------------------------------------------------------------------------
+package in.ashokit.rest;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/rest2")
+public class WelcomeRestController {
+
+	/*@GetMapping("/welcome")
+	public String getWelcomeMsg() { // http://localhost:9090/rest2/welcome
+		String msg = "Welcome To Ashok IT..!!";
+		return msg;
+	}*/
+
+	@GetMapping("/welcome")
+	public ResponseEntity<String> getWelcomeMsg(){
+		String msg = "Welcome To Ashok IT..!!";
+		return new ResponseEntity<String>(msg, HttpStatus.OK);
+	}
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Last session : URL Mapping & Http Methods
+-------------------------------------------------------------------------
+1) Unique Addressbility
+2) Uniform Constraint Interfaces
+3) Message Oriented Representation
+4) Communication Stateless
+5) HATEOS
+------------------------------------------------------------------------
+-> In REST api, every method should be binded to unique address. To achieve this we are writing URL pattern at class level and method level also.
+
+-> Every REST API method should be binded to HTTP Protocol method So thatClients can easily access our REST API methods using HTTP Protocol.
+-------------------------------------------------------------------------
+
+-> ResponseEntity class we are using Construct response to client.
+
+-> Using ResponseEntity class we can set "response body" and 
+"http status code" for response.
+------------------------------------------------------------------------
+-> Consumer/Client application will send request to Provider/Resource application.
+
+-> Provider/Resouce application will process the request and will send response to Consumer/Client with HTTP Status Code.
+
+-> HTTP Status Codes will tell how that request got processed by server.
+
+
+1xx - (100-199) Req info
+
+2xx - (200 - 299 ) Success (ok)
+
+3xx - (300 - 399) Redirect
+
+4xx - (400 - 499) Client Error
+
+5xx - (500 - 599) Server Error
+----------------------------------------------------------------------------------
+HTTP Protocol
+---------------------------------------------------------------------------------
+Http Protocol is divided into 2 parts
+
+1) HTTP Request
+
+2) HTTP Response
+------------------------------------------------------------------------------------------------------------------------------------------
+Last session (04-Jul-21) : Http request & response structure
+------------------------------------------------------------------------
+Today's session : HTTP Protocol Methods
+------------------------------------------------------------------------
+
+-> Rest api methods should be binded to HTTP Protocol methods. 
+
+	Get Request --------> @GetMapping
+	Post Request -------> @PostMapping
+	Put Request -------> @PutMapping
+	Delete Request ----> @DeleteMapping
+
+--------------------------------------------------------------------------------
+HTTP GET Method
+-------------------------------------------------------------------------------
+-> If client wants to get data from rest api method, then that rest api method should be binded to get request using @GetMapping annotation.
+
+-> GET Request will not contain request body
+
+-> Clients can send data to rest api in the URL (query params & path Params) while sending GET request.
+
+--------------------------------------------------------------------------------
+HTTP POST Method
+---------------------------------------------------------------------------------
+-> If REST api method is responsible to create a new record with client given data then we will bind that method to HTTP Post Method using @PostMapping annotation.
+
+-> HTTP Post Method will have request body.
+
+-> Clients can send data to POST Request Method using
+
+		1) Path Params
+		2) Query Params
+		3) Request Body
+
+-> Simple and text data can be sent in URL and complex/secured/sensitive data should be sent in request body.
+----------------------------------------------------------------------------------
+HTTP PUT Request
+----------------------------------------------------------------------------------
+-> HTTP PUT method is used for updating the existing record
+
+-> If client wants to update any existing record then we should bind our rest api method to HTTP PUT request using @PutMapping annotation
+
+-> HTTP Put Request contains Request body.
+
+-> Clients can send data to PUT Request Method using
+
+		1) Path Params
+		2) Query Params
+		3) Request Body
+-----------------------------------------------------------------------------------
+HTTP DELETE
+----------------------------------------------------------------------------------
+-> HTTP DELETE method is responsible for deleting the record
+
+-> If client wants to delete any record using rest api method, then we should bind that rest api method to DELETE request usign @DeleteMapping annotation.
+
+-> HTTP DELETE will have Request Body.
+
+
+-> Clients can send data to DELETE Request Method using
+
+		1) Path Params
+		2) Query Params
+		3) Request Body
+-----------------------------------------------------------------------------------
+Summary
+----------------------------------------------------------------------------------
+-> What is HTTP Protocol ?
+
+-> What HTTP methods we will use in REST API development
+
+-> When to use which HTTP method
+
+-> HTTP Request Structure
+
+-> HTTP Response Structure
+
+-> HTTP Status Codes
+
+-> HTTP Status Messages
+--------------------------------------------------------------------------------------------------------------------------------------------
+Last session : HTTP Protocol Methods
+-------------------------------------------------------------------------
+
+-> Below 4 methods we will use as part of REST api development
+
+		1) GET Method  (Getting the data)
+		2) POST Method (Creating record)
+		3) PUT Method (Updating record)
+		4) DELETE Method (Deleteing record)
+-------------------------------------------------------------------------
+1) What is Unique Addressability?
+2) What is Uniform Constraint Interfaces?
+-------------------------------------------------------------------------
+Message Oriented Representation
+-------------------------------------------------------------------------
+-> Client app & Resource app can exchange the data as per their requirement.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Last session : Message Converters
+-------------------------------------------------------------------------
+
+-> We are using objects for rest api methods development.
+
+-> Method parameter and method return type we are using as object.
+
+-> If we use objects then our methods will be loosely coupled with format of data.
+
+---------------------------------------------------------------------------------
+@RestController
+public class BookRestController {
+
+	@GetMapping("/book")
+	public Book getBookData() {
+		Book b = new Book(101, "Spring", 450.00);
+		return b;
+	}
+}
+----------------------------------------------------------------------------------
+Q-1) As the above rest api method is returning object, client will recieve that object or will not recieve that object?
+
+Ans) Client will not recieve object bcz of intereoperability. Rest api side Message Converters will be available to convert object data into client understandable format.
+
+Q-1) How Rest api will understand client expected format for response data?
+
+Ans) Client should send "Accept" header with expected response format in the request.
+
+	Accept = application/xml  (For xml response)
+	Accept = application/json (For json response)
+-----------------------------------------------------------------------------------
+How Java Object Is Converted To Json ?
+----------------------------------------------------------------------------------
+-> To convert Java Object To Json format we have JACKSON api.
+
+-> Jackson is a third party api which is getting used in Spring Boot.
+
+-> MessageConverters will use Jackson api to deal with JSON data.
+
+-> Using Jackson api we can convert java object to json and json to java obj.
+----------------------------------------------------------------------------------
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+----------------------------------------------------------------------------------
+package in.ashokit;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class JavaToJsonConverter {
+
+	public static void main(String[] args) throws Exception {
+
+		Book book = new Book();
+		book.setBookId(101);
+		book.setBookName("Spring");
+		book.setBookPrice(450.00);
+
+		// convert book data into json
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writerWithDefaultPrettyPrinter()
+							.writeValueAsString(book);
+		System.out.println(json);
+	}
+
+}
+----------------------------------------------------------------------------------
+How to convert Java object to XML format?
+----------------------------------------------------------------------------------
+-> To convert java object to xml format we will use JAX-B api.
+
+-> JAX-B api is part of jdk. We no need to add any dependency for JAXB.
+
+-> To convert java object into xml format, that java class should have @XmlRootElement annotation.
+-----------------------------------------------------------------------------------
+package in.ashokit;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class Book {
+
+	private Integer bookId;
+	private String bookName;
+	private Double bookPrice;
+
+	public Integer getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(Integer bookId) {
+		this.bookId = bookId;
+	}
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+
+	public Double getBookPrice() {
+		return bookPrice;
+	}
+
+	public void setBookPrice(Double bookPrice) {
+		this.bookPrice = bookPrice;
+	}
+
+	@Override
+	public String toString() {
+		return "Book [bookId=" + bookId + ", bookName=" + bookName + ", bookPrice=" + bookPrice + "]";
+	}
+
+}
+---------------------------------------------------------------------------------
+package in.ashokit;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+
+public class JavaToXmlConverter {
+
+	public static void main(String[] args) throws Exception {
+
+		Book b = new Book();
+		b.setBookId(201);
+		b.setBookName("Hibernate");
+		b.setBookPrice(500.00);
+
+		JAXBContext context = JAXBContext.newInstance(Book.class);
+
+		Marshaller marshaller = context.createMarshaller();
+
+		marshaller.marshal(b, System.out);
+	}
+
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Last session : Message Converters
+----------------------------------------------------------------------------------
+-> Message Converters are used for converting object data to json/xml format and vice versa.
+				jackson
+		java object <------------> json
+
+				
+				jax-b
+		java object <-------------> xml
+
+-> To work with JSON data in java applications we will use Jackson api. Jackson api is third party api.
+
+-> To work with XML data in java applications we will use JAX-B api. It is part of JDK only.
+----------------------------------------------------------------------------------
+JSON Data Using Jackson api
+---------------------------------------------------------------------------------
+-> JSON stands for Java Script Object Notation
+
+-> JSON will represent data in key-value format
+
+-> JSON is platform independent and language independent
+
+-> JSON is called as Intereoperable format
+
+-> Now a days applications are using JSON format to exchange the data
+
+Syntax:
+
+{
+   "id" : 101,
+   "name" : "Ashok",
+   "phno" : 6301921083
+}
+
+-> Jackson api provided ObjectMapper class to perform convertions
+
+-> The process of converting Java object to JSON format is called as "Serialization"	
+
+-> The process of converting JSON data to Java object is called as
+ "De-Serialization"
+
+-> To convert object data to json and json data to object we need class which represents structure of the JSON.
+
+-----------------------------------------------------------------------------------
+@Data 
+@JsonInclude(value = Include.NON_NULL)
+public class Book {
+	@JsonProperty("bid")
+	private Integer bookId;
+	private String bookName;
+	private Double bookPrice;
+}
+---------------------------------------------------------------------------------
+package in.ashokit;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class JavaToJsonConverter {
+
+	public static void main(String[] args) throws Exception {
+
+		Book book = new Book();
+		book.setBookId(101);
+		book.setBookName("Spring");
+		book.setBookPrice(450.00);
+
+		// convert book data into json
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(book);
+		System.out.println(json);
+	}
+
+}
+---------------------------------------------------------------------------------
+package in.ashokit;
+
+import java.io.File;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class JsonToJavaConverter {
+
+	public static void main(String[] args) throws Exception {
+		File file = new File("Book.json");
+		ObjectMapper mapper = new ObjectMapper();
+		Book book = mapper.readValue(file, Book.class);
+		System.out.println(book);
+	}
+}
+-----------------------------------------------------------------------------------
+{
+	"bookName": "Spring",
+	"bookPrice": 450.0,
+	"bid": 101
+}
+---------------------------------------------------------------------------------
+
+	String json writeValueAsString(Object) ---- converts obj to json
+
+	Object readValue(File f, Class type) ---> converts json to obj
+---------------------------------------------------------------------------------
+XML Data with JAX-B Api
+--------------------------------------------------------------------------------
+-> XML stands for Extensible Markup Language
+
+-> XML is platform independent and language independent
+
+-> XML will represent data in in the form of elements
+
+<person>
+  <id>101</id>
+  <name>Ashok</name>
+  <phno>6301921083</phno>
+</person>
+
+-> To convert Java Object to xml and xml to java object we have JAX-B api.
+
+-> The process of converting java obj to xml is called as "Marshalling"
+
+-> The process of converting xml data to java obj is called as "Un-Marshalling"
+
+-> To perform Marshalling and Un-Marshalling we need to have binding class
+
+-> The java class which is representing stucture of xml is called as Binding class
+
+-> To represent java class as Binding class we will use @XmlRootElement annotation.
+
+---------------------------------------------------------------------------------
+@XmlRootElement
+public class Book {
+
+	private Integer bookId;
+	private String bookName;
+	private Double bookPrice;
+
+}
+--------------------------------------------------------------------------------
+package in.ashokit;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+
+public class JavaToXmlConverter {
+
+	public static void main(String[] args) throws Exception {
+
+		Book b = new Book();
+		b.setBookId(201);
+		b.setBookName("Hibernate");
+		b.setBookPrice(500.00);
+
+		JAXBContext context = JAXBContext.newInstance(Book.class);
+
+		Marshaller marshaller = context.createMarshaller();
+
+		marshaller.marshal(b, System.out);
+	}
+
+}
+-------------------------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<book>
+	<bookId>201</bookId>
+	<bookName>Hibernate</bookName>
+	<bookPrice>500.0</bookPrice>
+</book>
+--------------------------------------------------------------------------------
+package in.ashokit;
+
+import java.io.File;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
+
+public class XmlToJavaConverter {
+	public static void main(String[] args) throws Exception {
+		JAXBContext context = JAXBContext.newInstance(Book.class);
+
+		Unmarshaller unmarshaller = context.createUnmarshaller();
+		Object object = unmarshaller.unmarshal(new File("Book.xml"));
+		Book b = (Book) object;
+		System.out.println(b);
+	}
+}
+------------------------------------------------------------------------------------------------------------------------------------------------
+Last session : Jackson and JAX-B api
+-------------------------------------------------------------------------
+
+-> Jackson api is used to convert java object to json and vice versa.
+
+-> Any java class we can use with Jackson api.
+
+-> JAX-B api is used to convert java object to xml and xml to java object.
+
+-> Only binding class we can use with Jax-b api.
+
+-> To represent our java class as binding class we will use @XmlRootElement.
+-------------------------------------------------------------------------
+-> The process of converting java object to json is called as Serialization.
+
+-> The process of converting json data to java object is called as De-Serialization.
+
+------------------------------------------------------------------------
+-> The process of converting java object to XML is called as 'Marshalling'
+
+-> The process of converting xml data to java object is called as Un-Marshalling.
+
+-----------------------------------------------------------------------
+-> "produces" attribute will represent data formats supporting by rest api method.
+
+@GetMapping(value = "/customer", produces = { "application/json", "application/xml" })
+	public Customer getCustomerData() {
+
+		Customer customer = new Customer();
+		customer.setCustomerId(101);
+		customer.setCustomerName("Anil");
+		customer.setCustomerPhno(6868686868l);
+
+		return customer;
+
+	}
+
+-> Above method will support for both xml and json formats.
+
+-> "Accept" header is used to reprsent in which format client expecting the response.
+
+-> When client send a request with "Accept" header that value should match with produces value then only request can be processed otherwise it will return 406 Not acceptable.
+
+-------------------------------------------------------------------------
+Q) How client will know which formats supported for REST api method?
+
+Ans) Rest api development team should provide documentation to client team.
+
+Note: Now a days people are using Swagger for documentation.
+
+-------------------------------------------------------------------------
+Q) Can client send data to rest api using GET request?
+
+Ans) Yes client applications can send data to GET request method using Query Parameters & URI Parameters (Path Parameters)
+
+-> Query Parameters & URI Parameters will represent data in URL directley.
+
+ Query Param : www.ashokit.in/courses?name=SBMS
+
+ Path Param : www.ashokit.in/courses/SBMS
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Last session : How message converters works, produces and Accept
+------------------------------------------------------------------------
+-> MessageConverters are used to convert the data into intereoperable format
+
+-> XML and JSON are universal formats to exchange the data among distributed applications.
+
+-> "produces" attribute represents in which formats REST API method can produce the result
+
+   @GetMapping(value="/url", produces= {"app/json", "app/xml"}
+
+-> "Accept" header is used to specify in which format client expecting response from server.
+
+		Accept = application/json
+-------------------------------------------------------------------------
+How client can send data to server Using GET Request
+------------------------------------------------------------------------
+-> Clients will use GET request to get data from REST API
+
+-> GET Request will not contain body
+
+-> If client wants to send some data to server then we can use below 2 approaches
+
+	1) Query Parameter
+	2) Path Parameter
+
+------------------------------------------------------------------------
+Query Parameters
+-----------------------------------------------------------------------
+-> Query Parameters are used to send data to server in the URL
+
+-> Query Parameters will represent data in Key-Value format
+
+-> Query Parameters will start with '?'
+
+-> Query Parameters will be seperated by '&'
+
+	Ex-1: www.ashokit.in/courses?name=SBMS
+	Ex-2: www.ashokit.in/courses?name=SBMS&trainer=Ashok
+
+Note: Query Parameters should present only at the end of the URL.
+-----------------------------------------------------------------------
+-> At REST API side we will use @RequestParam annotation to read query parameters from URL
+
+	URL : www.ashokit.in/courses?name=SBMS
+
+    public String getCourseDetails(@RequestParam String name){..}
+
+-----------------------RequestParam-----------------------------------
+package in.ashokit.rest;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class CourseRestController {
+
+	@GetMapping(value = "/course")
+	public String getCourseDetails(@RequestParam("name") String name) {
+		String msg = "";
+		if ("SBMS".equals(name)) {
+			msg = "New Batch for SBMS From 15-Jul-2021 @8:00 PM IST";
+		} else if ("JRTP".equals(name)) {
+			msg = "New Batch For JRTP From 14-Jul-2021 @11:30 AM IST";
+		} else if ("AWS".equals(name)) {
+			msg = "New Batch For AWS From 13-Jul-2021 @7:00 PM IST";
+		} else {
+			msg = "Please visit www.ashokit.in for more details";
+		}
+		return msg;
+	}
+
+	@GetMapping(value = "/fee")
+	public String getCourseFee(@RequestParam("cname") String cname, @RequestParam("tname") String tname) {
+		String msg = cname + " By " + tname + " is 5000 INR Only";
+		return msg;
+	}
+
+}
+------------------------------------------------------------------------
+Endpoint-1 URL : http://localhost:9090/course?name=AI
+Endpoint-2 URL : http://localhost:9090/fee?cname=JRTP&tname=Ashok
+-------------------------------------------------------------------------
+Path Parameters
+------------------------------------------------------------------------
+-> Path Parameters also used to send data to server in the URL
+
+-> Path Parameters are also called as URI parameters
+
+-> Path Parameters can present anywhere in the URL
+
+-> Path Parameters will start with '/' and will be seperated by '/' only
+
+-> Path Parameters will represent the value directley
+
+	Ex-1: www.ashokit.in/course/{SBMS}
+	Ex-2: www.ashokit.in/course/{SBMS}/trainer/{Ashok}
+
+-> At Rest api side we will use @PathVariable annotation to read Path Parameter value from URL
+
+package in.ashokit.rest;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class CourseRestController {
+
+	@GetMapping("/course/{cname}/trainer/{tname}")
+	public String getCourseDetails(@PathVariable String cname, @PathVariable String tname) {
+		String msg = cname + " By " + tname + " Starting From 15-Jul-2021 @8:00 PM IST";
+		return msg;
+	}
+
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Last session : Path Parameters & Query Parameters
+-------------------------------------------------------------------------
+
+-> Clients will use Path Parameters and Query Parameters to send the data to server in URL.
+
+-> Query Params will represent data in key-value format
+
+-> Path Params will represent data directley in URL
+
+-> In C 2 B (Customer To Business) applications we will use Query Params
+
+-> In B 2 B (Business To Business) applications we will use Path Params.
+-------------------------------------------------------------------------
+Challenges with Path Params & Query Params
+------------------------------------------------------------------------
+-> Data Will Be Exposed in URL
+
+-> Not recommended to send sensitive data
+
+-> Bindary Data we can't send
+
+-> URL length limitation  (2038 characters)
+------------------------------------------------------------------------
+
+Note: If we want to send any non-sensitive and small info to server then we can use Path Params & Query Params.
+
+------------------------------------------------------------------------
+-> To overcome the limitations of Path Params & Query Params we will use Request Body to send data to server.
+
+Note: GET request doesn't have body. POST , PUT and DELETE requests are having request body.
+
+-------------------------------------------------------------------------
+HTTP POST Request
+-------------------------------------------------------------------------
+-> Http POST method is used to create a new record/resource at server
+
+-> To bind our method to HTTP post request we will use @PostMapping
+
+-> For POST request method client can send data in request body
+
+-------------------------------------------------------------------------
+package in.ashokit.bindings;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class User {
+
+	private Integer uid;
+	private String fname;
+	private String lname;
+	private String email;
+
+	public User() {
+		System.out.println("User::Constructor");
+	}
+
+	public Integer getUid() {
+		return uid;
+	}
+
+	public void setUid(Integer uid) {
+		this.uid = uid;
+	}
+
+	public String getFname() {
+		return fname;
+	}
+
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+
+	public String getLname() {
+		return lname;
+	}
+
+	public void setLname(String lname) {
+		this.lname = lname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	@Override
+	public String toString() {
+		return "User [uid=" + uid + ", fname=" + fname + ", lname=" + lname + ", email=" + email + "]";
+	}
+
+}
+-----------------------------------------------------------------------
+package in.ashokit.rest;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import in.ashokit.bindings.User;
+
+@RestController
+public class UserRestController {
+
+	@PostMapping(
+			value = "/user",
+			consumes = { "application/json", "application/xml" },
+			produces = { "text/plain" }
+	)
+	public String addUser(@RequestBody User user) {
+		System.out.println(user);
+		String msg = "User Saved Successfully..";
+		return msg;
+	}
+}
+
+------------------------------------------------------------------------
+{
+    "uid" : 101,
+    "fname" : "Ashok",
+    "lname" : "IT",
+    "email" : "ashokit@gmail.com"
+}
+
+---------------------------------------------------------------------
+<user>
+	<uid>102</uid>
+	<fname>Ashok</fname>
+	<lname>IT</lname>
+	<email>ashokit@gmail.com</email>
+</user>
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+Last session : Consumes & Content-Type
+------------------------------------------------------------------------
+-> "consumes" attribute will represent in which format rest api method can take the input data.
+
+-> "Content-Type" header is used to represent in which format client is sending data to server in request body.
+------------------------------------------------------------------------
+1) produces : Represent method supporting response formats
+2) Accept : Represents client expecting response format
+
+3) consumes : Represent method supporting request formats
+4) Content-Type : Represents client sending request format
+------------------------------------------------------------------------
+Procedure to follow to develop REST API
+---------------------------------------------------------------------------------------------
+1) Understand the requirement
+
+2) Decide consumes & produces formats
+
+3) Decide Endpoint input data structure
+
+4) Decide Endpoint output data structure
+
+5) Create Request Binding classes based on input data structure
+
+6) Create Response Binding classes based on output data structure
+
+7) Create Rest Controller with Endpoint method
+
+8) Test endpoint behaviour using Postman
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
