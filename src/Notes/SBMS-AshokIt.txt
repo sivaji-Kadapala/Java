@@ -245,6 +245,39 @@ API Gateway
 -> We can use Zuul Proxy as API Gateway
 
 -> Zuul Proxy provided by Spring Cloud Netflix Library
+  API composition
+  Authentication:you can put authentication at front end
+  Rate limiting :we can set the rules like manage burst limit,api throtting
+  service discovery
+                                                Service Registry
+                                                      ^   |
+                                           (2 request)|   v(3 response)
+client--DNS-- api/order(1 request)------->Region1-->API Gateway--(4 request)--->A1 Zone -->Load balancer---->order(microservice- it having multiple instances)
+
+client<---DNS- api/order(6 response)<-------Region1API Gateway<----region 1<-----A1 zone<-----Load balancer<--(5 response)-order(microservice- it having multiple instances)
+
+Steps of the Request Flow
+Client Request via DNS:
+
+The client initiates a request to api/order, using a DNS service to locate the API endpoint. This could be a public domain or IP address that routes the request to the appropriate API Gateway.
+API Gateway Handling:
+
+The request reaches Region1 API Gateway, which acts as a central point for routing and managing requests to different microservices, such as order in this case.
+The API Gateway may perform authentication, authorization, and rate limiting as well.
+Service Discovery and Routing to Load Balancer:
+
+The API Gateway consults the Service Registry to locate instances of the order service available in Region1.
+Once located, the API Gateway forwards the request to the appropriate Load Balancer in Zone A1, which balances requests across the multiple instances of the order microservice.
+Load Balancer Forwarding to Order Service:
+
+The Load Balancer in Zone A1 receives the request and routes it to one of the instances of the order microservice. This helps distribute traffic evenly, optimizing for availability and scalability.
+Order Microservice Processing:
+
+The instance of the order microservice processes the request and returns a response back to the Load Balancer.
+Response Flow Back to the Client:
+
+The Load Balancer returns the response to the API Gateway in Region1.
+The API Gateway then sends the response back through DNS to the client, completing the full round trip.
 Last session : API Gateway with Example
 ---------------------------------------------------------------------------------
 Today's session : Mini Project Requirement
@@ -934,5 +967,83 @@ public Object getFromDB(){
 	//logic
 }
 -------------------------------------------------------------------------
-if 3 requests failed to get data from redis then break circuit for 30 mins
+1. What is the Circuit Breaker Design Pattern?
+The Circuit Breaker pattern acts as a proxy for the service call. It works in three states:
+
+Closed: Requests go through normally.
+Open: Requests are blocked for a configured duration after failures reach a threshold, preventing further calls to the failed service.
+Half-Open: After a certain delay, the circuit breaker allows a few requests to check if the service is available again. If successful, it transitions to the Closed state; if not, it goes back to Open.
+The Circuit Breaker pattern improves resilience by isolating failures and avoiding further load on the struggling service.
+
+2. Steps to Create Circuit Breaker in Spring Boot Using Resilience4j
+Add Dependency: Resilience4j is a popular library in the Spring ecosystem for implementing Circuit Breaker.
+
+xml
+Copy code
+<dependency>
+    <groupId>io.github.resilience4j</groupId>
+    <artifactId>resilience4j-spring-boot2</artifactId>
+    <version>1.7.0</version>
+</dependency>
+Enable Circuit Breaker in the Application: Use the @EnableCircuitBreaker annotation in your Spring Boot main class.
+
+Define Circuit Breaker Configuration: In application.yml or application.properties:
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      failure-rate-threshold: 50
+      wait-duration-in-open-state: 10000ms
+      permitted-number-of-calls-in-half-open-state: 3
+      sliding-window-size: 10
+Wrap Service Calls with Circuit Breaker: Use the @CircuitBreaker annotation to wrap specific methods in a class:
+
+@Service
+public class MyService {
+
+    @CircuitBreaker(name = "myService", fallbackMethod = "fallbackResponse")
+    public String performAction() {
+        // Call to external service
+    }
+
+    public String fallbackResponse(Exception ex) {
+        return "Fallback response";
+    }
+}
+Configure Fallback Method: Define a fallback method that returns an alternative response when the circuit is open. This is essential for a smooth user experience.
+
+Monitor Circuit Breaker Metrics: Use Actuator endpoints or integrate with monitoring tools to observe circuit states.
+
+3. Where to Use the Circuit Breaker Design Pattern?
+Use this pattern when calling:
+
+External APIs: Especially if they have high latency or may experience intermittent downtime.
+Remote Microservices: To protect microservices from cascading failures in a distributed environment.
+Network-Dependent Services: When services rely heavily on network requests, which can fail or timeout due to network issues.
+4. Alternatives to Circuit Breaker Design Pattern
+Retry Pattern: Retry the failed service a set number of times with a delay in between each try. Suitable when failures are intermittent.
+Timeout Pattern: Set timeouts for external calls to avoid waiting indefinitely for a response.
+Rate Limiting: Limit the number of requests to a particular service to prevent overload.
+Bulkhead Pattern: Isolate services or modules to avoid a complete failure from spreading across the system.
+5. Common Interview Questions on Circuit Breaker
+What are the different states of a circuit breaker, and when does it transition between them?
+
+Explanation: Discuss Closed, Open, and Half-Open states, and transitions based on failure thresholds and recovery checks.
+How does the Circuit Breaker pattern improve fault tolerance in a microservices architecture?
+
+Answer: By preventing cascading failures, isolating faults, and providing fallbacks, it allows services to recover without affecting the entire system.
+How would you configure a circuit breaker for a service with a high failure rate but critical to the business?
+
+Answer: Use a lower failure-rate threshold, shorter timeout duration, and quick retry interval.
+What’s the difference between Circuit Breaker and Retry patterns?
+
+Answer: The Retry pattern attempts to re-execute a failed call a few times before giving up. Circuit Breaker, on the other hand, blocks calls once a failure threshold is reached and allows retry only after a set timeout.
+6. Scenario-Based Questions
+Scenario: You have a payment microservice that occasionally fails due to network latency. How would you ensure it doesn’t affect the user experience on the checkout page?
+
+Answer: Implement a Circuit Breaker to cut off calls after a certain threshold, providing a fallback method that either retries later or notifies users about the temporary unavailability.
+Scenario: Suppose you’re dealing with a batch processing system where each service call takes around 5 seconds, but any delay beyond that affects SLAs. How would you handle failures in such a system?
+
+Answer: Use both Circuit Breaker and Timeout patterns. Set a timeout for each call and allow the Circuit Breaker to open when timeouts are frequent, switching to a fallback response or retry mechanism to maintain SLA compliance.
+Using the Circuit Breaker pattern strategically helps improve application robustness, especially in distributed environments.
 

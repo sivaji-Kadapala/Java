@@ -1,3 +1,17 @@
+Spring modules
+-------------
+1.spring core
+2.spring context
+3.spring aop
+4.spring jdbc
+5.spring orm
+6.spring webMVC
+7.spring REST
+8.spring security
+9.spring cloud
+10.spring scheduler
+11.spring data
+12.spring batch
 -> Spring Boot is an approach to develop Spring Based applications
 with minimal or less configurations.
 Spring Boot Advantages(AAEERS)
