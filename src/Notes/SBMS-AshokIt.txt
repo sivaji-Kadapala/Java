@@ -422,16 +422,36 @@ Spring Boot Admin Server & Admin Client
 
 		1)spring-boot-starter-actuator
 
--> To expose actuator endpoints we will write below configuration
+-> To expose actuator endpoints(14-health is default) we will write below configuration
 
 	management.endpoints.web.exposure.include= '*'
+->Enable/Disable Endpoints: Control which endpoints are exposed by setting:
+
+        management.endpoints.web.exposure.include=health,info,metrics
+        management.endpoints.web.exposure.exclude=beans,shutdown
 
 -> To see exposed endpoints of our application we can use below url
 
 		http://localhost:portnumber/actuator/
 
--> Admin Server is providing user interface to monitor all the registered services at one place using actutor endpoints.
+Configure Actuator for Cloud Deployment
+If you're deploying to the cloud, consider configuring specific properties to match your environment:
 
+Context Path: Set a context path for Actuator endpoints to avoid exposing them at the root of your application.
+
+   management.server.servlet.context-path=/management
+
+-> Admin Server is providing user interface to monitor all the registered services at one place using actutor endpoints.
+Use Cases for Spring Boot Actuator
+--------------------------------
+1.Health Checks for Load Balancers:
+The /actuator/health endpoint can be used by load balancers to determine if an instance is healthy and should receive traffic.
+2.Application Monitoring:
+The metrics endpoint provides real-time insights into resource consumption and application performance.
+3.Debugging and Issue Resolution:
+The threaddump and heapdump endpoints help troubleshoot performance issues or memory leaks by providing snapshots of the current state.
+4.Custom Health Checks:
+By adding custom HealthIndicator beans, you can monitor application-specific dependencies, such as external services or databases.
 ---------------------------------------------------------------------------------
 Steps to develop admin server project
 --------------------------------------------------------------------------------
@@ -627,6 +647,24 @@ Apache Kafka Use cases
 
 6) To develop Event-Driven Microservices etc..
 
+1. Producer Sends Data
+Producer applications publish messages to a specific topic in Kafka. A topic is a logical channel or category through which data flows, like a stream.
+Data is divided into partitions within a topic. Each partition is an ordered sequence, and data inside a partition is immutable.
+Producers choose the partition to send data to, either randomly, round-robin, or based on a key (for ordering guarantees).
+2. Kafka Broker Stores Data
+Kafka brokers (servers in the Kafka cluster) receive data from producers. Each topic can be partitioned across multiple brokers.
+The broker stores the messages durably, typically for a set retention period, allowing consumers to read at their own pace.
+Each message is assigned an offset, a unique identifier within the partition, which allows consumers to track their read position.
+3. Consumer Reads Data
+Consumers subscribe to one or more topics to read data.
+Each consumer reads messages from a specific partition and offset, keeping the order within the partition.
+Consumers can control their read position by specifying an offset, enabling them to reprocess or skip data as needed.
+4. Consumer Group Coordination
+Consumer groups allow multiple consumers to share the load. Each consumer in a group reads from a unique set of partitions.
+If a new consumer joins the group, Kafka rebalances partitions across consumers for optimal data processing.
+5. Acknowledgments and Offsets
+Consumers process messages and acknowledge them to Kafka, which allows for offset tracking and commits.
+Offset management can be automatic (Kafka commits periodically) or manual (the consumer commits offsets when ready).
 
 Today's session(28-Aug) : Cache Introduction
 -------------------------------------------------------------------------
