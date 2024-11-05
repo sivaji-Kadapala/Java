@@ -1085,3 +1085,274 @@ Scenario: Suppose you’re dealing with a batch processing system where each ser
 Answer: Use both Circuit Breaker and Timeout patterns. Set a timeout for each call and allow the Circuit Breaker to open when timeouts are frequent, switching to a fallback response or retry mechanism to maintain SLA compliance.
 Using the Circuit Breaker pattern strategically helps improve application robustness, especially in distributed environments.
 
+
+
+
+
+Since the tech boom 2015, microservices have emerged as a revolutionary architectural approach, transforming how applications are designed, developed, and deployed. A survey by Statista shows that in 2021, 45 percent of respondents stated that data analytics/business intelligence applications use microservices.
+ 
+Several reasons will make Microservices the perfect domain if you are considering switching technology or learning something new. Let’s discuss the top 36 Microservices Interview Questions asked to both freshers and experienced developers in different interviews.
+Top Microservices Interview Questions
+Discover the essential microservices interview questions to boost your preparation for upcoming job interviews. Covering a range of topics from fundamentals to complex scenarios, equip yourself with the knowledge needed to excel in your next interview with ease.
+1 What is microservices architecture?
+Microservices architecture breaks an application into smaller, self-contained services, each responsible for a particular aspect of functionality. These services communicate using well-defined APIs (Application Programming Interfaces) or messaging protocols. Although standardization inside an organization is possible, each service is often launched individually, frequently using its own technological stack or programming language.
+2 Explain key features of microservice architecture.
+The main features of the microservice architecture are:
+•	Decentralized Development: Services operate independently, promoting autonomy.
+•	Service Modularity: Applications are divided into small, focused services for easier management.
+•	Loose Coupling: Defined APIs reduce dependencies, enabling independent evolution.
+•	Scalability and Resilience: Services can scale independently, ensuring fault isolation.
+•	Agility and Technology Diversity: Allows rapid development cycles with diverse technology usage.
+3 Why would you opt for microservices architecture?
+Microservices architecture offers plenty of pros. Here are a few of them:
+•	Microservices can adapt easily to other frameworks or technologies.
+•	Failure of a single process does not affect the entire system.
+•	Provides support to big enterprises as well as small teams.
+•	Can be deployed independently and in relatively less time.
+4 What are the main components of microservices?
+The primary elements of Microservices or Microservices architecture encompass:
+•	Containerization, Clustering, and Orchestration
+•	Infrastructure as Code (IaC) Concept
+•	Cloud Infrastructure
+•	API Gateway
+•	Enterprise Service Bus
+•	Service Delivery
+5 Explain the working of microservice architecture.
+Microservice Architecture consists of the following components:
+•	Client: Initiates requests and interacts with the system.
+•	API Gateway: Acts as an entry point, routing requests to the appropriate services.
+•	Services (Service 1, Service 2, …, Service N):
+•	Each service represents a distinct functional module or capability.
+•	They communicate through APIs (RESTful, gRPC, etc.) or message queues.
+•	Static Content: Contains all of the system’s content.
+ 
+•	Management: Services are balanced on nodes and failures are identified.
+•	Service Discovery: A guide to discovering the routes of communication between microservices.
+•	Content Delivery Network: Includes a distributed network of proxy servers and their data centres.
+•	Remote Service: Provides remote access to data or information on networked computers and devices.
+Consider checking out our blog on Microservices Design Principles.
+6 How does a microservice architecture work in terms of modules?
+The mechanism of a Microservice architecture involves breaking down an application into several modules, each capable of independently executing specific tasks.
+Here’s an overview of how the Microservice architecture operates:
+•	The application is divided into separate small modules, each responsible for a unique function, and these modules are loosely connected.
+•	These modules are distributed across different clouds and data centers.
+•	Each module operates as an autonomous service or process, allowing seamless replacement, updates, or removal without disrupting the entire application.
+•	Applications have the flexibility to expand and adapt in response to evolving requirements.
+ 
+Convert your JSON data easily with our json to csv tool. Try it now!
+7 What do you understand by monolithic architecture?
+Monolithic architecture refers to a traditional software development approach in which an entire application is built as a unified unit. In a monolithic architecture, all the components and functionalities of the application, such as user interface, business logic, and data access, are tightly integrated into a single codebase and deployed as a single executable package.
+8 Differentiate between monolithic vs microservices architecture.
+Monolithic Architecture involves developing applications as a single, tightly integrated unit, limiting scalability and flexibility. In contrast, Microservices Architecture breaks down applications into smaller, independent services, offering enhanced scalability, flexibility, and ease of maintenance. Let’s have a look at the key differences between the Monolithic vs Microservices Architectures:
+ 
+9 What deployment strategies are commonly employed in the domain of Microservices?
+Common deployment strategies in the domain of microservices include:
+•	Blue-Green Deployment: Running two identical production environments (blue and green), allowing seamless switching between them for updates or rollbacks.
+•	Canary Deployment: Gradual rollout of updates to a subset of users or traffic, enabling validation of changes before full deployment.
+•	Rolling Deployment: Incremental updates, where new versions are gradually deployed across servers or instances, reducing downtime.
+•	Shadow Deployment: Mirroring production traffic to a new version for testing without affecting the live environment.
+10 What is Spring Cloud?
+Spring Cloud is a key player in the Microservices architecture. It’s a framework that facilitates applications’ rapid construction and integration with external systems. It provides tools for discovering, routing, and deploying microservices within a cloud environment. This makes managing and scaling your microservices architecture a more streamlined process.
+ 
+For typical use cases, Spring Cloud provides some out-of-the-box experience and a set of extensive features mentioned below:
+•	Versioned and distributed configuration
+•	Discovery of service registration
+•	Service-to-service calls
+•	Routing
+•	Circuit breakers and load balancing
+•	Cluster state and leadership election
+•	Global locks and distributed messaging
+11 What Is Spring Boot?
+Spring Boot is an open-source Java-based framework that simplifies setting up and developing robust, production-grade applications. It is beneficial for creating microservices, as it provides a fast way to set up applications, reducing development and unit testing time.
+It’s also compatible with other Java frameworks and offers features like auto-configuration, REST API support, and embedded servers2.
+Here are some of the key features of Spring Boot:
+•	Autoconfiguration: Spring Boot automatically configures many of the beans and settings that your application needs based on the dependencies you include.
+•	Embedded servers: Spring Boot applications can be packaged as JAR files that include an embedded web server, such as Tomcat or Jetty.
+•	Starters: Spring Boot provides a set of “starter” dependencies you can add to your project to get the right libraries for common tasks, such as web development, data access, and security.
+•	Actuator: Spring Boot provides a built-in set of endpoints that you can use to monitor and manage your application, such as health checks, metrics, and configuration.
+12 How do you override a spring boot project’s default properties?
+We can override a spring boot project’s default properties by specifying the properties in application.properties.
+For example — In Spring MVC applications, we’ll have to specify the suffix and prefix. This can be done by entering the properties mentioned below in application.properties.
+For suffix — spring.mvc.view.suffix: .jsp
+For prefix – spring.mvc.view.prefix: /WEB-INF/
+13 What does an Actuator do in Spring Boot?
+In Spring Boot, the Actuator is a set of production-ready management and monitoring endpoints that provide various insights into the application’s internals. It offers various built-in HTTP endpoints and metrics that can be used for monitoring, health checks, auditing, and managing your application. The Actuator provides essential information about the application’s health, metrics, environment, configuration, and more, facilitating easier administration and troubleshooting.
+Transform your YAML files with our yaml to csv converter. Get started today!
+14 Which embedded containers are supported by spring boot?
+Whenever you are creating a Java Application, deployment can be done by two methods:
+•	By using an external application container
+•	You can also embed the container inside your jar file.
+Spring Boot contains Jetty, Tomcat, and Undertow servers, all of which are embedded:
+•	Jetty — Used in many projects, Eclipse Jetty can be embedded in frameworks, application servers, tools, and clusters.
+•	Tomcat — Apache Tomcat is an open-source JavaServer page implementation that works well with embedded systems.
+•	Undertow — A flexible and prominent web server that uses small single handlers to develop a web server.
+15 How is spring security implemented in a spring boot application?
+Implementing Spring Security in a Spring Boot application involves 3 steps — configuring security settings, authentication, and authorization.
+Step-1 Adding Spring Security Dependency:
+Include the Spring Security dependency in the project’s pom.xml (Maven) or build.gradle (Gradle) file. To get started with Spring Security, add the following dependency to your Spring Boot project’s build file (Maven or Gradle):
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+Note: After adding the above dependency, Spring Boot will automatically configure Spring Security with default settings.
+Step-2 Creating Security Configuration
+Create a security configuration class by extending WebSecurityConfigurerAdapter and override its configure method to define security rules, authentication, and authorization configurations.
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .authorizeRequests()
+                .antMatchers("/public/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+            .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
+            .logout()
+                .logoutUrl("/logout")
+                .permitAll();
+    }
+}
+Step-3 Defining Authentication Providers:
+Configure authentication by specifying user credentials or integrating with authentication providers like databases, LDAP, OAuth, etc., based on the application’s requirements.
+Code Example (In-memory Authentication):
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+            .inMemoryAuthentication()
+                .withUser("user")
+                .password("{noop}password")
+                .roles("USER");
+    }
+}
+Decode JWT tokens effortlessly using our jwt decoder. Check it out now!
+16 What do you mean by End-to-End testing of microservices?
+End to End Testing(E2E) validates all the processes in the workflow to check if everything is working as expected. Regarding microservices, E2E testing validates the entire system’s functionality, including all interconnected microservices, databases, and external dependencies. It helps identify integration issues, dependencies, and inconsistencies that might not be apparent when testing individual microservices in isolation.
+17 What is Semantic Monitoring?
+Semantic monitoring (a.k.a synthetic monitoring), is the practice of regularly running a portion of an automated test for an application on the live production system. These tests’ results are subsequently sent to a monitoring service, which flags an alert if it notices any anomalies.
+18 What is Eureka in microservices?
+Eureka is a service registry and discovery tool developed by Netflix, designed specifically for use in a microservices architecture. It is part of Netflix’s OSS (Open Source Software) stack and is used for managing and locating services in a dynamic, distributed environment.
+Microservices are required to register themselves within the Eureka server, enabling the server to maintain a comprehensive record of all client applications operating across various ports and IP addresses.
+Convert XML to string format with our xml stringify tool. Start using it today!
+19 How can you set up service discovery?
+Service discovery can be set up in several ways, and one efficient method is by using Netflix’s Eureka. This approach is not only straightforward but also lightweight, ensuring it doesn’t burden the application. Moreover, it’s compatible with a wide array of web applications.
+Setting up Eureka involves two main steps:
+•	Client configuration: Client configuration can be done easily by using the property files. In the classpath, Eureka searches for eureka-client.properties. It also searches for overrides caused by the environment in environment-specific property files.
+•	Server configuration: For server configuration, you have to configure the client first. Once that is done, the server fires up a client which is used to find other servers. The Eureka server, by default, uses the Client configuration to find the peer server.
+20 Why would you need reports & dashboards in microservices?
+Reports and dashboards are mainly used to monitor and upkeep microservices. Multiple tools help to serve this purpose. Reports and dashboards can be used to:
+•	find out which microservices expose what resources.
+•	find out the services that are impacted whenever changes in a component occur.
+•	provide an easy point that can be accessed whenever documentation is required.
+•	review the versions of the components that are deployed.
+•	To obtain a sense of maturity and compliance from the components.
+21 How does PACT work?
+PACT is an open-source testing tool. It helps in testing the interactions between consumers and service providers. It offers support for numerous languages, such as Ruby, Java, Scala, .NET, JavaScript, and Swift/Objective-C.
+It works through the following key principles:
+•	Consumer-Driven Contracts
+•	Consumer Testing
+•	PACT file generation
+•	Services’ Mocking and Testing
+•	Integration into CI/CD
+•	Compatibility between the consumer and the provider
+22 Define Domain-driven design
+Domain-driven design (DDD) refers to an approach that focuses on designing software systems by emphasizing a deep understanding of the business domain. It aims to align software development with the business domain’s complexities, enabling the creation of more effective and maintainable microservices-based architectures. The main focus remains on the core domain logic. Complex designs are detected based on the domain’s model.
+The core fundamentals of DDD are:
+•	DDD focuses mostly on domain logic and the domain itself.
+•	Complex designs are completely based on the domain’s model.
+•	To improve the design of the model and fix any emerging issues, DDD constantly works in collaboration with domain experts.
+23 What are coupling and cohesion?
+Coupling and Cohesion are fundamental concepts in software architecture. Coupling refers to the degree of interdependence between software modules. For example, a lower coupling means that each component is independent and changes in one will not affect the others. On the other hand, Cohesion refers to how closely the responsibilities of a module or component are related to each other. For example, higher cohesion means that each module is responsible for a single task or function.
+A well-designed application should aim for low coupling and high cohesion. Low coupling ensures that each service operates independently, minimizing the knowledge they need about each other. This independence makes the system more robust and easier to maintain. High cohesion means that all the related logic is kept within a single service, preventing unnecessary communication between services which could impact performance.
+Simplify CSS conversion with our css to less tool. Try it for free!
+24 What is OAuth?
+Open Authorization Protocol, otherwise known as OAuth, helps to access client applications using third-party protocols like Facebook, GitHub, etc via HTTP. You can also share resources between different sites without the requirement of key-value credentials.
+OAuth allows the account information of the end user to be used by a third party like Facebook while keeping it secure (without using or exposing the user’s password). It acts more like an intermediary on the user’s behalf while providing a token to the server for accessing the required information.
+25 Why do we need containers for microservices?
+Containers serve as valuable tools for resource allocation and sharing, often regarded as the most efficient and straightforward approach for independently managing microservices in the development and deployment phases. Containers enable resource-efficient operations, supporting multiple services on a single host. For example, Docker is used to encapsulate the microservice in the image of a container. Without any additional dependencies or effort, microservices can use these elements.
+26 What are the ways to access RESTful microservices?
+Accessing RESTful Microservices can be achieved through two primary methods:
+1.	Load-Balanced Rest Template: This method involves using a rest template that is load-balanced. It ensures efficient distribution of network traffic across multiple servers, enhancing the performance and reliability of applications.
+2.	Multiple Microservices: This approach involves using multiple microservices. Each microservice is designed to perform a specific task, and together, they form a complete application.
+27 What are some major roadblocks for microservices testing?
+Talking about the cons, here is another one of the microservices interview questions you may be ready for, which will be around the challenges faced while testing microservices.
+•	The tester should have a thorough understanding of all the inbound and outbound processes before he starts writing the test cases for integration testing.
+•	When independent teams are working on different functionalities, collaboration can prove to be quite a struggling task. It can be tough to find an idle time window to perform a complete round of regression testing.
+•	With an increasing number of microservices, the complexity of the system also increases.
+•	During the transition from monolithic architecture, testers must ensure that there is no disruption in the internal communication among the components.
+28 What are some of the common mistakes made while transitioning to microservices from monolithic architecture?
+Transitioning from a monolithic architecture to microservices can be complex, and several common mistakes might occur during this process:
+•	Insufficient consideration of data management, testing, communication, and security aspects, leading to operational complexities and inconsistencies.Often the developer fails to outline the current challenges.
+•	Failing to adopt suitable DevOps practices and robust Continuous Integration/Continuous Deployment (CI/CD) pipelines
+•	Responsibilities, timeline, and boundaries not clearly defined.
+•	Failing to implement and figure out the scope of automation from the very beginning.
+•	Overlooking security considerations, such as authentication, authorization, and data encryption
+29 What are the fundamentals of microservices design?
+This is probably one of the most frequently asked microservices interview questions. Here is what you need to keep in mind while answering it:
+•	Define a scope
+•	Combine loose coupling with high cohesion
+•	Create a unique service that will act as an identifying source, much like a unique key in a database table
+•	Create the correct API and take special care during integration.
+•	Restrict access to data and limit it to the required level
+•	Maintain a smooth flow between requests and response
+•	Automate most processes to reduce time complexity
+•	Keep the number of tables to a minimum level to reduce space complexity
+•	Monitor the architecture constantly and fix any flaw when detected.
+•	Data stores should be separated for each microservices.
+•	For each microservices, there should be an isolated build.
+•	Deploy microservices into containers.
+•	Servers should be treated as stateless.
+You can also check out our blog on Microservices Design Patterns.
+30 Where do we use WebMVC test annotation?
+WebMvcTest is used for unit testing Spring MVC applications. As the name suggests, it focuses entirely on Spring MVC components. For example,
+@WebMvcTest(value = ToTestController.class, secure = false):
+Here, the objective is to launch only ToTestController. Until the unit test has been executed, other mappings and controllers will not be launched.
+31 What do you mean by Bounded Context?
+In the context of Domain-Driven Design (DDD), a Bounded Context refers to a specific boundary within which a particular domain model is defined and applicable. DDD works with large models by disintegrating them into multiple bounded contexts. While it does that, it also explains the relationship between them explicitly. It represents a cohesive area or segment of a larger business domain where a set of closely related terms, concepts, rules, and interactions exist and are consistent.
+Convert CSS to SASS seamlessly with our css to sass converter. Use it now!
+32 What are the different types of two-factor authentication?
+There are several types of Two-Factor Authentication(2FA) methods:
+•	Text Message (SMS): A code is sent to the user’s registered mobile device via SMS, which they must enter to authenticate.
+•	Authentication Apps (TOTP): Time-based One-Time Password (TOTP) apps like Google Authenticator, Authy, or Microsoft Authenticator generate time-sensitive codes on the user’s mobile device.
+•	Email-based Authentication: A code or link is sent to the user’s registered email address, which they must input or follow to authenticate.
+•	Biometric Authentication: This involves using fingerprints, facial recognition, iris scans, or voice recognition as an authentication factor.
+•	Push Notifications: An authentication request is sent to the user’s mobile device, and upon approval, access is granted.
+•	Phone Call Authentication: Users receive a phone call providing a voice-based authentication code or request for confirmation.
+33 What is a Client Certificate?
+Client Certificate is a type of digital certificate usually used by client systems for making a request that is authenticated by a remote server. It plays an important role in authentication designs that are mutual and provide strong assurance of the identity of a requester. However, you should have a fully configured back-end service for authenticating your client certificate.
+34 How to configure spring boot application logging?
+Spring Boot comes with added support for Log4J2, Java Util Logging, and Logback. It is usually pre-configured as console output. They can be configured by only specifying logging.level in the application.properties file.
+logging.level.spring.framework = Debug
+35 How would you perform security testing of Microservices?
+When it comes to security testing of microservices, it’s important to highlight that testing microservices as a whole might not be feasible due to their independent and decentralised nature. Each microservice operates as an individual component, which means that security testing needs to be performed on each service independently. There are three common approaches for security testing:
+•	Individual Service Evaluation: Assess each microservice independently for vulnerabilities using penetration testing and vulnerability scanning.
+•	API and Data Security Verification: Validate API security, data encryption, and secure storage practices within each microservice.
+•	Authentication and Authorization Testing: Verify authentication mechanisms and access controls to prevent unauthorised access.
+•	Secure Communication and Integration Testing: Ensure secure communication protocols and test inter-service interactions for potential vulnerabilities.
+•	Scalability and Continuous Monitoring: Assess security measures for scalability and resilience while implementing continuous monitoring for prompt issue identification and resolution.
+36 What is idempotence and how is it used?
+Idempotence characterizes an operation or function, ensuring that when performed repeatedly, it consistently produces the same outcome, irrespective of how many times it’s executed. Idempotence is mostly used as a data source or a remote service in a way that when it receives more than one instruction, it processes only one instruction. For example, when updating inventory levels after a purchase or processing payments, idempotence ensures that these operations remain consistent, preventing inaccuracies in inventory levels and maintaining accurate financial records.
+
+
+
