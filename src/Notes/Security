@@ -1,0 +1,76 @@
+JWT Implementation in spring boot
+--------------------------------
+Agenda:why ? what ? why popular ?
+--JWT stands for JSON Web Token,We called it as Token based Security
+--Security is protecting our application from unauthorised access by implementing Authentication and Authorisation
+--Authentication==>Userid and password verification
+--Authorisation==>verifying Access levels
+-->Types:Custom Security,Basic Authentication,Database Authentication,Password Encrypting,SAML,OAuth,Okta
+JSON Web Tokens consist of three parts separated by dots (.), which are:
+
+1.Header
+
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+this JSON is Base64Url encoded to form the first part of the JWT.
+2.Payload
+which contains the claims. Claims are statements about an entity (typically, the user) and additional data.
+{
+  "sub": "1234567890",
+  "name": "John Doe",
+  "admin": true
+}
+The payload is then Base64Url encoded to form the second part of the JSON Web Token.
+3.Signature
+To create the signature part you have to take the encoded header, the encoded payload, a secret, the algorithm specified in the header, and sign that.
+
+For example if you want to use the HMAC SHA256 algorithm, the signature will be created in the following way:
+
+HMACSHA256(
+  base64UrlEncode(header) + "." +
+  base64UrlEncode(payload),
+  secret)
+
+                                              xxxxx.yyyyy.zzzzz
+Banking Scenario
+------------------
+--TPT Funds Transfer
+
+Five HDFC Customers
+1.Sekhar==>HDFC101==>1 lack to Vijay==>SBI102==>SBIN1111
+2.Ashis==>HDFC201===>50K to Arjun==>==>ICIC102==>ICICN1111
+3.Ashwini==>HDFC301===>20 lacK to Sandhya==>==>HSBC102==>HSBCN1111
+4.Ashis1==>HDFC401===>50K to Arjun1==>==>ICIC102==>ICICN1111
+5.Ashis2==>HDFC501===>50K to Arjun2==>==>ICIC102==>ICICN1111
+
+Scenario:
+If you are getting huge number of calls (>= 1lack in one hr) and all these calls are stateless
+then we can not implement SSO.If we can not implement SSO==> then we need to validate every call to verify authentication
+Hence JWT is getting introduced==>SSO At application level
+
+JWT Architecture
+-->JWT is third party,It is created by Okta from Auth0
+First request==>we wil send username and pwd==>RBI will issue JWT Token==>Token1
+HDFC will save Token 1 in the memory
+-->token expiration time ==Based on your choice
+JWT implementation
+------------------
+2 users==>vijay(Admin)      Ashok(Guest)
+If Admin Roles logged ==> Create/Delete product
+If Guest roles Logged ==> Get a product/Get All Products
+dependencies
+------------
+jjwt-api
+jjwt-impl
+jjwt-jackson
+
+
+--@EnableWebSecurity enables web security in the application.
+--The securityFilterChain method configures security rules,
+  permitting access to the /public/** endpoint and securing all other endpoints.
+--oauth2ResourceServer configures the application as an OAuth2 resource server using JWT tokens.
+--CustomAuthoritiesConverter extracts roles from the JWT token to set user authorities.
+
+
