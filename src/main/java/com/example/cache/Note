@@ -1,0 +1,7 @@
+-->Include the spring-boot-starter-cache dependency.
+-->Add @EnableCaching in main method
+-->We have to do caching in service implementation classes
+        Get:@Cacheable(cacheNames = "employees",key = "#empId")
+        Put:@CachePut(cacheNames = "employees",key = "#employee.empId")
+        Delete:@CacheEvict(cacheNames = "employees",key = "#empId")
+-->Configuration cache storage: spring.cache.type=simple
