@@ -26,6 +26,6 @@ public class DiamondProblemResolution implements Interface1,Interface2 {
     public static void main(String[] args) {
         DiamondProblemResolution obj=new DiamondProblemResolution ();
         obj.method1 ();
-        obj.print ();
+//        obj.print ();
     }
 }
