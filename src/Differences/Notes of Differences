@@ -1,0 +1,42 @@
+1.Comparable vs Comparator
+-------------------------
+Comparable:
+1.It meant for default natural sorting ordering
+2.Present in java.lang package
+3.The interface defines only one method:CompareTo()
+4.All wrapper classes and string class implement comparable interface
+Comparator:
+1.It meant for customized sorting ordering
+2.Present in java.util package
+3.The interface defines two methods:Compare(),equals()
+4.The only implemented classes of comparator are collator and RuleBasedCollator
+
+2.hashmap vs concurrent hashmap
+--------------------------------
+Parameters                      HashMap                                                             ConcurrentHashMap
+Synchronization                 Non-synchronized                                                    synchronized
+Thread-safety                   Not thread-safe                                                     Thread-safe
+Iterator                        It is fail-fast and throws an exception during iteration            It is fail-safe and performs iteration by multiple threads
+Null Values                     It allows for storing null keys and values.                         It does not allow to store null key/values.
+Performance                     faster                                                              Slower than Hashmap
+
+3.String vs StringBuffer vs StringBuilder
+-----------------------------------------
+                          String	 StringBuffer	StringBuilder
+Mutable	                  No	     Yes	        Yes
+Thread-Safe	              Yes	     Yes	        No
+Time Efficient	          No	     No	            Yes
+Memory Efficient	      No	     Yes	        Yes
+4.Fail fast vs Fail safe
+----------------------
+Fail-Fast :
+The Iterator doesnot require any extra memory
+The Iterator works on collection itself
+Example : ArrayList, HashMap, TreeSet
+Iterators immediately throw ConcurrentModificationException if structural modification(add, update, delete) happens.
+Fail-Safe :
+The Iterator require consumes heap memory
+The Iterator works on copy of collection object
+Here Iterators not throw any exception because they operate on the clone of the collection, not original one. So, that they are fail-safe iterators.
+Example : CopyOnWriteArrayList, ConcurrentHashMap
+
