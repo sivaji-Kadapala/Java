@@ -1,0 +1,11 @@
+Where You Might Use Them in Your Current Project(static and default methods):
+------------------------------------------------
+Static Methods could be used in:
+
+Utility classes for common functions like string manipulation, date/time operations, and logging.
+Singleton classes managing shared resources or configurations across microservices.
+
+Default Methods could be used in:
+
+Service interfaces to provide common behavior for all service classes (e.g., logging, error handling).
+Repository interfaces to implement default methods for standard CRUD operations in microservices interacting with databases.
