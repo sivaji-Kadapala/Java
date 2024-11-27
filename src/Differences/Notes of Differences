@@ -22,11 +22,11 @@ Performance                     faster                                          
 
 3.String vs StringBuffer vs StringBuilder
 -----------------------------------------
-                          String	 StringBuffer	StringBuilder
-Mutable	                  No	     Yes	        Yes
-Thread-Safe	              Yes	     Yes	        No
-Time Efficient	          No	     No	            Yes
-Memory Efficient	      No	     Yes	        Yes
+                          String	               StringBuffer	        StringBuilder
+Mutable	                  No	                   Yes	                Yes
+Thread-Safe	              Yes	                   Yes	                No
+Time Efficient	          No	                   No	                Yes
+Memory Efficient	      No	                   Yes	                Yes
 4.Fail fast vs Fail safe
 ----------------------
 Fail-Fast :
