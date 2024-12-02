@@ -39,4 +39,12 @@ The Iterator require consumes heap memory
 The Iterator works on copy of collection object
 Here Iterators not throw any exception because they operate on the clone of the collection, not original one. So, that they are fail-safe iterators.
 Example : CopyOnWriteArrayList, ConcurrentHashMap
-
+5.Map VS FlatMap
+----------------
+Aspect	                                          map	                                            flatMap
+Output	                                          Transforms elements (1-to-1).                 	Transforms and flattens (1-to-many).
+Nested Structures	                              Keeps nested structures (e.g., Stream<List<T>>).	Flattens nested structures into Stream<T>.
+Use Case	                                      When you need a simple transformation 	        When working with nested or compound data (1-to-many).
+Flattens Data?                                    No                                                Yes
+Mapper                                            Mapper Produces single value for each input       Mapper Produces multiple value for each input
+Transform                                         Stream<T>--------->Stream<R>                      Stream<Stream<T>>--------->Stream<T>
