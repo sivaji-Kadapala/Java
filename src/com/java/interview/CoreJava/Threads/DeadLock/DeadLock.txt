@@ -1,0 +1,47 @@
+DeadLock in MultiThreading:
+
+DeadLock in java is a part of multithreading. DeadLock can occur in a situation when a thread is waiting
+
+for an object lock, that is acquired by another thread and seconf thread is waiting for an object lock that is acquired by first thread.
+
+Since , both threads are waiting for each other to release the lock, the condition is called deadlock.
+
+Ex:
+
+public class DeadLock{
+String s1="sudheer";
+String s2="Shivaji";
+
+Thread t1=new Thread(){
+public void run(){
+while(true){
+synchronized(s1){
+System.out.println(Thread.currentThread().getName()+"locked"+s1);
+try{ Thread.sleep(100); }catch(Exception e){ e.printStackTrace();}
+}
+synchronized(s2){
+System.out.println(Thread.currentThread().getName()+"locked"+s2);
+System.out.println(s1+s2);
+}
+}
+}
+};
+
+Thread t2=new Thread(){
+public void run(){
+while(){
+synchronized(s2){
+System.out.println(Thread.currentThread().getName()+"locked"+s2);
+synchronized(s1){
+System.out.println(Thread.currentThread().getName()+"locked"+s1);
+System.out.println(s1+s2);
+}
+}
+}
+};
+public static void main(String[] args){
+DeadLock d1=new DeadLock();
+d1.t1.start();
+d1.t2.start();
+}
+}

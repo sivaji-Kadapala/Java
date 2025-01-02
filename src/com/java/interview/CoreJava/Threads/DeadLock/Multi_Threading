@@ -1,0 +1,386 @@
+			MultiThreading
+
+Synchronized method: means it'll lock entire logic present in the method.
+
+Synchronized block:instead of locking entire piece of logic i want to just lock some piece of code then i can use synchronized block inside the method and embed that logic into the block.
+
+Two ways of using the synchronization 1.synchronized method 2.synchronized block.
+
+RealTime Scenario of synchronization:
+
+When multithreads are trying to call critical piece of logic.. while one thread is in the middle of writing/updating the data, there may chance another will enter into that
+
+method will read the data and read results may be wrong.To fix these kind of issues we will use synchronized methods or synchronized blocks.
+
+Ex:public Synchronized void putitem(int item){ //method will execute with multi-threads
+for(int i=0;i<=n;i++){
+System.out.println(i);
+}
+
+public  void putitem(int item){
+synchronized(this){ //block will execute only single thread.
+for(int i=0;i<=n;i++){
+}
+System.out.println(i);
+}
+
+Synchronized :Whenever multiple threads are trying to access a shared logic and if that logic is very critical, if you want to allow only one this method and the remaining methods let it be run by multithreads
+
+So i want to lock this critical piece of code make that method to synchronized.
+
+Synchronized :Locking a method for only one thread at a time.If you want to lock a method for one thread when multiple threads trying to access this method.
+
+Thread:It is a independent path of execution with in an same program
+
+Threads: Threads are independent seqquences of instructions that can be executed
+concurrently(at a time) within a program, allow different tasks to be performed simultaneously.
+
+why use threads?
+Using threads can bring several benifits to your appliccation, including.
+
+Responsiveness: Threads allow the program to remain responsive even when performing time-consuming tasks.
+
+By running these tasks in seperate threads, the main thread can continue executing other operations or respond to user input.
+
+Concurrency:Threads enable multiple tasks to be enable concurrently, improving overall throughout and efficiency of the application.
+
+Asynchronous Operations: Threads can be used to perform background tasks asynchronously,allowing
+the main thread to continue with other operations without waiting for the task to complete.
+
+parallelism:By dividing a large task into smaller subtasks that can be executed concurrently, threads
+
+enable parallel processing, which can significantly speed up the execution time.
+
+
+Thread states:
+
+New Born: The thread has been created but has not yet started.
+
+Runnable: The thread is eligible to run, and it may be executing or waiting for its turn to execute.
+
+Running: When the thread starts executing, then the state is changed to “running” state.
+
+The scheduler selects one thread from the thread pool, and it starts executing in the application.
+
+Blocked: The thread is waiting for a monitor lock to enter a synchronized block/method.
+
+waiting: This is the state when a thread has to wait. As there multiple threads are running in the application,
+
+there is a need for synchronization between threads. Hence, one thread has to wait, till the other thread gets
+
+ executed. Therefore, this state is referred as waiting state.
+
+Timed waiting: Similar to the waiting state, but with a specified time duration for waiting.
+
+Terminated: The thread has completed its task or has been terminated.
+
+Steps to write the thread program:
+
+Extending the thread class:
+Create a new class that extends the thread class.
+
+Override the run() method in your class.This method contains the code that will be
+executed when the thread starts.
+
+Instantiate an object of your custom thread class.
+
+Call the start() method on the thread object to begin its execution. The starts() method internally calls the run() method.
+
+Ex: public class Customthread extends Thread{
+
+//using thread class
+//using runnable interface
+//using callable interface
+public static void main(String[] args){
+Customthread cs=new Customthread(); //new born state
+cs.start(); //runnable state
+
+public void run(){ //running state
+System.out.println("independent path executing in same program");
+
+}
+}
+
+
+Implementing the Runnable interface:
+
+Create a class that implements the Runnable interface.
+
+Implement the run() method in your class, which contains the code to be executed
+by the thread.
+
+Instantiate an object of your class.
+
+Create a thread object, passing the instance of your class 	as a parameter to its constructor.
+
+Call the start() method on the thread object to start the execution of the thread.
+
+Ex:
+class Customthread implements Runnable{
+public void run(){
+Systen.out.println("independent path executing in same program");
+}
+
+public static void main(String[] args){
+Customthread cs=new Customthread();
+Thread t1=new Thread(cs);
+t1.start();
+}
+}
+}
+
+
+Lambda Expression(Java 8):
+Use lambda expressions to create an anonymous implementation of the Runnable interface.
+
+Pas the lambda expression to the thread constructor.
+
+Call the start() method on the thread object to start the thread.
+
+Ex:
+class Customthread implements Runnable{
+public void run(){
+}
+
+public static void main(String[] args){
+
+Thread t1=new Thread(()->{
+Systen.out.println("independent path executing in same program");
+
+});
+t1.start();
+
+Thread name:
+
+You can assign a name to a thread by calling the setName() method or by passing the name as a
+
+parameter to the thread constructor.
+
+The name can be retrived using the getName() method.
+
+
+Thread Priorities:
+
+Thread Priority Levels:
+
+Thread priorities in java are represented by integer values.
+
+The range of thread priorities is typically from 1(lowes) to 10(highest).
+
+The Thread class provides constants for priority levels: MIN_PRIORITY(1), NORM_PRIORITY(5),
+AND MAX_PRIORITY(10).
+
+Setting Thread Priority:
+
+You can set the priority of a thread using the setPriority() method, which accepts an integer value representing the desired priority level.
+
+The default priority of a thread is NORM_PRIORITY(5).
+
+Ex:
+Thread thread=new Thread(()->{
+//code
+});
+thread.setPriority(Thread.MAX_PRIORITY);
+
+Synchronization:
+
+If one performance is happening the another performance is waiting untill to finish the first
+
+performance.This is called Synchronization.
+
+
+consumer nd producer Ex:
+
+class Item{
+int i;
+boolean produce=false;
+public void Synchronized produce(int x){
+if(produce){
+try{
+wait();
+}catch(){}
+i=x;
+produce=true;
+notify();
+}
+public void Synchronized consume(){
+if(!produce){
+try{
+wait();
+}
+catch();
+}
+}
+produce=false;
+notify();
+}
+}
+
+
+Consumer and producer program:
+
+class Q{
+int n;
+boolean flag=false;
+Synchronized void get(){
+if(!flag){
+try{
+wait();
+}catch(Interrupted Exception e){
+System.out.println(e);
+}
+System.out.println("get"+n);
+flag=false;;
+notify();
+}
+}
+
+Synchronized void put(int n){
+if(flag){
+try{
+wait();
+}catch(Interrupted e){
+System.out.println(e);
+}
+this.n=n;
+flag=true;
+System.out.println("put:"+n);
+notify();
+}
+}
+
+
+
+class Q{
+int x;
+boolean flag=false;
+
+Synchronized void get(){
+if(!flag){
+try{
+wait();
+}catch(InterruptedException e){
+s.o.p();
+}
+System.out.println("get:"+n);
+flag=false;
+notify();
+}
+}
+
+Synchronized void put(int x){
+if(flag){
+try{
+wait();
+}catch(InterruptedException e){
+s.o.p();
+}
+this.x=x;
+flag=true;
+System.out.println("put"+x);
+notify();
+}
+}
+
+class Producer implements Runnable{
+Q q;
+Producer(Q q){
+this.q=q;
+Thread t=new Thread(this);
+t.start();
+}
+public void run(){
+int i=0;
+while(true){
+q.put(i++);
+}
+}
+class Consumer implemen Runnable{
+Q q;
+Consumer(Q q){
+this.q=q;
+Thread t1=new Thread(this);
+t1.start();
+}
+public void run(){
+while(true){
+q.get();
+}
+}
+}
+public class Demo{
+public static void main(String[] args){
+Q q=new Q();
+new Producer(q);
+new Consumer(q);
+System.out.println("press control-c to stop");
+}
+}
+
+
+public class Box{
+private int num;
+
+public void put(int num){
+this.num=num;
+}
+
+public void get(){
+return num;
+}
+}
+
+public class Producer implements Runnable{
+Thread t;
+Box b;
+
+Producer(String threadname, Box b){
+this.b=b;
+t=new Thread(this, threadname); //new born state
+t.start(); //runnable state
+}
+
+public void run(){ //running state.
+b.put(100);
+}
+}
+
+public class Consumer implements Runnable{
+
+Thread t;
+Box b;
+Consumer(String threadname, Box b){
+this.b=b;
+t=new Thread(this, threadname);
+t.start();
+}
+public void run(){
+b.get();
+}
+}
+public class Test{
+public static void main(String[] args){
+Box b=new Box();
+new Producer("p1", b);
+new Consumer("c1", b);
+}
+}
+
+Inter-thread Communication:
+
+If 2 threads have to communicate with each other can use mainly three methods
+1.wait()
+2.notify()
+3.notifyAll()
+
+to achieve inter-thread communication we will use wait(), notify(), notifyAll()
+
+these methods are defined in object class in java.
+
+toString(): it'll generate String representation of the object.
+
+equals()&hashCode():
+To Compare the equality of any 2 objects, the type(class) of that object should implement Equals&hashCode.
+
+equals(): two objects are having same content.
+if i need to show 2 objects are equal i need to override equals&hashCode methods.

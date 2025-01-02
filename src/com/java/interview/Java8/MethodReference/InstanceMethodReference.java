@@ -1,4 +1,4 @@
-package java.interview.Java8.MethodReference;
+package com.java.interview.Java8.MethodReference;
 
 
 public class InstanceMethodReference {
