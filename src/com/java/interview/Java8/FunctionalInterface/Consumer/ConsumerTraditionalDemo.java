@@ -1,4 +1,4 @@
-package java.interview.Java8.FunctionalInterface.Consumer;
+package com.java.interview.Java8.FunctionalInterface.Consumer;
 
 import java.util.function.Consumer;
 
@@ -11,5 +11,6 @@ public class ConsumerTraditionalDemo implements Consumer<String> {
     public static void main(String[] args) {
        Consumer<String> consumer=new ConsumerTraditionalDemo();
        consumer.accept("Sivaji");
+
     }
 }

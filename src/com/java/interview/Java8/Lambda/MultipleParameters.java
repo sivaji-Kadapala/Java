@@ -1,4 +1,4 @@
-package java.interview.Java8.Lambda;
+package com.java.interview.Java8.Lambda;
 interface  Addable{
     void Addition(int a, int b, int c);
 }

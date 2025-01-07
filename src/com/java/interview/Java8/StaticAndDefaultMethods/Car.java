@@ -1,4 +1,4 @@
-package java.interview.Java8.StaticAndDefaultMethods;
+package com.java.interview.Java8.StaticAndDefaultMethods;
 interface Vehicle{
     static void cleanVehicle(){
         System.out.println("I am cleaning the vehicle");

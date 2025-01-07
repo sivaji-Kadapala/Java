@@ -48,3 +48,42 @@ Use Case	                                      When you need a simple transforma
 Flattens Data?                                    No                                                Yes
 Mapper                                            Mapper Produces single value for each input       Mapper Produces multiple value for each input
 Transform                                         Stream<T>--------->Stream<R>                      Stream<Stream<T>>--------->Stream<T>
+Spring Framework vs Spring Boot
+-------------------------------
+1. Purpose
+    Spring Framework: A comprehensive framework for enterprise-level Java development. It provides flexibility in building Java applications by using dependency injection (DI), aspect-oriented programming (AOP), and a wide range of tools.
+    Spring Boot: A framework built on top of Spring Framework. It simplifies the development of Spring applications by providing pre-configured setups, reducing boilerplate code, and offering an opinionated approach.
+2. Configuration
+    Spring Framework:
+    Requires significant manual configuration (XML or annotations).
+    Developers need to define beans, dependencies, and other configurations explicitly.
+    Spring Boot:
+    Offers auto-configuration.
+    Reduces configuration effort with defaults based on conventions.
+    Uses application.properties or application.yml for external configurations.
+3. Startup Time
+    Spring Framework:
+    May have a slower startup due to manual configurations and bean initialization.
+    Spring Boot:
+    Faster startup due to auto-configuration and embedded servers like Tomcat or Jetty.
+    4. Dependency Management
+    Spring Framework:
+    Dependencies must be managed manually. Developers choose and configure all required dependencies.
+    Spring Boot:
+    Comes with a pre-defined spring-boot-starter dependency model, which bundles commonly used dependencies.
+5. Embedded Servers
+    Spring Framework:
+    No built-in support for embedded servers; requires external configuration for deployment on servers like Tomcat or WebLogic.
+    Spring Boot:
+    Comes with embedded servers (Tomcat, Jetty, or Undertow) for running standalone applications.
+6. Development Speed
+    Spring Framework:
+    More flexible but slower to set up and develop due to extensive configuration.
+    Spring Boot:
+    Faster development cycle with defaults and built-in tools like Spring Initializr.
+7. Microservices
+    Spring Framework:
+    Can be used for microservices but requires more effort to set up compared to Spring Boot.
+    Spring Boot:
+    Designed for microservices architecture, with features like REST support, embedded servers, and Spring Cloud integration.
+

@@ -1,4 +1,4 @@
-package java.interview.CoreJava.Threads;
+package com.java.interview.CoreJava.Threads;
 
 public class InterviewScenario {
     public static void main(String[] args) {

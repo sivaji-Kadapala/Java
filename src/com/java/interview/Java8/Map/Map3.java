@@ -1,8 +1,7 @@
-package java.interview.Java8.Map;
+package com.java.interview.Java8.Map;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Map3 {

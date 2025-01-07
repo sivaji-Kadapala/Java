@@ -1,4 +1,4 @@
-package java.interview.Java8.Map;
+package com.java.interview.Java8.Map;
 
 public class Person {
     private String name;

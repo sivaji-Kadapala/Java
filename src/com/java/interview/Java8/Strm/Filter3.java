@@ -1,4 +1,4 @@
-package java.interview.Java8.Strm;
+package com.java.interview.Java8.Strm;
 
 import java.util.Arrays;
 import java.util.List;

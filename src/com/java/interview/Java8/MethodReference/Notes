@@ -1,4 +1,5 @@
 In Java 8, the double colon (::) operator is called method references.
+This is implementation of abstract method of functional interfaces,it means instead of implementing lambda expression implementation,use already implemented one
 There are four kinds of method references:
 
 Reference to a static method ClassName::staticMethodName

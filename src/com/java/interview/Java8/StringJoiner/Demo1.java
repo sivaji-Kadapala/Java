@@ -1,4 +1,4 @@
-package java.interview.Java8.StringJoiner;
+package com.java.interview.Java8.StringJoiner;
 
 import java.util.StringJoiner;
 // Using this class we can join more than one strings with the specified delimiter, we can

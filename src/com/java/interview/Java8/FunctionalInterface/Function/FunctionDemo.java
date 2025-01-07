@@ -1,4 +1,4 @@
-package java.interview.Java8.FunctionalInterface.Function;
+package com.java.interview.Java8.FunctionalInterface.Function;
 
 import java.util.function.Function;
 

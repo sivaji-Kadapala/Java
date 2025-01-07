@@ -1,4 +1,4 @@
-package java.interview.Java8.FunctionalInterface;
+package com.java.interview.Java8.FunctionalInterface;
 
 public interface Vehicle {
    void cleanVehicle();

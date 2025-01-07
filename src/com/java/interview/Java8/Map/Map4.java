@@ -1,4 +1,4 @@
-package java.interview.Java8.Map;
+package com.java.interview.Java8.Map;
 
 import java.util.Arrays;
 import java.util.List;

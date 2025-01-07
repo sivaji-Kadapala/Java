@@ -1,4 +1,4 @@
-package java.interview.Java8.Collectors;
+package com.java.interview.Java8.Collectors;
 
 import java.util.ArrayList;
 import java.util.List;

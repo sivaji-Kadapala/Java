@@ -1,4 +1,4 @@
-package java.interview.Java8.Strm;
+package com.java.interview.Java8.Strm;
 
 public class Person {
     private String name;

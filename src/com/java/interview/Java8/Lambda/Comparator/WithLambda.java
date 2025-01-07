@@ -1,9 +1,8 @@
 
-package java.interview.Java8.Lambda.Comparator;
+package com.java.interview.Java8.Lambda.Comparator;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 

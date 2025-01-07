@@ -1,4 +1,4 @@
-package java.interview.Java8.FunctionalInterface.predicate;
+package com.java.interview.Java8.FunctionalInterface.predicate;
 
 public class Person {
     String name;

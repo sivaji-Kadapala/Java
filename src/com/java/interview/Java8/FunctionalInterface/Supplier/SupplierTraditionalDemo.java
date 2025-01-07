@@ -1,4 +1,4 @@
-package java.interview.Java8.FunctionalInterface.Supplier;
+package com.java.interview.Java8.FunctionalInterface.Supplier;
 
 import java.time.LocalDateTime;
 import java.util.function.Supplier;

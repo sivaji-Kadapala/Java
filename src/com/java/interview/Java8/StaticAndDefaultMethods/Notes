@@ -1,0 +1,18 @@
+Default methods vs static methods in java 8
+---------------------------------------------
+Feature                can be overridden by implementing class       How to call the method
+Default                 Yes                                           On an Object of the implementing class
+Static                  No                                            Using the interface name
+
+use cases:
+----------
+  Default:Provide common functionality for most implementations of the interface
+  Static:Define utility methods that dont depend on the state of an object.provide helper methods for other interface methods
+
+Why were default and static methods introduced ?
+------------------------------------------------
+->Backward compatibility
+->improved interface functionality
+Overall ,default and static methods make interfaces more powerful and flexible,enabling them to evolve overtime without breaking existing code and offering additional functionality to improve code maintainability.
+
+

@@ -1,4 +1,4 @@
-package java.interview.Java8.Lambda;
+package com.java.interview.Java8.Lambda;
 @FunctionalInterface
 interface Calculator{
     public void add(int i,int j);

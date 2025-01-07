@@ -1,4 +1,4 @@
-package java.interview.Java8.FunctionalInterface.Supplier;
+package com.java.interview.Java8.FunctionalInterface.Supplier;
 
 public class Product {
     private int id;

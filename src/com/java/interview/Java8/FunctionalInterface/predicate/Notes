@@ -1,0 +1,5 @@
+Predicate:
+---------
+Conditional check,it will return boolean
+methods:
+  test,and,or,negate,isEqual
