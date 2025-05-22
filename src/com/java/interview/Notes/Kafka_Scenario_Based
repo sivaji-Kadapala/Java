@@ -1,4 +1,3 @@
-
 1. Implementing Kafka Producer in a Spring Boot Application**
    -Question: You need to send messages from your Spring Boot service to a Kafka topic. How would you implement a Kafka producer, and how can you ensure that the producer retries sending the message in case of failure?
    -Answer:

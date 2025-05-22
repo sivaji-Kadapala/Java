@@ -57,7 +57,20 @@ What is Microservices ?
 
 -> Microservices is a design pattern which is used to develop our application functionalities with loosely coupling.
 
--> Microservices architecture is not specific to any technology. 
+-> Microservices architecture is not specific to any technology.
+
+---------------------------------------------------------------------------
+Features of MicroServices
+-----------------------------------------------------------------------------------
+1.Decoupling
+  Services are largely decoupled the application as a whole can therefore be easily constructed altered and scalable
+2.compenentization:you can view as a independent component that can easily be exchanged or upgraded
+3.Business capability:Only focus on one service
+4.Autonomy:Each developer focus on independent services
+5.continuous delivery
+6.Responsibility
+7.Decentralized governance:Developer choose best tools for development
+8.agility
 
 ----------------------------------------------------------------------------------
 Challenges with Microservices
@@ -109,12 +122,22 @@ Note-2: In one company 2 different projects might use 2 different approaches to 
 Last Session : Microservices Architecture
 ---------------------------------------------------------------------------------
 -> Microservices is a design pattern which is used to develop the applications with loosely coupling.
-
 -> Microservices is not specific to any technology.
 
 -> We don't have any fixed architecture for Microservices.
 
 -> People are customizing microservices architecture as per their requirement.
+--------------------------------------------------------------------------------------
+Spring Cloud
+-----------------------------------------------------------------------------------------------
+In Microservices,the spring cloud is a system that integrates with external systems.This is a short lived framework designed to build applications quickly.
+It contributes significantly to microservice architecture due to its association with finite amounts of data processing.
+---------------------------------------------------------------------------------------------------------
+Domain driven design
+------------------------------------------------------------------------------------------
+Concentrate on the core domain and domain logic
+analyze domain models to find complex designs
+engage in regular collaboration with domain experts to improve the application model and address emerging domain issues
 ---------------------------------------------------------------------------------
 Service Registry
 ---------------------------------------------------------------------------------
@@ -1004,6 +1027,616 @@ public Object getFromRedis(){
 public Object getFromDB(){
 	//logic
 }
+---------------------------------------------------------------------
+Q1) What is Spring?
+		It is a Framework which is used to making light-weight, loosely coupled enterprises Application in java.
+		It provides a pre-defined API for Database Operations, Restful web services, micro services and Security.
+		We can develop distributed applications very faster. It is mainly for backend application development using Java.
+
+Q2) What are the features of Spring Framework?
+		Spring provide
+		1. Predefined template
+		2. Loose coupling
+		3. Light weight
+		4. Easy to test
+		5. Powerful Abstraction
+		6. Fast Development (RAD)
+
+Q3) What is Dependency Injection(DI) ?
+		Dependency Injection is a mechanism which is used to inject the dependency class into a dependent class.
+		Basically when we write any program sometime it's needed to create the object of some class, So dependency injection helped us to create an object creation process, It will do that work automatically by own.
+		For achieving this functionality we have only configured that particular dependency class to dependent class in XML file or we can use Annotation also
+
+Q4) What are the types of DI?
+		Mainly there are 5 types of Dependency Injections
+		Constructor injection
+		Setter Injection
+		Field Injection (@Autowired)
+		Circular injection
+		Lookup method injection
+Q5) What is IOC in Spring ?
+		The full form of IOC is Inversion of Control.
+		Basically the spring container uses Dependency injection for managing the application components by creating objects wiring them together along with configuring and managing their overall life cycles.
+		The instructions for the spring container to do the tasks will provided either by XML configuration, Annotation of java code, This whole process called as Inversion of control.
+
+Q6) What is Spring Configuration File?
+		It is XML file which is contains the information of classes and describes how those classes configured and linked with each other.
+		It is called as XML Configuration file.
+
+		<bean id="ob1" class="com.app. Employee Service">
+		<property name="empType">
+		<value>export</value>
+		</property>
+		</bean>
+
+Q7) What is Spring Bean ?
+		It is the Objects forming the Backbones of the Users Application and it instantiated, configured, wired, Managed by Spring IOC Container.
+		Basically it will created by the help of Configuration code which is supply by user to IOC Container.
+Q8) Difference between Constructor and Setter Injection ?
+		By the Construction injection Partial injection is not possible but we can achieve Partial injection by Setter Injection.
+		In the construction Injection new instance will created if any modification but it is not possible in the setter injection we can't achieve any new instance.
+		If the been have many properties then we preferred constructor injection and if been have some few properties then we preferred for setter injection.
+
+Q9) What are the Bean Scope Spring provided ?
+		Spring Provided five types of Scope these are
+		1. Singleton
+		2. Prototype
+		3. Request
+		4. Session
+		5. Global-session (not exist in new versions of Spring)
+
+Q10) What is Bean Wiring ?
+		When the beans are Combined together inside the Spring Container, that is called Wired or Bean Wiring.
+		The Spring container should know what beans are needed and how the beans are dependent each other while Wiring Beans.
+		Ex: Combine EmployeeService object with EmployeeRepository object
+
+Q11) What is Autowiring in Spring & What are the different modes it have ?
+		The Spring framework can inject dependency Automatically.
+		The IOC container will first detect those dependencies Specified in the configuration file and the relationship between the beans and then it will inject Automatically this process is called Autowiring.
+		It have five modes these are
+		1. No
+		2. byname
+		3. byType
+		4.constructor
+		5.autodetect.
+
+Q12) What is the difference between @Autowired and @Inject ?
+		Both annotation are used for same purpose means @Autowired annotation is used for Autowiring in Spring framework.
+		@Inject also used for same purpose but difference is @Inject is a standard Annotation for Dependency injection and the @Autowired is Specified Annotation in Spring for dependency injection.
+		@Inject is part of the Java CDI (Contexts and Dependency Injection) standard introduced in Java EE 6 (JSR-299)
+Q13) What is the difference between @Component and @Bean?
+		@Component creates object inside spring container. It can be used only if we have source code of a class [programmer-defined class]
+		If a class is pre defined and wants to creates object inside container then we need to use @Bean (Java based configuration) along with @Configuration [Java based configuration]
+
+Q14) How many types of IOC Containers are there in Spring ?
+		There are two types of Containers these are -
+		1. BeanFactory: BeanFactory is like a factory class that contains a collection of beans. It instantiates the bean whenever asked for by clients.
+		2. ApplicationContext: The ApplicationContext interface is built on top of the BeanFactory interface. It provides some extra functionality on top BeanFactory. Like: Annotations support, Multi-container system, Reactive Programming..etc
+
+Q15) What is the Use of @Required Annotation in Spring framework ?
+		@Required is applied to bean property setter methods.
+		This is indicates that the affected bean property must be populated at the configuration time with the help of an explicit property value in a bean definition or with Autowiring.
+
+Q16) What is the use of @Autowired Annotation in Spring?
+		It is used to link (Inject) two beans inside Spring container.
+		Mostly recommended using Field Injection.
+		Ex:
+		class EmployeeService {
+		@Autowired
+		Employee Repository repo;
+		}
+
+Q17) What is the use of @Qualifier annotation in Spring framework?
+		When we create more than one bean of the same type and want to wire only one of them with a property we can use the @Qualifier annotation along with @Autowired to remove the ambiguity by specifying which exact bean should be wired.
+
+Q18) What is @Primary Annotation in Spring?
+		Indicates that a bean should be given preference when multiple candidates are qualified to Autowired a single-valued dependency.
+		In case of Autowiring process, if no Qualifier is used, @Primary is given highest priority.
+
+Q19) What are lifecycle methods in Spring?
+		init and destroy methods are called as Life Cycle methods in Spring.
+		They are executed by default by Spring container while creating object.
+
+Q20) What are different ways of writing Lifecycle methods in Spring?
+		Using XML (also called Declarative Approach)
+		<bean ... init-method="" destroy-method=""> </bean>
+		Using Spring Interfaces (also called Programmatic Approach) Implement interfaces: InitializingBean, DisposableBean
+		Using Annotations @PostConstruct and @PreDestroy
+
+Q21) What are the common implementations of the ApplicationContext?
+		The FileSystemXmlApplicationContext container loads the definitions of the beans from an XML file. The full path of the XML bean configuration file must be provided to the constructor.
+		The ClassPathXmlApplicationContext container also loads the definitions of the beans from an XML file. Here, you need to set CLASSPATH properly because this container will look bean configuration XML file in CLASSPATH.
+		The WebXmlApplicationContext container loads the XML file with definitions of all beans from within a web application.
+
+Q22) What are the Stereo Type annotations ?
+		Spring has provided 5 Stereo Type annotations:
+		1. @Component
+		2. @Service
+		3. @Repository
+		4. @Controller
+		5. @RestController
+
+Q23) What are different modules Spring?
+		The Spring Framework contains a lot of features,
+		which are well-organized in about twenty modules.
+		These modules can be grouped together based on their primary features into Core Container, Data Access Integration, Web, AOP (Aspect Oriented Programming), Instrumentation and Test.
+
+Q24) What is Profiles in Spring?
+		Multiple Environments like Stage, production, Testing, UAT
+		Profiles: Loading Properties based on Environment
+		We can activate current profile using
+		--spring.profiles.active=qa (by passing at runtime)
+
+Q25) What is inner beans in Spring?
+		Whenever a bean is used for only one particular property, it's advise to declare it as an inner bean.
+		And the inner bean is supported both in setter injection 'property' and constructor injection 'constructor-arg'.
+		Injecting Inner Beans:
+		<bean id="outer_bean_obj" class="OuterBeanClassName">
+		<property name="inner_bean_obj">
+		<bean class="Inner Bean ClassName"/>
+		</property>
+		</bean>
+
+1) What is Spring WEB Module ?
+		This module is given by Spring Framework.
+		It is used to develop both MVC and REST applications.
+		It works based on HTTP Protocol Standard.
+		It is used to develop client-server and server-server apps.
+
+2) What is MVC?
+		The MVC (Model-View-Controller) is a software architectural design pattern.
+		It separates the functionality of an application into three interconnected parts - Model, View, and Controller.
+
+3) What is Spring MVC?
+		Java Framework which is used to develop dynamic web applications.
+		It follows the Model-View-Controller design pattern.
+		Model - A model contains the data of the application.
+		Controller - A controller contains the business logic of an application.
+		View - A view represents the provided information in a particular format. Like JSP+JSTL, Apache Velocity, Thymeleaf, and FreeMarker.
+
+4) What is the front controller of Spring MVC?
+		The front controller is a DispatcherServlet class present in org.springframework.web.servlet package.
+		It dispatches the request to the appropriate controller and manages the flow of the application.
+		It is required to specify the DispatcherServlet class in the web.xml file.
+
+5) Explain the flow of Spring MVC?
+		Once the request has been generated, it intercepted by the DispatcherServlet that works as the front controller.
+		The DispatcherServlet gets an entry of handler mapping from the XML file and forwards the request to the controller.
+		The controller returns an object of ModelAndView.
+		The DispatcherServlet checks the entry of view resolver in the XML file and invokes the specified view component.
+
+6) What are the advantages of Spring MVC Framework?
+		The following are the advantages of Spring MVC Framework:
+			Light-weight - It uses a light-weight servlet container to develop and deploy your application.
+			Rapid development The Spring MVC facilitates fast and parallel development.
+			Flexible Mapping - It provides the specific annotations that easily redirect the page.
+
+7) Which annotations are used for HTTP request methods?
+
+		The following annotations are used to handle different types of incoming HTTP request methods
+			1. @GetMapping
+			2. @PostMapping
+			3. @PutMapping
+			4. @PatchMapping
+			5. @DeleteMapping
+
+8) Explain the Difference Between @Controller and @RestController?
+		The main difference between the @Controller and @RestController annotations is that the @ResponseBody annotation is automatically included in the @RestController.
+		This means that we don't need to annotate our handler methods with the @ResponseBody.
+		We need to do this in a @Controller class if we want to write response type directly to the HTTP response body.
+
+9) What are the @RequestBody and the @ResponseBody Annotations?
+		The @RequestBody annotation, used as a handler method parameter, binds the HTTP Request body to a transfer or a domain object.
+		Spring
+
+16) What do you mean by session management in Spring Security?
+
+		Session management relates to securing and managing multiple users' sessions against their request:
+
+		To control HTTP sessions, Spring security uses the following options: Session ManagementFilter and SessionAuthneticationStrategy.
+
+		SessionAuthnetication Strategy takes care of session timeout, session-ids etc.
+
+17) Explain salting and its usage?
+
+		Spring Security automatically applies salting since version 3.1.
+
+		Salting is the process of combining random data with a password before password hashing.
+
+		Salt improves hashing by increasing its uniqueness and complexity.
+
+		Hashed passwords are then stored in a database, along with salt.
+
+18) Which Servlet Filter, intercepts all the incoming requests sent to an application?
+
+		Filter implementation named Delegating FilterProxy that allows bridging between the Servlet container's lifecycle and Spring's ApplicationContext.
+
+		The Servlet container allows registering Filters using its own standards.
+
+		Delegating Filter Proxy can be registered via standard Servlet container mechanisms.
+
+19) To secure which layer @EnableGlobalMethodSecurity annotation is used?
+
+		We can use EnableGlobalMethodSecurity annotation to secure your Service layer.
+
+		It provides support for JSR-250 annotation security as well as the framework's original @Secured annotation.
+
+		From 3.0 you can also make use of new expression-based annotations.
+
+20) How to implement Spring Boot + Basic Authentication?
+
+		Add spring-boot-starter-security maven dependency in pom.xml
+
+		Configure the user and password in application.yml
+
+		Configure Spring Security by extending WebSecurity ConfigurerAdapter.
+
+		Create some simple rest end point to test the basic authentication.
+
+Q1: What is a microservice architecture?
+
+		It is an architecture to develop complex applications.
+
+		These built as a collection of small, independent services.
+
+		These Services communicate with each other through APIs.
+
+Q2: What are the benefits of using a microservices architecture?
+
+		Microservices architecture offers benefits such as
+
+		A. Scalability (Scale Up/Down and Scale In/Out)
+
+		B. Resilience (Reduce Cascading Failures)
+
+		C. Flexibility, faster development cycles.
+
+		D. Easier maintenance due to its modular and independent nature.
+
+Q3: Explain SOLID Principle?
+
+		Single Responsibility Principle (SRP): A class should have only one reason to change, meaning it should have a single responsibility or job.
+
+		Open-Closed Principle (OCP): Software entities should be open for extension but closed for modification.
+
+		Liskov Substitution Principle (LSP): Objects of a superclass should be able to be replaced with objects of its subclasses without breaking the behavior of the program.
+
+		Interface Segregation Principle (ISP): Creation of smaller, more cohesive interfaces instead of large ones that cover multiple scenarios.
+
+		Dependency Inversion Principle (DIP): This principle encourages the use of interfaces and dependency injection to decouple modules and make them more reusable and testable.
+
+Q4: What is Spring Cloud, and what are its key features?
+
+		Spring Cloud is a framework built on top of Spring Boot.
+
+		Used for development and deployment of microservices
+
+		Key features : service discovery and registration, load balancing, circuit breaking, distributed configuration, API gateway, and distributed tracing.
+
+Q5: What is service discovery, and how is it achieved in Spring Cloud?
+
+		The process of dynamically locating and communicating with services.
+
+		In Spring Cloud, service discovery is achieved using Netflix Eureka or Consul.
+
+		Allows services to register themselves and discover other services, enabling communication between microservices.
+
+Q6: Explain the role of API gateways in microservices.
+
+		Act as a single entry point for client requests to microservices.
+
+		Handles dynamic routing, load balancing.
+
+		The Gateway (old one is Zuul) library is used to implement AΡΙ gateways.
+
+		Support integration with Service Discovery and Authentication.
+
+Q7: What is circuit breaking, and how is it implemented using Spring cloud?
+
+		It is pattern that prevents cascading failures in microservices.
+
+		Circuit breaking is implemented using the Netflix Hystrix library/Resillence4J.
+
+		Monitors the health of dependent services and, if failures occur, opens the circuit to stop sending requests.
+
+		It ensuring the overall system stability.
+
+Q8: What is load balancing, and how is it handled in microservices?
+
+		Distribution of client requests across multiple instances of a service.
+
+		Spring Cloud integrates with load balancers like Netflix Ribbon/Cloud Load balancer.
+
+		These are client-side load balancing
+
+		Handle load distribution without manual configuration.
+
+Q9: What are tools used to arrgegate microservices log files?
+
+		ELK Stack (Elasticsearch, Logstash, Kibana): Logstash is responsible for collecting and parsing log data. Elasticsearch indexes and stores the logs, and Kibana is a interface for log visualization and analysis.
+
+		Splunk: Splunk is a powerful commercial tool that enables log aggregation, searching, monitoring, and analysis. It offers features like real-time alerts, dashboards, and machine learning capabilities for log data.
+
+		Fluentd: Fluentd is an open-source data collector that can aggregate and route log data from various sources to different destinations.
+
+Q10: What is distributed tracing, and how is it implemented in Spring Cloud?
+
+		It is a technique used to track and monitor requests as they flow through multiple microservices.
+
+		It is implemented through integration with tracing systems: Zipkin.
+
+		Sleuth used for tracing information across microservices, transferred to Zipkin Server using Zipkin Client.
+
+Q11: What is the purpose of Spring Cloud Config, and how does it work?
+
+		It is centralized management of configuration properties for microservices.
+
+		It uses configurations in a version-controlled repository and provides a configuration server.
+
+		Microservices can retrieve their configuration information from the server at runtime, enabling dynamic and centralized configuration.
+
+Q12: What are different types of Spring Cloud Config?
+
+		Local File System: Configuration properties can be stored in a local file system. The configuration files are typically in YAML or properties format.
+		Git: Microservices can retrieve the configuration from the specified Git repository, allowing for version control and easy management.
+		HashiCorp Vault: Configuration properties can be stored securely in Vault, and the Spring Cloud Config server can retrieve them using appropriate authentication and authorization mechanisms.
+
+Q13: What are the different approaches for inter-service communication in microservices?
+
+		The different approaches for inter-service communication in microservices include synchronous communication through HTTP/REST APIs.
+		Asynchronous messaging using message brokers like RabbitMQ or Apache Kafka
+		Event-driven communication using event buses or pub/sub mechanisms.
+
+Q14: What is service orchestration and service choreography in microservices?
+
+		Service orchestration is a centralized approach where a central component controls and coordinates the execution flow of microservices.
+		In contrast, service choreography is a decentralized approach where microservices collaborate with each other directly, without a central controller.
+		Service orchestration provides a more controlled and coordinated workflow, while service choreography offers greater flexibility to individual services.
+
+Q15: What is the role of containers and container orchestration platforms?
+
+		It is lightweight and portable environment for packaging and deploying microservices.
+		Consistency across different environments.
+		Orchestration platforms, such as Kubernetes and Docker Swarm, automate the management of containers at scale.
+		They handle tasks like deployment, scaling, service discovery, load balancing, and fault tolerance in a distributed environment
+
+Q16: Explain the concept of event-driven architecture and how Spring Cloud supports it.
+
+		Used for services communicate and react to events asynchronously.
+		Spring Cloud provides support for event-driven architecture through its integration with messaging systems like RabbitMQ or Apache Kafka.
+		Spring Cloud Stream and Spring Cloud Bus enable the implementation of event-driven patterns.
+		Allowing services to publish and subscribe to events, facilitating loose coupling and scalability in the system.
+
+Q17: What are the challenges and considerations for testing microservices?
+		Managing test data.
+		Orchestrating test environments, ensuring proper isolation, handling dependencies.
+		Designing effective end-to-end tests.
+		Selecting appropriate testing frameworks.
+		Comprehensive test coverage across the distributed system.
+
+Q18: How can you handle authentication in microservices?
+		Spring Cloud provides various mechanisms to handle security and authentication in microservices.
+		Integration with Spring Security, OAuth2, and JSON Web Tokens (JWT).
+		These tools enable implementing authentication and authorization mechanisms, securing endpoints, and managing user roles and permissions across microservices.
+
+Q19: What is the role of centralized logging in microservices, and how can it be achieved?
+
+		It helps collect and analyze logs from different services.
+		Aiding in monitoring, troubleshooting, and identifying issues across the distributed system.
+		Spring Cloud integrates with logging frameworks like ELK (Elasticsearch, Logstash, Kibana) or Splunk, allowing aggregation and analysis of logs fron microservices in a centralized manner.
+
+Q20: How does Spring Cloud handle service versioning and compatibility?
+
+		Spring Cloud does not provide a built-in mechanism for service versioning.
+		It can be achieved through good API design practices such as using semantic versioning, backward compatibility, and managing API contracts.
+		Tools like Spring Cloud Contract can help verify compatibility between service versions by providing consumer-driven contract tests.
+		Additionally, using API gateways and service registries can assist in managing and routing requests to different versions of services basedior their compatibility
+
+Q12)What is PagingAndSorting Repository?
+		By Using this Repository, we can sort the data (either in asc/desc).
+		We convert the record or print the record in page by page [Pagination].
+		This repository extends Crud Repository.
+
+Q13) What is @Query used for?
+		@Query Annotation is used to write custom query or user/programmer defined query.
+		By Using this query we can Write JPQL/HQL query which is written by the class and and variable name rather than DB Table name and Column name.
+		Here JPQL is the spefication and HQL is the implementation.
+
+Q14) What type of Queries can be implemented using @Query annotation
+		By using @Query annotation we can write both select and non-select (update/delete) operations.
+		By using @Query we can write both JPQL and native SQL queries.
+		But when we are using @Query with Update or delete, we should also specify @Modifying annotation.
+
+Q15) Give an example of using @Query annotation with JPQL?
+		Based on the employee name fetch the data from the database
+		@Query("SELECT e FROM Employee e WHERE e.name = ?1") List<Employee> getEmployeeBasedOnName(String name);
+		Must define inside our Repository interface
+		Must be abstract method
+		Must check JPQL/HQL Syntax
+
+Q16) What are Collection Mappings Supported by JPA?
+
+		JPA supports collections like List, Set and Map.
+		We need to add @ElementCollection over variable.
+		It creates one child table with 2/3 columns.
+		Key Column: Foreign Key Column
+		Index Column: Position of value in collection
+		Element Column: Actual Data of Collection
+		For Set collection, table is created with 2 columns (Key, Element)
+		For List/Map Collections, table is created with 3 columns.
+
+
+Q17) What is Platform TransactionManager?
+		Platform Transaction Manager is an interface that extends TransactionManager.
+		It is the central interface in Spring's transaction infrastructure.
+		It enables @Transactional Anotation which does commit in case of success and Rollback in case of Exception/Failed.
+
+Q18) How can we enable Spring Data JPA?
+
+		Spring Boot comes with Auto Configuration, if add Spring Data JPA Dependency in pom.xml
+
+		spring-boot-starter-data-jpa
+
+		We must write some configuration in application.properties, like Database connection details and JPA details.
+
+		spring.datasource.driver-class-name=
+
+		spring.datasource.url=
+
+		spring.datasource.username=
+
+		spring.datasource.password=
+
+Q19) Differentiate between findById() and getOne()?
+		findById() method present in Crud Repository where as getOne() method present in JpaRepository.
+		if data is not found in findById() method then it will return null, means its return type is Optional<T> class.
+		If data is not found in getOne() method, it will throw an exception called EntityNotFoundException.
+
+Q20) What is the use of Dialect and Give some Examples?
+
+		Dialect is a class defined in JPA.
+		It generates SQLs at runtime based on our operations (method class)
+		Like on calling save(), generates INSERT... SQL.
+		If we move from one Database to another Database Dialect property need to be modified in properties file
+		Example: Oracle 10g Dialect, MySQL8Dialect, PostgressDialect..etc
+
+21) What is Fetch Type in JPA ?
+
+		It is used for SELECT operations used for Association Mappings or Collection Mappings.
+		Fetch Types are: EAGER and LAZY
+		EAGER: Load Parent Entity along with its associate child entities
+		from DB table on select operations.
+		LAZY: Load Parent Entity from DB table on select operations. Later, calling child get() method, loads child entities.
+
+22) What is the default Fetch Type in JPA?
+
+		There is specific default value for Fetch Type. It depends on operation we do.
+		LAZY for: one-to-many and many-to-many also for ElementCollection
+		EAGER for: one-to-one and Many-to-one.
+
+23) How can we see generated SQLs at console/Log Files?
+
+		Data JPA by default generates SQL and it will not be shown.
+		To view them add prperty: show-sql=true in properties file
+		spring.jpa.show-sql=true (default is false)
+
+24) What are different types of Joins supported by JPA?
+
+		INNER JOIN |
+
+		JOIN:
+
+		Gets commonly connected rows from both tables.
+
+		OUTER JOIN
+
+		1. LEFT OUTER JOIN | LEFT JOIN
+
+		Gets all rows from Left side table and connected rows from right side table
+
+		2. RIGHT OUTER JOIN |
+
+		RIGHT JOIN
+
+		Gets all rows from Right side table and connected rows from left side table
+
+		3. FULL OUTER JOIN |
+
+		FULL JOIN
+
+		Gets all rows (both connected and non-connected) from both side .
+
+1) What is Spring Security?
+
+		Spring Security is a separate module of the Spring framework that focuses on providing authentication and authorization methods in Java applications.
+		It also takes care of most of the common security vulnerabilities such as CSRF attacks.
+
+2) What are some essential features of Spring Security?
+		Supports authentication and authorization in a flexible and comprehensive manner.
+		Java Authentication and Authorization Service (JAAS) is used for authentication purposes.
+		Allows Single Sign-On so that users can access multiple applications with just one account (username and password).
+
+3) What is Spring security authentication and authorization?
+		Authentication: Verifying the identity of the user, using the credentials provided when accessing certain restricted resources.
+						An example is logging into a website with a username and a password.
+		Authorization: This ensures that users can only access the parts of a resource that they are authorized to access.
+						An example is Role is assigned to login user like ADMIN, CUSTOMER, GUEST
+
+4) What do you mean by basic authentication?
+		We send a username and password using the HTTP [Authorization] header to enable us to access the resource.
+		Usernames and passwords are encoded using base64 encoding (not encryption) in Basic Authentication.
+		The encoding is not secure since it can be easily decoded.
+
+		Syntax:
+		Value = username:password
+		Encoded Value = base64(Value)
+		Authorization Value = Basic <Encoded Value>
+5) Explain Security Context and Security Context Holder ?
+
+		SecurityContext: In this, information/data about the currently authenticated user (also known as the principal) is stored.
+		SecurityContextHolder: Retrieving the currently authenticated principal is easiest via a static can to the SecurityContextHolder.
+		As a helper class, it provides access to the security context.
+
+6) Explain spring security OAuth2.
+		A simple authorization framework, OAuth 2.0, permits client applications to access protected resources via an authorization server.
+		Using it, a client application (third party) can gain limited access to an HTTP service on behalf of the resource owner or on its own behalf.
+		Resource Owner/User, Client, Authorization and Resource Server are involved in this concept.
+
+7) What is method security and why do we need it?
+		The ROLE of the user is used to determine which user is authorized to access the resource.
+		A security measure applied to a method prevents unauthorized users and only allows authentic users.
+		To prevent unauthorized users from performing activities beyond their privileges and roles.
+		Method level security is implemented using AOP (Aspect-Oriented Programming).
+
+8) What do you mean by HASHING in spring security?
+
+		Plain text passwords not good to be stored in your database
+		Store encrypted passwords in a database. This is called password hashing.
+		Encoding a string using the hashing algorithms. like: MD4, MD5, SHA (Security Hashing Algorithm) like SHA256 SHA128, etc.
+
+9) What is PasswordEncoder?
+		Password encoding is provided by Spring Security using the PasswordEncoder interface. This interface defines two methods:
+		encode(): It converts a plain password into an encoded form.
+		matches(): It compares an encoded password from the database with a plain password (input by the user) that's been encoded using the same salting and hashing algorithm as the encoded password.
+
+10) Name security annotations that are allowed to use SpEL.
+		@PreAuthorize, @PreFilter, @PostAuthorize and @PostFilter
+
+
+		These provide expression-based access control.
+		In Spring Security, @PreAuthorize is one of the most powerful annotations that allows you to use SpEL.
+		But the old @Secured annotation cannot use it, for example you cannot write @Secured("hasRole('ROLEADMIN')"), but you can do @PreAuthorize("hasRole('ROLEADMIN')").
+
+11) What is Authentication Manager in Spring Security?
+
+It says "How authentication will happen".
+Authentication Manager contains references to all the Authentication Providers.
+Authentication Managers can perform one of three actions in their authenticate() method: If valid return authenticated=true, invalid throw AuthenticationException, unable to find valid input returns null.
+To use Spring Security in web applications, we can get started with the simple annotation @EnableWebSecurity.
+
+
+12) What are some predefined filters used by Spring Security?
+
+		The Spring security filter chain is a very complex and flexible chain of filters.
+		SecurityContextPersistence Filter: This filter restores Authentication from the SESSIONID cookie.
+		Username Password AuthenticationFilter: This filter performs authentication.
+13)Can you add custom filters in Spring security's filter chain?
+
+		Yes, you can add or replace individual filters with your own logic in Spring's security filter chain.
+		You may need to implement new functionality depending upon your project's requirement and this can be done by creating a new filter to use in the chain.
+		We do use Filter type like OncePerRequestFilter and register with security configuration.
+
+
+14) How to implement a custom filter in Spring Security?
+
+		We can implement a custom filter in Spring security by using the org.springframework.web.filter.GenericFilterBean class.
+		The GenericFilterBean is a simple javax.servlet.Filter implementation which is Spring aware. You can override doFilter(ServletRequest req, ServletResponse res, FilterChain chain) to implement your own logic.
+
+15) What does @ and # is used for in Spring Expression Language (EL)?
+		The "@" symbol in Spring EL is used to reference a Spring Bean
+		The "#" symbol in Spring EL allows you to reference a parameter on the method you are securing.
+		Ex: #{authorization.name} prints username of current user logged-in
+
 -------------------------------------------------------------------------
 1. What is the Circuit Breaker Design Pattern?
 The Circuit Breaker pattern acts as a proxy for the service call. It works in three states:
