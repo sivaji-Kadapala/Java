@@ -1,5 +1,3 @@
-
-Last session (Tuesday) : Distributed application architecture
 ------------------------------------------------------------------------
 -> In distributed applications 2 actors will be available
 
@@ -145,11 +143,9 @@ package in.ashokit.rest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 @RestController
 @RequestMapping("/rest1")
 public class GreetRestController {
-
 	@GetMapping
 	public String getGreetMsg() { // http://localhost:9090/rest1/
 		String msg = "Good Morning...!!";

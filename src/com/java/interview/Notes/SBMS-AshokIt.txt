@@ -1,64 +1,37 @@
-
-Today's session : Microservices
---------------------------------------------------------------------------------
 -> Now a days java is mainley using to develop web applications only
-
 -> We can develop web applications in 2 ways
-
 		1) Monolith Architecture
 		2) Microservices Architecture
-
 ---------------------------------------------------------------------------------
 What is Monolith Architecture?
 ---------------------------------------------------------------------------------
 -> If we develop all the functionalities in one single application then we will call it as Monolith Architecture based application.
-
 -> When we package our application we will get one war file.
-
 -> Monolith application war files are called as fat war files or heavy weight war files
-
 -> It is very difficult to manage and maintain fat war files
-
-
 Advantages
 ----------
 1) Implementation will be easy
-
 2) Bug Tracking/Debugging Will be easy
-
 3) Better throughput
-
-
 Dis-Advantages
 ---------------
 1) Tighthly coupling among the components
-
 2) Less Scalability
-
 3) Burden on server
-
 4) Deployment process will be difficult
-
 5) Load Balancing is difficult & challenging
 ----------------------------------------------------------------------------------
-
 -> To avoid the problems of Monolith Architecture, Microservices Architecture Came into picture.
-
 ----------------------------------------------------------------------------------
 What is Microservices ?
 ----------------------------------------------------------------------------------
 -> Microservices is not a programming language
-
 -> Microservices is not a technology
-
 -> Microservices is not a framework
-
 -> Microservies is not an API
-
 -> Microservices is a design pattern which is used to develop our application functionalities with loosely coupling.
-
 -> Microservices architecture is not specific to any technology.
-
 ---------------------------------------------------------------------------
 Features of MicroServices
 -----------------------------------------------------------------------------------
@@ -71,62 +44,37 @@ Features of MicroServices
 6.Responsibility
 7.Decentralized governance:Developer choose best tools for development
 8.agility
-
 ----------------------------------------------------------------------------------
 Challenges with Microservices
 ----------------------------------------------------------------------------------
 1) Bounded Context
-
 2) Boiler Plate Configuration
-
 3) Visibility
-
 4) Pack of cards problem
 ----------------------------------------------------------------------------------
 -> Bounded Context means deciding boundary for rest api is very difficult. How many rest apis we need to develop for given requirements ? deciding this is difficult task.
-
 -> In every REST api we have to write same configurations
-
 		1) DB Config
 		2) Security Config
 		3) Actuator Config
 		4) Redis Config
 		5) Kafka Config
-
 -> All the developers will not have visibility on all the apis available in project.
-
 -> Pack of cards problem means if any important microservice failed then request can't be processed.
 ----------------------------------------------------------------------------------
 Advantages of Working with Microservices
 ---------------------------------------------------------------------------------
 1) Easy Maintenence
-
 2) Scalability
-
 3) Technology Independence
-
 4) Easy Deployment
 ----------------------------------------------------------------------------------
 Microservices Architecture
 ----------------------------------------------------------------------------------
 -> There is no fixed architecture for Microservices development
-
 -> People are customizing microservices architecture as per their requirement.
-
 Note-1 : We will discuss about generalized architecture for Microservices development which is using by most of the projects in the industry.
-
 Note-2: In one company 2 different projects might use 2 different approaches to develop Microservices based applications.
-
------------------------------------------------------------------------------------
-
-Last Session : Microservices Architecture
----------------------------------------------------------------------------------
--> Microservices is a design pattern which is used to develop the applications with loosely coupling.
--> Microservices is not specific to any technology.
-
--> We don't have any fixed architecture for Microservices.
-
--> People are customizing microservices architecture as per their requirement.
 --------------------------------------------------------------------------------------
 Spring Cloud
 -----------------------------------------------------------------------------------------------
@@ -141,105 +89,57 @@ engage in regular collaboration with domain experts to improve the application m
 ---------------------------------------------------------------------------------
 Service Registry
 ---------------------------------------------------------------------------------
--> Service Registry is used to register all the services(apis) availablein application.
-
+-> Service Registry is used to register all the services(apis) available in application.
 -> We can use Eureka Server as Service Registry for our apis.
-
 -> Spring Cloud Netflix libraries provided Eureka Server for us.
-
 Steps to develop Service Registry Application
 ----------------------------------------------
 -> Create Spring Starter Project with below dependencies
-
 	1) spring-cloud-starter-netflix-eureka-server
 	2) spring-boot-devtools
-
 -> Enable Eureka Server in boot start class using @EnableEurekaServer annotation
-
 -> Configure below properties in application.yml file
-
 server:
    port: 8761
 eureka:
   client:
     register-with-eureka: false
-
 -> Start the application and access Eureka dashboard using below URL
-
 		http://localhost:8761/
-
 -------------------------------------------------------------------------------------
-
-Last Session : What is Service Registry ?
-----------------------------------------------------------------------------------
--> Service Registry is an API which is used to register all the apis available in our application.
-
--> If we register our apis with service registry then we can monitor all our apis and apis details at one place.
-
--> Eureka Server we can use as Service Registry for our Microservices architecture based application.
-
--> Spring Cloud Netflix Libraries provided Eureka Server for us
-
--> To enable Eureka Server in our application we will use @EnableEurekaServer annotation
-
----------------------------------------------------------------------------------
-
 -> In our application we will develop several APIs
-
 -> API is also called as Service
-
 -> The API which is registered with Eureka Server is called as Eureka Client or Discovery Client
-
 -> To represent our API as Eureka client application we will use @EnableDiscoveryClient annotation
-
 -> If Eureka Server is running on same machine with 8761 port then our API will auto-register with Eureka Server.
-
 -> If we want to register our api with Eureka Server manually then we need to configure below property in application.yml file
-
 eureka:
   client:
     service-url:
       defaultZone: ${DISCOVERY_URL:http://localhost:9090}/eureka/
-
-
 -> We will configure name for our API using below property
-
 spring:
   application:
     name: GREET-API
-
 Note: This name will be displayed in Eureka Dashboard once our API got registered with Eureka Server.
 ----------------------------------------------------------------------------------
 -> What is Interservice Communication ?
 ---------------------------------------------------------------------------------
-
 -> If one API is communicating with another api which are belongs to same application then it is called as Inter service communication.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------
-
 -> In Microservices Architecture based application, we will develop several REST apis.
-
 -> As part of application execution, one rest api will communicate with another rest api. This is called as Interservice Communication.
-
 -> To achieve Interservice Communication we can use FeginClient.
-
 -> FeginClient provided by Spring Cloud Netflix library.
-
 ----------------------------------------------------------------------------------
-
 1) Add Feign client dependency in pom.xml file
-
 2) Write @EnableFeignClients dependency at boot start class
-
 3) Creat Fegin Client component like below to access other api
-
 -------------------------------------------------------------------------------
 @FeignClient(name = "GREET-API")
 public interface GreetClient {
-
 	@GetMapping("/greet")
 	public String invokeGreetApi();
-
 }
 ----------------------------------------------------------------------------------
 -> GREET-API is name of the api which is registered in Eureka Server
@@ -248,25 +148,11 @@ public interface GreetClient {
 
 -> When we call invokeGreetApi() method, FeignClient will get GREET-API url from service registry based on name then it will call GREET-API and will get the response.
 ----------------------------------------------------------------------------------
-Last session : FeignClient & Interservice Communication
--------------------------------------------------------------------------
-
--> In one project we will develop multiple services
-
--> If one service wants to communicate with another service in same project then we will call it as Interservice Communication.
-
--> To achieve Interservice Communication we will use FeignClient.
-
--> FeignClient will get service url from service registry based on service name.
----------------------------------------------------------------------------------
 API Gateway
 ---------------------------------------------------------------------------------
 -> API Gateways acts as single entry point for all the backednd apis available in the application.
-
 -> API Gateway is used to manage all the apis available in the application.
-
 -> We can use Zuul Proxy as API Gateway
-
 -> Zuul Proxy provided by Spring Cloud Netflix Library
   API composition
   Authentication:you can put authentication at front end
@@ -303,24 +189,7 @@ The Load Balancer returns the response to the API Gateway in Region1.
 The API Gateway then sends the response back through DNS to the client, completing the full round trip.
 Last session : API Gateway with Example
 ---------------------------------------------------------------------------------
-Today's session : Mini Project Requirement
----------------------------------------------------------------------------------------------
--> What is Service Registry ?
-
--> What is Eureka Client ?
-
--> How to register our API with Eureka Server ?
-
--> What is Interservice Communication ?
-
--> What is FeignClient?
-
--> What is API Gateway ?
-
--> How to configure Routing in API Gateway ?
-----------------------------------------------------------------------------------------------
 -> We can pass Embedded Server PORT number as an VM argument
-
 -> Right Click On Project -> Run As -> Run Configurations -> Arguments -> VM Arguments
 
 		-Dserver.port=1111
@@ -361,76 +230,35 @@ Note: STOCK-CALC-API will get stock_price from STOCK-PRICE-API based on company_
 Today's session : Load Balancing
 ---------------------------------------------------------------------------------
 -> Load Balancing is the process of distributing load from one server to multiple servers.
-
 -> If we deploy our application in one server then it is responsible to handle all incoming requests.
-
 -> If all requests are going to single server then burden will increase on the server.
-
 -> If burden increased on server then we will see below issues
-
 		1) Response Delay
-
 		2) Server Crash etc..
-
 -> To avoid these problems we will deploy our application using Load Balancer.
-
 -> Load Balancing we can implement in 2 ways
-
 		1) Server Side Load Balancing
-
 		2) Client Side Load Balancing
 -------------------------------------------------------------------------------------------------------------------
 -> To implement Server Side balancing Load Balancer algorithm will be configured to decide which request should be processed by which server.
-
 			i) Round Robbin
 			ii) Sticky Session
 			iii) Ip Hashing
-
 Q) What is scale up?
 Q) What is scale down?
-
 -> Adding more servers to LBR based on demand is called as Scale up.
-
 -> Removing servers from LBR is called as Scaled down.
-
 -> Adding servers and removing servers manually is time taking process.
-
 -> Now a days we are using Auto-Scaling.
-
 Q) What is Auto Scaling?
 -> It is the process of adding and removing servers from LBR based on demand.
-
 Ex: Amazon BigDay sale, Flipkart BigDay Sale etc..
-
 -> Companies can't guess traffic on Big Day sale thats why they will prefer AutoScaling.
----------------------------------------------------------------------------------
-
-
-
-
-
-
-
-1) Spring Boot Admin Server & Client
-2) Distributed Logging (Slueth & Zipkin)
-3) Circuit Breaker
-4) Connecting with Multiple Databases
-5) Securing Rest APIs
-6) Apache Kafka
-7) Redis Cache
-8) Angular Integration
-9) Docker
-10) Profiles in Spring Boot (Video)
-11) Exception Handling in Rest API (Video)
------------------------------------------------------------------------------
-
 ---------------------------------------------------------------------------------
 Spring Boot Admin Server & Admin Client
 ---------------------------------------------------------------------------------
 -> Spring Boot provided actuators to get production ready features
-
 -> Spring boot actuators having below endpoints
-
 		- info
 		- health
 		- beans
@@ -440,33 +268,22 @@ Spring Boot Admin Server & Admin Client
 		- threaddump
 		- heapdump
 		- httpTrace etc.
-
 -> To work with actuators we have to add below starter in pom.xml file
-
 		1)spring-boot-starter-actuator
-
 -> To expose actuator endpoints(14-health is default) we will write below configuration
-
 	management.endpoints.web.exposure.include= '*'
 ->Enable/Disable Endpoints: Control which endpoints are exposed by setting:
-
         management.endpoints.web.exposure.include=health,info,metrics
         management.endpoints.web.exposure.exclude=beans,shutdown
-
 -> To see exposed endpoints of our application we can use below url
-
 		http://localhost:portnumber/actuator/
-
 Configure Actuator for Cloud Deployment
 If you're deploying to the cloud, consider configuring specific properties to match your environment:
-
 Context Path: Set a context path for Actuator endpoints to avoid exposing them at the root of your application.
-
    management.server.servlet.context-path=/management
-
 -> Admin Server is providing user interface to monitor all the registered services at one place using actutor endpoints.
 Use Cases for Spring Boot Actuator
---------------------------------
+----------------------------------
 1.Health Checks for Load Balancers:
 The /actuator/health endpoint can be used by load balancers to determine if an instance is healthy and should receive traffic.
 2.Application Monitoring:
@@ -479,37 +296,28 @@ By adding custom HealthIndicator beans, you can monitor application-specific dep
 Steps to develop admin server project
 --------------------------------------------------------------------------------
 1) Create Spring Boot application with Admin-server dependency
-
 	<dependency>
 		<groupId>de.codecentric</groupId>
 		<artifactId>spring-boot-admin-starter-server</artifactId>
 	</dependency>
-
 2) Write below annotation at Spring Boot start class
-
 @SpringBootApplication
 @EnableAdminServer
 public class Application {
-
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
 }
-
 3) Configure port number
-
 4) Run the application and access admin-server-dashboard
-
 ------------------------------------------------------------------------------------------
 Steps to develop Admin Client Application
 -------------------------------------------------------------------------------------------
 1) Create Spring Boot Application with below dependencies
-
 		i)starter-web
 		ii)actuator
 		iii)admin-client
 		iv) devtools
-
 <dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -523,7 +331,6 @@ Steps to develop Admin Client Application
 			<groupId>de.codecentric</groupId>
 			<artifactId>spring-boot-admin-starter-client</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -549,12 +356,10 @@ Steps to develop Admin Client Application
 	</dependencies>
 
 2) Configure below properties in application.yml file
-	
 		i)server-port
 		ii) application-name
 		iii) actuator-props
 		iv) admin-server-app-url
-
 server:
   port: 2222
 spring:
@@ -569,25 +374,16 @@ management:
     web:
       exposure:
         include: '*'
-
 3) Create Rest Controller with Required Methods
-
 4) Run the application and verify Admin-Server-Dashboard
-
 --------------------------------------------------------------------------------------------
 Distributed Logging (Using Sleuth & Zipkin)
 -----------------------------------------------------------------------------------------
-
 -> Download Zipkin Server (it is a jar file)
-
 -> Run Zipkin server using below command
-
 	java -jar  zipkin-server.jar
-
 Note: Zipkin server will run on the port number 9411 (http://localhost:9411)
-
 -> Create Spring Boot application with below dependencies
-
 <dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -627,49 +423,32 @@ Note: Zipkin server will run on the port number 9411 (http://localhost:9411)
 	</dependencies>
 
 -> Configure server-port and application-name in yml file
-
 -> Create Rest Controller with Required methods
-
 -> Run the application and test it.
-
 Note: Application execution log details can be monitored in zipkin server dashboard.
-
 Note: Now a days in the industry we are using Splunk for this.
 ---------------------------------------------------------------------------------------------
-
 Today's session : Apache Kafka
 --------------------------------------------------------------------------------
 -> Distributed systems are collection of computers that work together to form single computer for end users.
-
 -> Distributed systems can handle billions of requests and upgrades without downtime.
-
 -> Apache Kafka has become one of the most widely used Distributed Systems on the market today.
 -------------------------------------------------------------------------------
 -> Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance and data pipelines, streaming analysis, data integration, and mission-critical applications.
-
 -> Kafka is used by most fortune 100 companies like Linkedin, Netflix and Microsoft etc.
-
 -> Apache Kafka is an open-source software which is written in Scala and Java programming languages.
-
 -> Kafka started in 2011 as a messaging system for Linkedin but has since grown to became a popular distributed event streaming platform.
-
 -> Apache Kafka is capable of handling trillions of records per day.
 
 
 Apache Kafka Use cases
 ----------------------
 1) Processing financial transactions in realtime
-
 2) Tracking and Monitoring Trasportation Vehicles in real-time
-
 3) Capturing and Analyzing sensor data
-
 4) Collecting and reacting to customer interaction
-
 5) Monitoring hospital patients
-
 6) To develop Event-Driven Microservices etc..
-
 1. Producer Sends Data
 Producer applications publish messages to a specific topic in Kafka. A topic is a logical channel or category through which data flows, like a stream.
 Data is divided into partitions within a topic. Each partition is an ordered sequence, and data inside a partition is immutable.
@@ -692,11 +471,8 @@ Offset management can be automatic (Kafka commits periodically) or manual (the c
 Today's session(28-Aug) : Cache Introduction
 -------------------------------------------------------------------------
 -> Cache is a memory which is used to store the data in key-value format
-
--> If our application having a requirement to use satic data then it is highly recommended to use Cache in that application.
-
+-> If our application having a requirement to use static data then it is highly recommended to use Cache in that application.
 -> Using cache data we can reduce no.of db calls and we can improve performance of the application.
-
 -> If we want to use cache in one application then we will go for Local cache. Local cache means we will implement with in our application.
 
 ------------------------------------------------------------------------
@@ -723,7 +499,6 @@ public class MyCacheRunner implements CommandLineRunner{
 }
 -----------------------------------------------------------------------
 -> If we want to use cache data in multiple applications then we will go for Distributed Cache.
-
 -> Redis is one of the famous distributed cache.
 ------------------------------------------------------------------------
 
@@ -731,41 +506,26 @@ Last session : What is Cache & why we need to go for cache
 ------------------------------------------------------------------------
 
 -> Cache is a temporary storage which is used to store & access the data frequently.
-
 -> In our application we will deal with two types of tables
-
 		1) Transactional tables
 		2) Non-transactional tables
-
 -> If application is performing insert/update/delete operations in the table then it is called as transactional table.
-
 -> If application is performing only select(read) operation on the table then that table is called as non-transactional table.
-
 -> The data which we have in non-transactional table is called as static data.
-
 -> If we are using static data in our application then we can implement cache to improve performance of the application.
-
 How to implement cache
 ----------------------
 -> Once application got started take data from db and store that into cache in the form of key-value pair.
-
 -> When application needs that data take it from cache memory instead of making db call.
-
 -> By using cache memory we can reduce no.of db calls hence application performance will be improved.
-
 Q) What is Local cache & What is distributed cache ?
 -----------------------------------------------------
 -> If we implement cache with in one application then it called as local cache.
-
 -> If we want to use cache data in multiple applications then we should go for distributed cache (Ex: Redis cache)
-
-
 Q) What is Redis?
 ------------------
 -> Redis is an open source cache which is used to store the data in the form key-value pair.
-
 -> Multiple applications can connect to Redis cache to access the data.
-
 ------------------------------------------------------------------------
 Environment Setup
 ------------------------------------------------------------------------
@@ -794,19 +554,12 @@ Spring Boot Application with Redis Integration
 		5) swagger & swagger-ui
 
 2) Configure JedisConnectionFactory bean with Redis Server details & inject JedisConnectionFactory bean into RedisTemplate bean
-
 3) Create Entity class
-
 4) Create Repository Class with required methods. Inject RedisTemplate into Repository bean and get HashOperations object to perform redis operations.
-
 5) Create Rest Controller with required methods
-
 6) Create Swagger Config class
-
 7) Configure Server port
-
 8) Run the application and test it.
-
 ----------------------------------------------------------------------------------
 <dependencies>
 		<dependency>
@@ -998,7 +751,6 @@ Last Session : Spring Boot with Redis Integration
 -> RedisTemplate
 
 -> HashOperations (Provided methods to perform operations)
-
 		- put( )
 		- get( )
 		- entries( )
@@ -1062,7 +814,6 @@ Q5) What is IOC in Spring ?
 Q6) What is Spring Configuration File?
 		It is XML file which is contains the information of classes and describes how those classes configured and linked with each other.
 		It is called as XML Configuration file.
-
 		<bean id="ob1" class="com.app. Employee Service">
 		<property name="empType">
 		<value>export</value>
@@ -1076,7 +827,6 @@ Q8) Difference between Constructor and Setter Injection ?
 		By the Construction injection Partial injection is not possible but we can achieve Partial injection by Setter Injection.
 		In the construction Injection new instance will created if any modification but it is not possible in the setter injection we can't achieve any new instance.
 		If the been have many properties then we preferred constructor injection and if been have some few properties then we preferred for setter injection.
-
 Q9) What are the Bean Scope Spring provided ?
 		Spring Provided five types of Scope these are
 		1. Singleton
@@ -1084,12 +834,10 @@ Q9) What are the Bean Scope Spring provided ?
 		3. Request
 		4. Session
 		5. Global-session (not exist in new versions of Spring)
-
 Q10) What is Bean Wiring ?
 		When the beans are Combined together inside the Spring Container, that is called Wired or Bean Wiring.
 		The Spring container should know what beans are needed and how the beans are dependent each other while Wiring Beans.
 		Ex: Combine EmployeeService object with EmployeeRepository object
-
 Q11) What is Autowiring in Spring & What are the different modes it have ?
 		The Spring framework can inject dependency Automatically.
 		The IOC container will first detect those dependencies Specified in the configuration file and the relationship between the beans and then it will inject Automatically this process is called Autowiring.
@@ -1099,7 +847,6 @@ Q11) What is Autowiring in Spring & What are the different modes it have ?
 		3. byType
 		4.constructor
 		5.autodetect.
-
 Q12) What is the difference between @Autowired and @Inject ?
 		Both annotation are used for same purpose means @Autowired annotation is used for Autowiring in Spring framework.
 		@Inject also used for same purpose but difference is @Inject is a standard Annotation for Dependency injection and the @Autowired is Specified Annotation in Spring for dependency injection.
@@ -1107,16 +854,13 @@ Q12) What is the difference between @Autowired and @Inject ?
 Q13) What is the difference between @Component and @Bean?
 		@Component creates object inside spring container. It can be used only if we have source code of a class [programmer-defined class]
 		If a class is pre defined and wants to creates object inside container then we need to use @Bean (Java based configuration) along with @Configuration [Java based configuration]
-
 Q14) How many types of IOC Containers are there in Spring ?
 		There are two types of Containers these are -
 		1. BeanFactory: BeanFactory is like a factory class that contains a collection of beans. It instantiates the bean whenever asked for by clients.
 		2. ApplicationContext: The ApplicationContext interface is built on top of the BeanFactory interface. It provides some extra functionality on top BeanFactory. Like: Annotations support, Multi-container system, Reactive Programming..etc
-
 Q15) What is the Use of @Required Annotation in Spring framework ?
 		@Required is applied to bean property setter methods.
 		This is indicates that the affected bean property must be populated at the configuration time with the help of an explicit property value in a bean definition or with Autowiring.
-
 Q16) What is the use of @Autowired Annotation in Spring?
 		It is used to link (Inject) two beans inside Spring container.
 		Mostly recommended using Field Injection.
@@ -1125,10 +869,8 @@ Q16) What is the use of @Autowired Annotation in Spring?
 		@Autowired
 		Employee Repository repo;
 		}
-
 Q17) What is the use of @Qualifier annotation in Spring framework?
 		When we create more than one bean of the same type and want to wire only one of them with a property we can use the @Qualifier annotation along with @Autowired to remove the ambiguity by specifying which exact bean should be wired.
-
 Q18) What is @Primary Annotation in Spring?
 		Indicates that a bean should be given preference when multiple candidates are qualified to Autowired a single-valued dependency.
 		In case of Autowiring process, if no Qualifier is used, @Primary is given highest priority.
@@ -1136,18 +878,15 @@ Q18) What is @Primary Annotation in Spring?
 Q19) What are lifecycle methods in Spring?
 		init and destroy methods are called as Life Cycle methods in Spring.
 		They are executed by default by Spring container while creating object.
-
 Q20) What are different ways of writing Lifecycle methods in Spring?
 		Using XML (also called Declarative Approach)
 		<bean ... init-method="" destroy-method=""> </bean>
 		Using Spring Interfaces (also called Programmatic Approach) Implement interfaces: InitializingBean, DisposableBean
 		Using Annotations @PostConstruct and @PreDestroy
-
 Q21) What are the common implementations of the ApplicationContext?
 		The FileSystemXmlApplicationContext container loads the definitions of the beans from an XML file. The full path of the XML bean configuration file must be provided to the constructor.
 		The ClassPathXmlApplicationContext container also loads the definitions of the beans from an XML file. Here, you need to set CLASSPATH properly because this container will look bean configuration XML file in CLASSPATH.
 		The WebXmlApplicationContext container loads the XML file with definitions of all beans from within a web application.
-
 Q22) What are the Stereo Type annotations ?
 		Spring has provided 5 Stereo Type annotations:
 		1. @Component
@@ -1155,18 +894,15 @@ Q22) What are the Stereo Type annotations ?
 		3. @Repository
 		4. @Controller
 		5. @RestController
-
 Q23) What are different modules Spring?
 		The Spring Framework contains a lot of features,
 		which are well-organized in about twenty modules.
 		These modules can be grouped together based on their primary features into Core Container, Data Access Integration, Web, AOP (Aspect Oriented Programming), Instrumentation and Test.
-
 Q24) What is Profiles in Spring?
 		Multiple Environments like Stage, production, Testing, UAT
 		Profiles: Loading Properties based on Environment
 		We can activate current profile using
 		--spring.profiles.active=qa (by passing at runtime)
-
 Q25) What is inner beans in Spring?
 		Whenever a bean is used for only one particular property, it's advise to declare it as an inner bean.
 		And the inner bean is supported both in setter injection 'property' and constructor injection 'constructor-arg'.
@@ -1176,7 +912,6 @@ Q25) What is inner beans in Spring?
 		<bean class="Inner Bean ClassName"/>
 		</property>
 		</bean>
-
 1) What is Spring WEB Module ?
 		This module is given by Spring Framework.
 		It is used to develop both MVC and REST applications.
@@ -1193,98 +928,63 @@ Q25) What is inner beans in Spring?
 		Model - A model contains the data of the application.
 		Controller - A controller contains the business logic of an application.
 		View - A view represents the provided information in a particular format. Like JSP+JSTL, Apache Velocity, Thymeleaf, and FreeMarker.
-
 4) What is the front controller of Spring MVC?
 		The front controller is a DispatcherServlet class present in org.springframework.web.servlet package.
 		It dispatches the request to the appropriate controller and manages the flow of the application.
 		It is required to specify the DispatcherServlet class in the web.xml file.
-
 5) Explain the flow of Spring MVC?
 		Once the request has been generated, it intercepted by the DispatcherServlet that works as the front controller.
 		The DispatcherServlet gets an entry of handler mapping from the XML file and forwards the request to the controller.
 		The controller returns an object of ModelAndView.
 		The DispatcherServlet checks the entry of view resolver in the XML file and invokes the specified view component.
-
 6) What are the advantages of Spring MVC Framework?
 		The following are the advantages of Spring MVC Framework:
 			Light-weight - It uses a light-weight servlet container to develop and deploy your application.
 			Rapid development The Spring MVC facilitates fast and parallel development.
 			Flexible Mapping - It provides the specific annotations that easily redirect the page.
-
 7) Which annotations are used for HTTP request methods?
-
 		The following annotations are used to handle different types of incoming HTTP request methods
 			1. @GetMapping
 			2. @PostMapping
 			3. @PutMapping
 			4. @PatchMapping
 			5. @DeleteMapping
-
 8) Explain the Difference Between @Controller and @RestController?
 		The main difference between the @Controller and @RestController annotations is that the @ResponseBody annotation is automatically included in the @RestController.
 		This means that we don't need to annotate our handler methods with the @ResponseBody.
 		We need to do this in a @Controller class if we want to write response type directly to the HTTP response body.
-
 9) What are the @RequestBody and the @ResponseBody Annotations?
 		The @RequestBody annotation, used as a handler method parameter, binds the HTTP Request body to a transfer or a domain object.
 		Spring
-
 16) What do you mean by session management in Spring Security?
-
 		Session management relates to securing and managing multiple users' sessions against their request:
-
 		To control HTTP sessions, Spring security uses the following options: Session ManagementFilter and SessionAuthneticationStrategy.
-
 		SessionAuthnetication Strategy takes care of session timeout, session-ids etc.
-
 17) Explain salting and its usage?
-
 		Spring Security automatically applies salting since version 3.1.
-
 		Salting is the process of combining random data with a password before password hashing.
-
 		Salt improves hashing by increasing its uniqueness and complexity.
-
 		Hashed passwords are then stored in a database, along with salt.
-
 18) Which Servlet Filter, intercepts all the incoming requests sent to an application?
-
 		Filter implementation named Delegating FilterProxy that allows bridging between the Servlet container's lifecycle and Spring's ApplicationContext.
-
 		The Servlet container allows registering Filters using its own standards.
-
 		Delegating Filter Proxy can be registered via standard Servlet container mechanisms.
 
 19) To secure which layer @EnableGlobalMethodSecurity annotation is used?
-
 		We can use EnableGlobalMethodSecurity annotation to secure your Service layer.
-
 		It provides support for JSR-250 annotation security as well as the framework's original @Secured annotation.
-
 		From 3.0 you can also make use of new expression-based annotations.
-
 20) How to implement Spring Boot + Basic Authentication?
-
 		Add spring-boot-starter-security maven dependency in pom.xml
-
 		Configure the user and password in application.yml
-
 		Configure Spring Security by extending WebSecurity ConfigurerAdapter.
-
 		Create some simple rest end point to test the basic authentication.
-
 Q1: What is a microservice architecture?
-
 		It is an architecture to develop complex applications.
-
 		These built as a collection of small, independent services.
-
 		These Services communicate with each other through APIs.
-
 Q2: What are the benefits of using a microservices architecture?
-
 		Microservices architecture offers benefits such as
-
 		A. Scalability (Scale Up/Down and Scale In/Out)
 
 		B. Resilience (Reduce Cascading Failures)
@@ -1368,19 +1068,13 @@ Q10: What is distributed tracing, and how is it implemented in Spring Cloud?
 		Sleuth used for tracing information across microservices, transferred to Zipkin Server using Zipkin Client.
 
 Q11: What is the purpose of Spring Cloud Config, and how does it work?
-
 		It is centralized management of configuration properties for microservices.
-
 		It uses configurations in a version-controlled repository and provides a configuration server.
-
 		Microservices can retrieve their configuration information from the server at runtime, enabling dynamic and centralized configuration.
-
 Q12: What are different types of Spring Cloud Config?
-
 		Local File System: Configuration properties can be stored in a local file system. The configuration files are typically in YAML or properties format.
 		Git: Microservices can retrieve the configuration from the specified Git repository, allowing for version control and easy management.
 		HashiCorp Vault: Configuration properties can be stored securely in Vault, and the Spring Cloud Config server can retrieve them using appropriate authentication and authorization mechanisms.
-
 Q13: What are the different approaches for inter-service communication in microservices?
 
 		The different approaches for inter-service communication in microservices include synchronous communication through HTTP/REST APIs.

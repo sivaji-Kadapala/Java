@@ -1,4 +1,4 @@
--> To perform persistent operations we need persistent store.
+ -> To perform persistent operations we need persistent store.
 
 -> Persistent Store is nothing but database where we can store the data permanently for future access.
 
@@ -7,7 +7,7 @@
 		1) CREATE / INSERT
 		2) UPDATE
 		3) RETRIEVE
-		4) UPDATE
+		4) Delete
 
 
 -> In order to work with Databases we need to have below 2 softwares
@@ -69,7 +69,7 @@ spring.datasource.driverClassName=
     Note: If db table column name & entity cls varibale name is same then @Column is optional.
 
 ----------------------------------------------------------------------------------------------
--> Spring Data JPA provided 2 interfaces to perform curd operations. They are
+-> Spring Data JPA provided 2 interfaces to perform crud operations. They are
 
 	1) CrudRepository
 	2) JpaRepository

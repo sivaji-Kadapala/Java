@@ -1,4 +1,4 @@
-package java.interview.Coding.Pojo;
+package src.com.java.interview.Coding.Pojo;
 
 import java.util.Comparator;
 import java.util.List;
