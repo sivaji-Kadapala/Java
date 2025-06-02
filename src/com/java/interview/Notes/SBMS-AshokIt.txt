@@ -29,7 +29,7 @@ What is Microservices ?
 -> Microservices is not a programming language
 -> Microservices is not a technology
 -> Microservices is not a framework
--> Microservies is not an API
+-> Microservices is not an API
 -> Microservices is a design pattern which is used to develop our application functionalities with loosely coupling.
 -> Microservices architecture is not specific to any technology.
 ---------------------------------------------------------------------------
@@ -64,7 +64,7 @@ Challenges with Microservices
 ----------------------------------------------------------------------------------
 Advantages of Working with Microservices
 ---------------------------------------------------------------------------------
-1) Easy Maintenence
+1) Easy Maintenance
 2) Scalability
 3) Technology Independence
 4) Easy Deployment
@@ -136,11 +136,16 @@ Note: This name will be displayed in Eureka Dashboard once our API got registere
 2) Write @EnableFeignClients dependency at boot start class
 3) Creat Fegin Client component like below to access other api
 -------------------------------------------------------------------------------
-@FeignClient(name = "GREET-API")
+@FeignClient(name = "GREET-API") or @FeignClient(url= "${address.service.url}")
 public interface GreetClient {
 	@GetMapping("/greet")
 	public String invokeGreetApi();
 }
+
+Then Auto wire your GreetClient in your service class
+        @Autowire
+        private GreetClient greetClient;
+Then make calls using greetClient inst ance
 ----------------------------------------------------------------------------------
 -> GREET-API is name of the api which is registered in Eureka Server
 
@@ -150,10 +155,12 @@ public interface GreetClient {
 ----------------------------------------------------------------------------------
 API Gateway
 ---------------------------------------------------------------------------------
--> API Gateways acts as single entry point for all the backednd apis available in the application.
+-> API Gateways acts as single entry point for all the backend apis available in the application.
 -> API Gateway is used to manage all the apis available in the application.
 -> We can use Zuul Proxy as API Gateway
 -> Zuul Proxy provided by Spring Cloud Netflix Library
+->PreFilter:
+  Just create CustomFilter class and implements GlobalFilter,This is provided from API Gateway,it will ovverride filter method
   API composition
   Authentication:you can put authentication at front end
   Rate limiting :we can set the rules like manage burst limit,api throtting
@@ -241,7 +248,7 @@ Today's session : Load Balancing
 		2) Client Side Load Balancing
 -------------------------------------------------------------------------------------------------------------------
 -> To implement Server Side balancing Load Balancer algorithm will be configured to decide which request should be processed by which server.
-			i) Round Robbin
+			i) Round Robbin(Trending)
 			ii) Sticky Session
 			iii) Ip Hashing
 Q) What is scale up?
@@ -253,7 +260,13 @@ Q) What is scale down?
 Q) What is Auto Scaling?
 -> It is the process of adding and removing servers from LBR based on demand.
 Ex: Amazon BigDay sale, Flipkart BigDay Sale etc..
--> Companies can't guess traffic on Big Day sale thats why they will prefer AutoScaling.
+-> Companies can't guess traffic on Big Day sale that's why they will prefer AutoScaling.
+implementation
+--------------
+->Add spring-cloud-starter-loadbalancer dependency in your pom.xml
+->Create LoadBalancer class ,Annotate with @LoadBalancerClient(value="address-service")
+->You can annotate another annotation is @LoadBalanced
+Note:Earlier Spring was providing spring cloud Netlflix Ribbon to acieve client side loadbalancing but now its been deprecated and Spring Cloud Load Balancer is being used
 ---------------------------------------------------------------------------------
 Spring Boot Admin Server & Admin Client
 ---------------------------------------------------------------------------------
@@ -354,7 +367,6 @@ Steps to develop Admin Client Application
 			</exclusions>
 		</dependency>
 	</dependencies>
-
 2) Configure below properties in application.yml file
 		i)server-port
 		ii) application-name
@@ -467,7 +479,6 @@ If a new consumer joins the group, Kafka rebalances partitions across consumers 
 5. Acknowledgments and Offsets
 Consumers process messages and acknowledge them to Kafka, which allows for offset tracking and commits.
 Offset management can be automatic (Kafka commits periodically) or manual (the consumer commits offsets when ready).
-
 Today's session(28-Aug) : Cache Introduction
 -------------------------------------------------------------------------
 -> Cache is a memory which is used to store the data in key-value format
@@ -1295,22 +1306,16 @@ Q20) What is the use of Dialect and Give some Examples?
 
 10) Name security annotations that are allowed to use SpEL.
 		@PreAuthorize, @PreFilter, @PostAuthorize and @PostFilter
-
-
 		These provide expression-based access control.
 		In Spring Security, @PreAuthorize is one of the most powerful annotations that allows you to use SpEL.
 		But the old @Secured annotation cannot use it, for example you cannot write @Secured("hasRole('ROLEADMIN')"), but you can do @PreAuthorize("hasRole('ROLEADMIN')").
 
 11) What is Authentication Manager in Spring Security?
-
 It says "How authentication will happen".
 Authentication Manager contains references to all the Authentication Providers.
 Authentication Managers can perform one of three actions in their authenticate() method: If valid return authenticated=true, invalid throw AuthenticationException, unable to find valid input returns null.
 To use Spring Security in web applications, we can get started with the simple annotation @EnableWebSecurity.
-
-
 12) What are some predefined filters used by Spring Security?
-
 		The Spring security filter chain is a very complex and flexible chain of filters.
 		SecurityContextPersistence Filter: This filter restores Authentication from the SESSIONID cookie.
 		Username Password AuthenticationFilter: This filter performs authentication.
@@ -1527,7 +1532,6 @@ Create a security configuration class by extending WebSecurityConfigurerAdapter 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-
 
 @Configuration
 @EnableWebSecurity

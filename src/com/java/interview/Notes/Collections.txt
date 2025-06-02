@@ -3,7 +3,7 @@ What is Java Collection  Framework?
 -----------------------------------
 Java Collection Framework is a  framework which provides some predefined classes and interfaces to store and manipulate the group of objects.
 Using Java collection framework, you can store the objects as a List or as a Set or as a Queue or as a Map and perform basic operations like adding,
-removing, updating, sorting, searching etc.. with ease.
+removing, updating, sorting, searching etc. with ease.
 Why Java Collection Framework?
 -----------------------------
 Earlier, arrays are used to store the group of objects. But, arrays are of fixed size. You can’t change the size of an array once it is defined.It causes
@@ -109,7 +109,7 @@ Set :
 Intro :
 -------
 Set is a linear collection of objects with no duplicates.
-Set interface does not have it’s own methods. All it’s methods are inherited from Collection interface.
+Set interface does not have its own methods. All it’s methods are inherited from Collection interface.
 It just applies restriction on methods so that duplicate elements are always avoided.
 Popular Implementations :
 -------------------------
@@ -123,7 +123,7 @@ Null Elements :
 ---------------
 HashSet       : Maximum one null element
 LinkedHashSet : Maximum one null element.
-TreeSet       : Does’t allow even a single null element
+TreeSet       : Doesn’t allow even a single null element
 Duplicate Elements :
 --------------------
 HashSet       : Not allowed
@@ -157,7 +157,7 @@ Map :
 Intro :
 -------
 Map stores the data in the form of key-value pairs where each key is associated with a value.
-Map interface is part of Java collection  framework but it does’t inherit Collection interface.
+Map interface is part of Java collection  framework, but it doesn’t inherit Collection interface.
 Popular Implementations :
 -------------------------
 HashMap, LinkedHashMap And TreeMap
@@ -180,7 +180,7 @@ Order Of Elements :
 -------------------
 HashMap       : No Order
 LinkedHashMap : Insertion Order
-TreeMap       : Elements are placed according to supplied Comparator or in natural order of keys if no Comparator is supplied.
+TreeMap      \\\ : Elements are placed according to supplied Comparator or in natural order of keys if no Comparator is supplied.
 Synchronization :
 -----------------
 HashMap       : Not synchronized

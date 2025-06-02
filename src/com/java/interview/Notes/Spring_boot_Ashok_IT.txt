@@ -28,12 +28,10 @@ Spring Boot Dis-Advantages
 difficult task
 Conclusion
 ----------
-Spring Boot = (Spring Framework - XML Configuration ) + Auto Configuration  + Actuators + Embedded Servers
+Spring Boot = (Spring Framework-XML Configuration)+ Auto Configuration  + Actuators + Embedded Servers
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 -> We are creating our boot application using maven
-
 -> We can see below folders in our maven based boot application
-	
 		src/main/java
 			- Application.java
 		src/main/resources
@@ -42,16 +40,11 @@ Spring Boot = (Spring Framework - XML Configuration ) + Auto Configuration  + Ac
 		Maven Dependencies
 		target
 		pom.xml
-
 ------------------------------------------------------------------------
-
 -> When we create boot application one java class will be created by default that class is called as Start Class or main class.
-
 -> Spring Boot application execution will begin from start class only.
-
 -> Start class is the entry point for boot application execution.
 -------------------------------------------------------------------------
-
 @SpringBootApplication
 public class Application {
 
@@ -61,53 +54,32 @@ public class Application {
 }
 ---------------------------------------------------------------------
 -> From Boot start class we have to understand below 2 things very clearly
-
 	1) @SpringBootApplication
 	2) SpringApplication.run( ) method
-
 -> The @SpringBootApplication annotation is equal to below 3 annotations
-
 	1) @SpringBootConfiguration(sc)
 	2) @EnableAutoConfiguration(eac)
 	3) @ComponentScan(cs)
-
 -> SpringApplication.run() method is used to bootstrap our spring boot application.
-
 --------------------------------------------------------------------------------------------------------------------------------------------
 -> SpringApplication.run(..) method performs bootstrapping of spring boot application.
-
 Note: Bootstrapping means starting the application.
-
 -> By using spring Boot we can create 3 types of applications
-
 		1) Reactive Application
-
 		2) Web Application
-
 		3) Standalone application
-
 -> At the time of creating boot project, if we don't select any dependency it will add 'spring-boot-starter' dependency by default. This will be considered as Standalone application.
-
 -> At the time of creating boot project, if we select 'spring-boot-starter-web' dependency then it will be considered as 'SERVLET' based application.
-
 -> At the time of creating boot project, if we select 
 'spring-boot-starter-webflux' dependency then it will be considered as 'REACTIVE' based application.
-
 Note: In SpringApplication class constructor logic is available to identify what type of project we have created ( deduceFromClassPath() );
-
-
-
-
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -> SpringApplication.run() method will start boot application execution process.
-
 -> Below things are executing as part of run( ) method.
-
 	-> It will identify type of the project
 			- Reactive (webflux starter)
 			- Web Servlet (web starter)
 			- Default Standalone (boot starter)
-
 	-> It will start stop watch to calculate time
 
 	-> It will start listeners based on spring.factories file
@@ -194,30 +166,23 @@ Note: It is highly recommended to follow base package naming convention so that 
 What is Spring Bean?
 ---------------------------------------------------------------------------------
 -> The java class which is managing by IOC is called as Spring Bean.
-
 -> To represent java class as Spring Bean we have below annotations
-
 @Component
 @Service
 @Repository
-
 @Controller
 @RestController
-
 @Configuration
 @Bean (This is method level annotation)
 -------------------------------------------------------------------------------------------------------------------------------------------------
 -> To represent java class as configuration class we will use @Configuration annotation.
-
 -> If we want to customize the object creation for a class then we will write method and will use @Bean annotation.
-
 	Ex: Security Configuration
 	    Kafka Producer Configuration
 	    Kafka Consumer Configuration
             RestTemplate Configuration
 	    WebClient Configuration
             Swagger Configuration etc...
-
 -> If we want IOC container to create object for class then we will use below annotations at class level
 
 		@Component
@@ -328,19 +293,13 @@ public class Application {
 }
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -> The process of injecting dependent bean object into target bean object through target bean constructor is called as 'Constructor Injection'.
-
--> To peform Constructor Injection, IOC will create Dependent Bean object first then it will create Target Bean object.
-
+-> To perform Constructor Injection, IOC will create Dependent Bean object first then it will create Target Bean object.
 -> To inform IOC to perform Constructor Injection we will write @Autowired annotation at target class constructor.
-
 Note: If target class is having only one parameterized constructor then writing @Autowired is optional.
-
 ----------------------------------------------------------------------------------
 @Service
 public class UserService {
-
 	private UserDao userDao;
-
 	@Autowired
 	public UserService(UserDao userDao) {
 		System.out.println("UserService :: 1-Param Constructor");
@@ -351,11 +310,8 @@ public class UserService {
 Today's session : Setter Injection
 ---------------------------------------------------------------------------------
 -> The process of injecting dependent bean object into target bean object through target class setter method is called as Setter Injection.
-
 -> To inform IOC to perform Setter Injection we will write @Autowired annotation at target class setter method.
-
 -> In Setter Injection target bean object will be created first then dependent bean object will be created.
-
 ----------------------------------------------------------------------------------
 package in.ashokit.service;
 

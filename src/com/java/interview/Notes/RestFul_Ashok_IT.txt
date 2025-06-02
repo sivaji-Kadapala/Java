@@ -1,32 +1,20 @@
 ------------------------------------------------------------------------
 -> In distributed applications 2 actors will be available
-
 		1) Provider App
 		2) Consumer App
-
 -> The application which is giving business services to other applications is called as provider application.
-
 -> The application which is taking business services from other applications is called as consumer application.
-
-
--> Provider and consumer applications will exchange the data in intereoperable format.
-
+-> Provider and consumer applications will exchange the data in interoperable format.
 -> XML, JSON and YAML are universal formats to exchange the data.
-
--> HTTP protocol will acts as mediator between Consumer and Provider to exchange the data.
+-> HTTP protocol will act as mediator between Consumer and Provider to exchange the data.
 -------------------------------------------------------------------------
 -> Distributed applications can be developed in 2 ways
-
 		1) SOAP Based Webservices (Outdated)
 		2) Restful Services (Trending)
-
 -> SOAP Webservices can be developed in 2 ways
-
 		1) JAX-RPC api
 		2) JAX-WS api
-
 -> RESTFul services can be developed in 2 ways
-
 		1) JAX-RS api
 		2) Spring with REST (Trending)
 -------------------------------------------------------------------------
@@ -35,28 +23,18 @@ RESTful Services Evolution
 -> Initially people used to develop distributed applications with intereoperablity using SOAP Webservices.
 
 -> Over a period "Roy Fielding" identified some challenges to work with Soap webservices.
-
 -> Roy Fielding provided some architecture principles to develop distributed applications with intereoperability.
-
 -> If we develop our application by using "Roy Fielding" principles then our application is called "Restful service".
-
 -------------------------------------------------------------------------
 REST Architecture Principles
 -------------------------------------------------------------------------
 1) Unique Addressbility
-
 2) Uniform Constraint Interfaces
-
 3) Message Oriented Representation
-
 4) Communication Stateless
-
 5) HATEOS
 -------------------------------------------------------------------------
-
 -> In Rest API we can write several methods to perform distributed operations. Every method should have unique address. This is called as Unique Addressability.
-
-
 public class IrctcRestApi{
        ("/ticket")
       public Ticket BookTicket();
@@ -87,21 +65,6 @@ public class IrctcRestApi{
 -----------------------------------------------------------------------
 -> HATEOS stands for Hypermedia as an engine for application state. Provider should send data to consumer in hypermedia format.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
-Last session : REST Architecture Principles
--------------------------------------------------------------------------
--> Roy Fielding provided Architecture principles to develop Restful services
-
-1) Unique Addressability
-
-2) Uniform Constraint Interfaces
-
-3) Message Oriented Representation
-
-4) Communication Stateless
-
-5) HATEOS
-
------------------------------------------------------------------------
 Few Important Annotations We will Use in Spring With REST
 -------------------------------------------------------------------------
 
@@ -190,14 +153,6 @@ public class WelcomeRestController {
 		return new ResponseEntity<String>(msg, HttpStatus.OK);
 	}
 }
--------------------------------------------------------------------------------------------------------------------------------------------------------------
-Last session : URL Mapping & Http Methods
--------------------------------------------------------------------------
-1) Unique Addressbility
-2) Uniform Constraint Interfaces
-3) Message Oriented Representation
-4) Communication Stateless
-5) HATEOS
 ------------------------------------------------------------------------
 -> In REST api, every method should be binded to unique address. To achieve this we are writing URL pattern at class level and method level also.
 
@@ -250,20 +205,14 @@ Today's session : HTTP Protocol Methods
 HTTP GET Method
 -------------------------------------------------------------------------------
 -> If client wants to get data from rest api method, then that rest api method should be binded to get request using @GetMapping annotation.
-
 -> GET Request will not contain request body
-
 -> Clients can send data to rest api in the URL (query params & path Params) while sending GET request.
-
 --------------------------------------------------------------------------------
 HTTP POST Method
 ---------------------------------------------------------------------------------
 -> If REST api method is responsible to create a new record with client given data then we will bind that method to HTTP Post Method using @PostMapping annotation.
-
 -> HTTP Post Method will have request body.
-
 -> Clients can send data to POST Request Method using
-
 		1) Path Params
 		2) Query Params
 		3) Request Body
@@ -298,32 +247,7 @@ HTTP DELETE
 		1) Path Params
 		2) Query Params
 		3) Request Body
------------------------------------------------------------------------------------
-Summary
-----------------------------------------------------------------------------------
--> What is HTTP Protocol ?
-
--> What HTTP methods we will use in REST API development
-
--> When to use which HTTP method
-
--> HTTP Request Structure
-
--> HTTP Response Structure
-
--> HTTP Status Codes
-
--> HTTP Status Messages
 --------------------------------------------------------------------------------------------------------------------------------------------
-Last session : HTTP Protocol Methods
--------------------------------------------------------------------------
-
--> Below 4 methods we will use as part of REST api development
-
-		1) GET Method  (Getting the data)
-		2) POST Method (Creating record)
-		3) PUT Method (Updating record)
-		4) DELETE Method (Deleteing record)
 -------------------------------------------------------------------------
 1) What is Unique Addressability?
 2) What is Uniform Constraint Interfaces?
@@ -334,7 +258,6 @@ Message Oriented Representation
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 Last session : Message Converters
 -------------------------------------------------------------------------
-
 -> We are using objects for rest api methods development.
 
 -> Method parameter and method return type we are using as object.
@@ -1002,3 +925,32 @@ Procedure to follow to develop REST API
 
 8) Test endpoint behaviour using Postman
 ---------------------------------------------------------------------------------------------------------------------------------------
+Web client
+---------------------------------------------------------------------------------
+If you make the calls generally ,we are using RestTemplate but spring 5 onwords not recomnded to use
+You can use Webclient instead of RestTemplate
+if you are implementing web client in your application
+-> you can add "Spring-boot-starter-webflux" dependency in your pom.xml
+-> Then you can create bean in with in main method
+-> Then you can add service url in application.properties
+        address.service.url=http://localhost:8082/api/address
+-> Then you can access above property by using @Value annotation
+        @Value("${address.service.url}")
+        private String addressServiceUrl;
+-> The above url create bean of webclient
+        @Bean
+        public WebClient webClient(){
+        WebClient webClient=WebClient.builder()
+                            .baseUrl(addressUrl).build();
+        return webClient;
+        }
+->Then Autowire webclient in your student service class
+       @Autowire
+       private WebClient webClient;
+
+       public AddressResponse getAddressById(long addressId){
+       Mono<AddressResponse> adressResponse=webClient.get().uri("/getById/"+addressId)
+                                            .retrieve().bodyToMono(AddressResponse.class);
+       return adressResponce.block();
+       }
+Purpose:One service is calling another service

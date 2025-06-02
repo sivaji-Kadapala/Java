@@ -14,44 +14,48 @@
 
 			1) Database Server S/w
 			2) Database Client S/w
-
-
 -> For Oracle DB Server, SQL Developer software will be used as client
-
 -> For MySQL DB server, Mysql workbench will be used as client
 -> When we install oracle db in our system we will get sql commandline to execute sql queries.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 Note: It is very difficult to write complex sql queries in command line.
 In industry people will use SQL developer as a client software to write sql queries.
 ----------------------------------------------------------------------------------
 -> To communicate with DB using data jpa our java application should have below things.
-
 		1) DB Config
-
 		2) Entity Class
-
 		3) Repository Interface
-
--> DB Config contains Database Configuration Properites
+-> DB Config contains Database Configuration Properties
 	(Driver class, url, username and password)
-
 -> The java class which is mapped with db table is called as Entity class.
-
 -> Repository interface provided method to perform CRUD operations with db table.
+Architecture:
+-------------
+Entity Manager:all entities are managed by Entity Manager,all operations merge,create,persist etc managed,It will create Entity transactions and queries to database
+                EntityManager em=entityMangerFactory.createEntityManager();
+                em.persist(book)
+Entity Manager Factory: It will create Entity Manager.It will create multiple entity managers in your application,Those are manages all entities in your application
+Persistance:These are  define in JPA,Spring Data JPA is abstraction of Java Persistance API
+Persistance context:This is temporary cache.Here entities will store.Entity Manager will interacts with Persistance context
+In JPA (Java Persistence API), cascade types define how operations on a parent entity affect its related child entities. The available cascade types are:
+    - CascadeType.ALL – Applies all cascade operations.
+    - CascadeType.PERSIST – Saves child entities when the parent is saved.
+    - CascadeType.MERGE – Merges child entities when the parent is merged.
+    - CascadeType.REMOVE – Deletes child entities when the parent is deleted.
+    - CascadeType.REFRESH – Refreshes child entities when the parent is refreshed.
+    - CascadeType.DETACH – Detaches child entities when the parent is detached.
 
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+    private List<Child> children;
 ----------------------------------------------------------------------------------
 -> In spring boot application we will write db config in application.properties file
-
 -------------------------------application.properties--------------------------
 spring.datasource.url=
 spring.datasource.username=
 spring.datasource.password=
 spring.datasource.driverClassName=
 --------------------------------------------------------------------------------
-
 -> Based on above properties Data JPA will create connection pool and it provide DB connection to communicate with database.
-
 ---------------------------------------Entity class-------------------------------
 
 -> We will map our java class with database table using below annotations
@@ -70,42 +74,30 @@ spring.datasource.driverClassName=
 
 ----------------------------------------------------------------------------------------------
 -> Spring Data JPA provided 2 interfaces to perform crud operations. They are
-
 	1) CrudRepository
 	2) JpaRepository
-
--> CrudRepository provided methods to perform only CRUD operations 
-
+-> CrudRepository provided methods to perform only CRUD operations
 -> JpaRepository provided methods to perform Crud operations + Pagination + Sorting
-
 Note: JpaRepository is having more functionalities than CrudRepository
 ---------------------------------------------------------------------------------------------
-
 -----------------------------------------------------------------------------------------------
 Developing First Application Using Spring Data JPA
 ----------------------------------------------------------------------------------------------
 1) Create a table in database
-
 CREATE TABLE EMP_TBL(
     EMP_ID NUMBER(10),
     EMP_NAME VARCHAR2(20),
     EMP_SAL NUMBER(10,2),
     PRIMARY KEY (EMP_ID)
 );
-
 2) Create Spring Boot application with below dependencies
-
-	1) spring-boot-starter-data-jpa
+    1) spring-boot-starter-data-jpa
 	2) oracle ( or ) mysql
-
-
 3) Configure datasource properties in application.properties file
-
 spring.datasource.url=jdbc:oracle:thin:@localhost:1521/XE
 spring.datasource.username=IES_DEV
 spring.datasource.password=IES_DEV
 spring.datasource.driverClassName=jdbc.oracle.OracleDriver
-
 4) Create Java class and map with db table
 ---------------------------------------------------------------------------------------------
 @Entity
@@ -125,82 +117,49 @@ public class Employee{
      //setters & getters
 }
 ----------------------------------------------------------------------------------------------
-
 5) Create a interface and extend the properties from Spring Data JPA Repository interface.
-
 @Repository
 public interface EmpRepository extends CrudRepository<Employee, Integer>{
-
 }
 ----------------------------------------------------------------------------------------------
-
 6) Get EmpRepository bean object in boot start class using IOC reference and call the methods to perform Crud operations.
-
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -> To develop our application using data jpa we have to select below starter
-
 		'spring-boot-starter-data-jpa'
-
 -> To communicate with database we need to have driver class. Every Database provided their own driver class
-
 		Oracle -----> OracleDriver
 		MySql ------> MySqlDriver
 		SqlServer ----> SqlServerDriver
-
 -> To Establish connection with DB we need to configure DB properties in application.properties file
-
 -> To perform DB operations we need to create Entity and Repository
-
-
 	Entity ---------> Mapping with db table
-        Repository --------> Contains methods to perform operations
-
+    Repository --------> Contains methods to perform operations
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -> Spring Data Jpa provided repository interfaces to perform DB operations
-
 	1) CrudRepository
 	2) JpaRepository
-
 -> CrudRepository provided methods to perform only crud operations
-
 -> JpaRepository provided methods to perform crud operations + pagination + sorting also.
 ----------------------------------------------------------------------------------------------
-
 -> If our interface extending the properties from JPA interfaces then we no need to write single line of code also to perform crud operations.
-
 -> When we create our interface by extending jpa repository interface then implementation class will be created in the run time for our interface. By using that implementation class object we can call the methods to perform DB operations.
-
 		Note: Implementation class is a proxy class.
-
-
 CrudRepository interface methods
 --------------------------------
 save ( ) : To insert one record
-
 saveAll ( ) : To insert collection of records
-
 Note: We don't have update method.... save( ) method is polymorphic method. If primary key already exist then it will update the record else it will insert the record.
-
 findById( ) : To retrieve record using Primary Key
-
 findAllById ( ) : To retrieve records using multiple primary keys.
-
 findAll ( ) : To retrieve all records available in table
-
 existsById ( ) : To check presense of the record
-
 count ( ): To check total no.of records in available in table.
-
 deleteById ( ) : To delete a record using Primary Key
-
 deleteAllById ( ) : To delete multiple records using primary keys
-
 delete(E obj) : To delete record using entity obj
-
 deleteAll ( ) : To delete all records from the table.
 ---------------------------------------------------------------------------------------------
 -> In Data JPA we can perform DB operations in 3 ways
-
 	1) Using predefined methods
 	2) By Writing findBy methods
 	3) By Using Custom Queries
@@ -208,29 +167,17 @@ deleteAll ( ) : To delete all records from the table.
 CrudRepository interface methods
 ------------------------------------------------------------------------
 -> CrudRepository is an interface available in data jpa
-
 -> This interface provided several methods to perform Crud operations.
-
 -------------------------------------------------------------------------
-
 -> In Data JPA, we can perform DB operations in 3 ways
-
 	1) Predefined methods
 	2) findByXXX methods
 	3) Custom Queries
-
--> Predefined methods we have executed in last session
-
-
 findByXXX methods
 ------------------
 -> findBy methods are used to perform retrival operatoins
-
 -> When we write a findBy method Data JPA will construct the query based on our method name
-
 -> Method Naming convention is very very important for findBy methods.
-
-
 ------------------------------------------------------------------------
 package in.ashokit.entity;
 
@@ -317,63 +264,23 @@ public interface EmpRepository extends CrudRepository<Employee, Serializable> {
 }
 -----------------------------------------------------------------------------------
 -> Using Data JPA we can execute custom queries also
-
 -> To execute custom queries we will use @Query annotation.
-
-
 What is the difference between HQL and Native SQL queries?
 ----------------------------------------------------------
--> In SQL queries we will use table name and column names directley
-
+-> In SQL queries we will use table name and column names directly
 -> In HQL queries we will use Entity class name and variable names
-
 -> SQL queries are database dependent
-
 -> HQL queries are database in-dependent
-
-Note: Database can't understand HQL... DB will understand only SQL. 
-
+Note: Database can't understand HQL... DB will understand only SQL.
 -> To convert HQL queries to SQL queries Dialect classes will be used.
-
-
 SQL :: select emp_name from emp_tbl where emp_id=101;
 HQL :: select empName from Employee where empId=101;
-
 SQL :: select emp_name, emp_sal from emp_tbl where emp_id=101;
 HQL :: select empName, empSal from Employee where empId=101;
-
 SQL :: select * from emp_tbl where emp_id=101;
 HQL :: from Employee where empId=101;
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-CrudRepository methods, findBy methods, @Query
--------------------------------------------------------------------------
--> In Data jpa we can execute queries in 3 ways
-
-		1) predefined methods
-		2) findByXXX methods
-		3) Custom Queries (@Query annotation)
-
--> We discussed about HQL & SQL queries
-
--> Dialect class is used to convert HQL query to SQL query.
-------------------------------------------------------------------------
-I have shared videos for below concepts
-
-1) JpaRepository introduction
-
-2) JpaRepository methods
-
-3) Pagination
-
-4) Sorting
-
-5) Generators
-
-6) Custom Generator
--------------------------------------------------------------------------
 Query By Example
 -------------------------------------------------------------------------
-
 Requirement:
 ------------
 Retrieve all Managers working for IRCTC project in Hyd location.
@@ -390,14 +297,6 @@ select * from emp_tbl where emp_project='SBI';
 
 //if we select only emp_location then below query should execute
 select * from emp_tbl where emp_location='PUNE';
-
-
-
-
-
-
-
-
 public List<Employee> searchEmps(EmpSearchCriteria esc){
 	StringBuilder sql = "select * from emp_tbl where 1=1";
 
@@ -412,9 +311,6 @@ public List<Employee> searchEmps(EmpSearchCriteria esc){
         }
 }
 ---------------------------------------------------------------------------------
-
-
-
 Employee [empId=103, empName=John, empSal=18000.0]
 Employee [empId=104, empName=Ram, empSal=23000.0]
 Employee [empId=105, empName=Rani, empSal=24000.0]
@@ -426,7 +322,6 @@ Employee [empId=106, empName=Smith, empSal=15000.0]
  Connection Pooling
 ------------------------------------------------------------------------
 -> Connection pooling is used to avoid connections exhausted problem in our application.
-
 -> Using Connection Pooling we can improve performance of our application (for every operation we no need to open connection with DB).
 -->Spring boot internally uses Hikari connection pool
 Note: We can customize connection pool properties using application properties
@@ -436,20 +331,13 @@ Note: We can customize connection pool properties using application properties
 Working with Transactions in Data JPA
 -------------------------------------------------------------------------
 -> An unit amount of work is called as Transaction.
-
 -> When we are performing operations with DB then Transactions are very very important.
-
 -> Transaction is mandatory for non-select operations (Insert/Update/Delete)
-
 -> Transaction is optional for select  operations (Retriving)
 -----------------------------------------------------------------------------------
-
 	Connection con = DriverManager.getConnection(Url, Uname, Pwd);
-
 	Statement stmt = con.createStatement();
-
 	int rowsEffected = stmt.executeUpdate(sqlQuery);
-
 -> In JDBC connection obj will be created with default autoCommit mode. When we execute any non-select query using jdbc api then immediatley it will commit the transaction.
 ----------------------------------------------------------------------------------
 
@@ -470,34 +358,23 @@ Transactions in application
 ------------------------------------------------------------------------
 
 -> When our application is performing DB operations then transactions are required.
-
 -> Transaction is mandatory for only non-select operations
-
 		Ex: create, update and delete
-
 -> Transaction is optional for select operations.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 auto-ddl and composite primary key
 ------------------------------------------------------------------------
-
 -> Hibernate provided several ORM properties for us to configure in the application
-
 	show_sql : To print queries on the console
-
 	format_sql : To print queries in formatted way
-
 	dialect : To convert HQL queries to SQL queries
-
 	auto-ddl : To generate schema dynamically
-
 -> For auto-ddl property having 5 options
-
 		1) create
 		2) create-drop
 		3) update
 		4) validate
 		5) none
-
 -> 'create' option will always create the new tables. If tables are already existing it will drop the existing tables and will create new tables. We will loose table old data in this approach.
 
 -> 'create-drop' option will create tables then it will perform the operation and it will delete the tables at the end. This option is used for staging operations.
@@ -510,16 +387,11 @@ auto-ddl and composite primary key
 -----------------------------------------------------------------------------------
 Primary and Composite Primary Key In Database
 -----------------------------------------------------------------------------------
-
 -> Primary Key is a constraint which is used to maintain unique data in the column.
-
 -> Primary key constraint is the combination of below 2 constraints
-
 			-> NOT NULL
 			-> UNIQUE
-
 -> To map variable with Primary Key Column we will use @Id annotation.
-
 -> If a table is having more than one primary key then it is called as composite Primary Key.
 
 

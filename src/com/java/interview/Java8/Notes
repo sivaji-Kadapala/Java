@@ -86,6 +86,12 @@ Why to use Lambda expressions?
 -> To write more readable, maintainable and concise code
 -> To enable parallel processing
 
+In Java, the target type of a lambda expression is the functional interface it implements.
+A lambda must always be assigned to or used in a context where its type is clear.
+
+MyInterface obj = (x) -> System.out.println("Value: " + x); // Target type is MyInterface
+
+
 Method references are shortened versions of lambda expressions that call a specific method.
 
 Java 8 Optional Class
