@@ -1,25 +1,27 @@
 My name is Sivaji, and I am from Tirupati. I completed my MCA from Narayana Engineering College, Nellore.
 
-I have around 4.3 years of experience, and from the beginning I have been working as a Java Developer, mainly focusing on backend development.
+I have around 4.3 years of experience, and from the beginning I have been working as a Java Developer, mainly focusing on building scalable and high-performance backend applications.
 
 Previously, I worked at Virtusa for the client JPMorgan Chase, where I was part of banking domain projects like Tokenization and Home Lending.
 
 In the tokenization project, we improved security by masking sensitive card details and showing only the last four digits, which helped in protecting customer data.
-I was also involved in migrating applications from Spring Boot 2.7 to 3.x and Java 8 to 17, along with testing and deployments.
+I was also involved in migrating applications from Spring Boot 2.7 to 3.x and Java 8 to 17, along with handling end-to-end testing and deployments.
 
 Currently, I am working at Capgemini, supporting Standard Chartered Bank for the past 9 months. I am working on MGM and Client Leads projects related to mobile banking applications.
 
 One of the key features I worked on is a referral system using QR codes.
-The frontend sends a request to our backend, we integrate with Pega to generate the referral code, and then we send the response back to the client.
+The frontend sends a request to our backend, we process it and integrate with Pega to generate the referral code, and then we send the response back to the client.
 
-We follow a quarterly release cycle, where we develop features for the Singapore market and also analyze feasibility for other markets like Hong Kong and India. At the end of each quarter, we deploy to production and plan for the next set of features.
+We follow Agile methodology and a quarterly release cycle, where we develop features for the Singapore market and also perform feasibility analysis for other markets like Hong Kong and India. At the end of each quarter, we deploy to production and plan the next set of features.
 
-In my role, I mainly work on developing APIs, integrating with external systems, and ensuring smooth and secure communication between services.
+In my current role, I work independently on developing and enhancing backend components using Java and Spring Boot. I actively participate in team discussions, contribute to solving technical problems, and collaborate with cross-functional teams to understand requirements and deliver solutions.
+
+I am also involved in writing clean and efficient code, supporting code reviews, and ensuring application performance and reliability. I have experience working with SQL databases and optimizing queries for better performance.
 
 From a technical perspective, I have strong experience in Core Java, Spring Boot, Microservices, REST APIs, Kafka, and CRNK framework. I also have working knowledge of ReactJS and SQL.
 
-For tools, I use Postman, BlazeMeter, Splunk, Kubernetes Dashboard, and we deploy applications on Azure cloud.
+For tools, I use Postman for API testing and BlazeMeter for performance testing. I also work with Splunk and Kubernetes Dashboard for monitoring logs and application performance. Our applications are deployed on Azure cloud, and I have exposure to working with CI/CD and deployment processes.
 
-Overall, I am very interested in building scalable backend systems and solving real-world problems, especially in the banking domain.
+Overall, I enjoy building scalable and high-performing applications and contributing to business solutions using modern technologies.
 
 👉 I’m now looking for an opportunity where I can take more ownership and contribute to building high-quality scalable systems.
